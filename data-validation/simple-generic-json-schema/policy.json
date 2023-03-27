@@ -1,0 +1,15 @@
+{
+  "name": "simple-basic-json-schema-for-every-topic",
+  "matching":{
+    "topicFilter": "#"
+  },
+  "validation": {
+    "schemaId": "simple-generic-json"
+  },
+  "onFailure": {
+    "log": {
+      "level": "WARN",
+      "message": "The client with $client does no send JSON payloads. Skipping..."
+    }
+  }
+}
