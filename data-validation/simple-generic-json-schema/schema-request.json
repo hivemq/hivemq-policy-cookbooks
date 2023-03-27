@@ -1,0 +1,5 @@
+{
+  "id": "simple-generic-json",
+  "type": "JSON",
+  "schemaDefinition": "{\n  \"description\": \"This is a the most generic JSON schema, since it requires just a JSON, nothing further specified\",\n  \"type\": \"object\"\n}"
+}
