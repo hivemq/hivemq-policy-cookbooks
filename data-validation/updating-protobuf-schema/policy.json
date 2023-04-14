@@ -1,10 +1,10 @@
 {
-  "name": "simple-basic-json-schema-for-every-topic",
+  "name": "simple-policy",
   "matching": {
     "topicFilter": "#"
   },
   "validation": {
-    "schemaId": "simple-generic-json"
+    "schemaId": "simple-schema"
   },
   "onSuccess": {
     "continue": true
@@ -13,7 +13,7 @@
     "continue": false,
     "log": {
       "level": "WARN",
-      "message": "The client with $clientId does no send JSON payloads. Skipping..."
+      "message": "The client with ID $clientId sent invalid data"
     }
   }
 }

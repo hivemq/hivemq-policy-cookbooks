@@ -1,0 +1,19 @@
+{
+  "name": "log-matching-json",
+  "matching": {
+    "topicFilter": "europe/#"
+  },
+  "validation": {
+    "schemaId": "usa-coordinates"
+  },
+  "onSuccess": {
+    "continue": true,
+    "log": {
+      "level": "INFO",
+      "message": "The client $clientId published coordinate data near the US on topic $topic"
+    }
+  },
+  "onFailure": {
+    "continue": true
+  }
+}

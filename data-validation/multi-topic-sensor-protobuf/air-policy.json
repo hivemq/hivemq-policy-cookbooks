@@ -1,0 +1,19 @@
+{
+  "name": "air-policy",
+  "matching": {
+    "topicFilter": "air/#"
+  },
+  "validation": {
+    "schemaId": "air-schema"
+  },
+  "onSuccess": {
+    "continue": true
+  },
+  "onFailure": {
+    "continue": false,
+    "log": {
+      "level": "DEBUG",
+      "message": "The client with ID $clientId sent invalid air data: $validationResult"
+    }
+  }
+}
