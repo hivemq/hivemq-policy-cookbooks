@@ -1,0 +1,7 @@
+syntax = "proto3";
+package com.example;
+
+message Temperature {
+  float component_a_temperature = 1;
+  float component_b_temperature = 2;
+}

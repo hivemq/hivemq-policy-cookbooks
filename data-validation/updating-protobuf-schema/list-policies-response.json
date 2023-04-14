@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "name": "simple-policy",
+      "createdAt": "2023-04-20T15:00:00.001Z",
+      "matching": {
+        "topicFilter": "#"
+      },
+      "validation": {
+        "schemaId": "simple-schema"
+      },
+      "onSuccess": {
+        "continue": true
+      },
+      "onFailure": {
+        "continue": false,
+        "log": {
+          "level": "WARN",
+          "message": "The client with ID $clientId sent invalid data"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "temperature-policy",
+  "matching": {
+    "topicFilter": "temperature/#"
+  },
+  "validation": {
+    "schemaId": "temperature-schema"
+  },
+  "onSuccess": {
+    "continue": true
+  },
+  "onFailure": {
+    "continue": false,
+    "log": {
+      "level": "ERROR",
+      "message": "The client with ID $clientId sent invalid temperature data: $validationResult"
+    }
+  }
+}
