@@ -38,11 +38,11 @@ suppose your HiveMQ REST API runs at `http://localhost:8888`.
 ### Policy
 The next step is to apply the schema for all incoming MQTT messages by referencing the already defined schema `simple-generic-schema`.
 
-The following policy specifies the validation step under the `topicFilter`: `#`.  In case a MQTT message isn't a valid JSON payload, a log message with level 'WARN' is printed with the `clientId`. 
+The following policy specifies the validation step under the `topicFilter`: `#`.  In case a MQTT message does not contain a valid JSON payload, a log message with level 'WARN' is printed with the `clientId`. 
 `policy.json`:
 ```json
 {
-  "name": "simple-basic-json-schema-for-every-topic",
+  "name": "simple-basic-json-policy-for-every-topic",
   "matching": {
     "topicFilter": "#"
   },
@@ -56,7 +56,7 @@ The following policy specifies the validation step under the `topicFilter`: `#`.
     "continue": false,
     "log": {
       "level": "WARN",
-      "message": "The client with ID $clientId does not send JSON payloads. Skipping..."
+      "message": "The client with id $clientId does not send JSON payloads. The message will be dropped."
     }
   }
 }
@@ -71,5 +71,5 @@ The policy is now applied and all incoming MQTT messages are subject to validati
 
 To delete the policy, run the following command:
 ```bash
-curl -X DELETE -H "Content-Type: application/json" http://localhost:8888/api/v1/policies/simple-basic-json-schema-for-every-topic
+curl -X DELETE -H "Content-Type: application/json" http://localhost:8888/api/v1/policies/simple-basic-json-policy-for-every-topic
 ```

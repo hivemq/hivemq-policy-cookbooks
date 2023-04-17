@@ -2,9 +2,9 @@
 This cookbook covers logging the client ID and topic of messages that match a specific JSON schema.
 
 ## Use-Case
-> As a developer, I want to be notified of messages that contain erroneous data which should have been published to a different topic.
+> As a developer, I want to be able to reject messages that contain erroneous data which should have been published to a different topic.
 
-The use-case here is that multiple MQTT clients publish messages that may contain coordinate information either from Europe or the USA, on the `europe/` and `usa/` topics respectively. It is useful to log all instances of messages being published that seem to contain coordinates for the wrong region, so that they can be debugged.
+The use-case here is that multiple MQTT clients publish messages that may contain coordinate information either from Europe or the USA, on the `europe/` and `usa/` topics respectively. It is useful to log all instances of messages being published that seem to contain coordinates for the wrong region, and prevent their delivery.
 
 For this use-case a policy which logs instances of US coordinate information being published on `europe/#` MQTT topics is needed. A schema is required for this:
 
@@ -76,7 +76,7 @@ The following policy logs any messages matching the schema at the `INFO` level a
     "schemaId": "usa-coordinates"
   },
   "onSuccess": {
-    "continue": true,
+    "continue": false,
     "log": {
       "level": "INFO",
       "message": "The client $clientId published coordinate data near the US on topic $topic"
