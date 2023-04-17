@@ -1,5 +1,5 @@
 syntax = "proto3";
-package com.example;
+package io.hivemq.example;
 
 message SimpleMessage {
   int64 storage_used = 1;

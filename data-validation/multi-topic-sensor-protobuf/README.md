@@ -15,7 +15,7 @@ The following `.proto` file describes the structure of incoming temperature data
 `temperature.proto`:
 ```proto
 syntax = "proto3";
-package com.example;
+package io.hivemq.example;
 
 message Temperature {
   float component_a_temperature = 1;
@@ -29,6 +29,8 @@ To use this schema, it must first be compiled with the Protobuf compiler, and th
 ```bash
 protoc temperature.proto -o /dev/stdout | base64
 ```
+
+See [here](https://grpc.io/docs/protoc-installation/) for information on installing the `protoc` command.
 
 Place the resulting Base64 string into the `schemaDefinition` field of the request:
 
@@ -47,7 +49,7 @@ Place the resulting Base64 string into the `schemaDefinition` field of the reque
 
 The `arguments` field specifies that the `Temperature` message type from the Protobuf definition should be used, and that additional unknown fields in incoming data are not allowed.
 
-To upload the `temperature-schema-request` to the broker, run the following command:
+To upload the `temperature-schema-request.json` to the broker, run the following command:
 
 ```bash
 curl -X POST --data @temperature-schema-request.json -H "Content-Type: application/json" http://localhost:8888/api/v1/schemas
@@ -101,7 +103,7 @@ The following `.proto` file describes the structure of incoming sensor data for 
 `air.proto`:
 ```proto
 syntax = "proto3";
-package com.example;
+package io.hivemq.example;
 
 message Air {
   float pressure = 1;

@@ -7,7 +7,7 @@
     "schemaId": "usa-coordinates"
   },
   "onSuccess": {
-    "continue": true,
+    "continue": false,
     "log": {
       "level": "INFO",
       "message": "The client $clientId published coordinate data near the US on topic $topic"
