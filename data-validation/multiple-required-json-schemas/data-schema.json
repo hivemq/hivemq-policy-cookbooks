@@ -1,0 +1,15 @@
+{
+  "description": "A schema that specifies fields for payload data",
+  "required": [
+    "values"
+  ],
+  "type": "object",
+  "properties": {
+    "values": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    }
+  }
+}

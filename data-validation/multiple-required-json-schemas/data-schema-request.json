@@ -1,0 +1,5 @@
+{
+  "id": "data-schema",
+  "type": "JSON",
+  "schemaDefinition": "ewogICJkZXNjcmlwdGlvbiI6ICJBIHNjaGVtYSB0aGF0IHNwZWNpZmllcyBmaWVsZHMgZm9yIHBheWxvYWQgZGF0YSIsCiAgInJlcXVpcmVkIjogWwogICAgInZhbHVlcyIKICBdLAogICJ0eXBlIjogIm9iamVjdCIsCiAgInByb3BlcnRpZXMiOiB7CiAgICAidmFsdWVzIjogewogICAgICAidHlwZSI6ICJhcnJheSIsCiAgICAgICJpdGVtcyI6IHsKICAgICAgICAidHlwZSI6ICJudW1iZXIiCiAgICAgIH0KICAgIH0KICB9Cn0K"
+}

@@ -1,0 +1,48 @@
+{
+  "id": "location-policy",
+  "matching": {
+    "topicFilter": "location"
+  },
+  "validation": {
+    "validators": [
+      {
+        "type": "schema",
+        "arguments": {
+          "strategy": "ANY_OF",
+          "schemas": [
+            {
+              "schemaId": "europe-location"
+            },
+            {
+              "schemaId": "usa-location"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "onSuccess": {
+    "pipeline": [
+      {
+        "id": "logSuccess",
+        "functionId": "log",
+        "arguments": {
+          "level": "INFO",
+          "message": "The client $clientId published coordinate data"
+        }
+      }
+    ]
+  },
+  "onFailure": {
+    "pipeline": [
+      {
+        "id": "logFailure",
+        "functionId": "log",
+        "arguments": {
+          "level": "WARN",
+          "message": "The client $clientId attempted to publish invalid coordinate data: $validationResult"
+        }
+      }
+    ]
+  }
+}

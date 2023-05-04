@@ -1,23 +1,40 @@
 {
   "items": [
     {
-      "name": "simple-policy",
-      "createdAt": "2023-04-20T15:00:00.001Z",
+      "id": "simple-policy",
+      "createdAt": "2023-05-04T13:25:47.119Z",
       "matching": {
         "topicFilter": "#"
       },
       "validation": {
-        "schemaId": "simple-schema"
+        "validators": [
+          {
+            "type": "schema",
+            "arguments": {
+              "strategy": "ALL_OF",
+              "schemas": [
+                {
+                  "schemaId": "simple-schema"
+                }
+              ]
+            }
+          }
+        ]
       },
       "onSuccess": {
-        "continue": true
+        "pipeline": []
       },
       "onFailure": {
-        "continue": false,
-        "log": {
-          "level": "WARN",
-          "message": "The client with ID $clientId sent invalid data"
-        }
+        "pipeline": [
+          {
+            "id": "logFailiure",
+            "functionId": "log",
+            "arguments": {
+              "level": "WARN",
+              "message": "The client with ID $clientId sent invalid data"
+            }
+          }
+        ]
       }
     }
   ]

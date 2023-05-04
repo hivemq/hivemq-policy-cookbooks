@@ -1,17 +1,20 @@
 {
-  "id": "simple-basic-json-policy-for-every-topic",
+  "id": "all-device-statuses",
   "matching": {
-    "topicFilter": "#"
+    "topicFilter": "devices/+/+/status"
   },
   "validation": {
     "validators": [
       {
         "type": "schema",
         "arguments": {
-          "strategy": "ALL_OF",
+          "strategy": "ANY_OF",
           "schemas": [
             {
-              "schemaId": "simple-generic-json"
+              "schemaId": "v1-status-schema"
+            },
+            {
+              "schemaId": "v2-status-schema"
             }
           ]
         }
@@ -25,7 +28,7 @@
         "functionId": "log",
         "arguments": {
           "level": "WARN",
-          "message": "The client $clientId does not send JSON payloads. The message will be dropped."
+          "message": "The client $clientId sent invalid status data to $topic"
         }
       }
     ]

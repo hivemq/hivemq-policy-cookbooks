@@ -1,0 +1,8 @@
+syntax = "proto3";
+package io.hivemq.example;
+
+message DeviceStatus {
+  bool  powered = 1;
+  float temperature = 2;
+  float speed = 3;
+}

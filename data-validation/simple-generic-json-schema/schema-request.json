@@ -1,5 +1,5 @@
 {
   "id": "simple-generic-json",
   "type": "JSON",
-  "schemaDefinition": "{\n  \"description\": \"This is a the most generic JSON schema, since it requires just a JSON, nothing further specified\",\n  \"type\": \"object\"\n}"
+  "schemaDefinition": "ewogICJkZXNjcmlwdGlvbiI6ICJUaGlzIGlzIGEgdGhlIG1vc3QgZ2VuZXJpYyBKU09OIHNjaGVtYSwgc2luY2UgaXQgcmVxdWlyZXMganVzdCBhIEpTT04sIG5vdGhpbmcgZnVydGhlciBzcGVjaWZpZWQiLAogICJ0eXBlIjogIm9iamVjdCIKfQ=="
 }

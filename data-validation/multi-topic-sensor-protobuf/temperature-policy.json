@@ -1,19 +1,33 @@
 {
-  "name": "temperature-policy",
+  "id": "temperature-policy",
   "matching": {
     "topicFilter": "temperature/#"
   },
   "validation": {
-    "schemaId": "temperature-schema"
-  },
-  "onSuccess": {
-    "continue": true
+    "validators": [
+      {
+        "type": "schema",
+        "arguments": {
+          "strategy": "ALL_OF",
+          "schemas": [
+            {
+              "schemaId": "temperature-schema"
+            }
+          ]
+        }
+      }
+    ]
   },
   "onFailure": {
-    "continue": false,
-    "log": {
-      "level": "ERROR",
-      "message": "The client with ID $clientId sent invalid temperature data: $validationResult"
-    }
+    "pipeline": [
+      {
+        "id": "logFailure",
+        "functionId": "log",
+        "arguments": {
+          "level": "ERROR",
+          "message": "The client with ID $clientId sent invalid temperature data: $validationResult"
+        }
+      }
+    ]
   }
 }

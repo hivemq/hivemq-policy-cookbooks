@@ -1,0 +1,16 @@
+{
+  "description": "A schema that specifies fields required for data integrity checks",
+  "required": [
+    "checksum",
+    "signature"
+  ],
+  "type": "object",
+  "properties": {
+    "checksum": {
+      "type": "number"
+    },
+    "signature": {
+      "type": "string"
+    }
+  }
+}

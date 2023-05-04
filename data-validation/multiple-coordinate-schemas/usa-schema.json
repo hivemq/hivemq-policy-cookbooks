@@ -1,5 +1,5 @@
 {
-  "title": "Location Data",
+  "title": "USA Location Data",
   "description": "A schema that matches any objects with longitude and latitude coordinates near the USA",
   "required": [
     "latitude",

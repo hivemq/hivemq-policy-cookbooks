@@ -17,6 +17,12 @@ For this use-case, a `policy` and a `schema` is required. To begin with, conside
 ```
 which simply specifies that the payload should be in a JSON format without specifying the actual fields.
 
+Convert `schema.json` to a Base64 string with the following command:
+
+```bash
+base64 -i schema.json
+```
+
 To get this schema into the broker, the following request has to be made:
 
 `schema-request.json`:
@@ -24,14 +30,14 @@ To get this schema into the broker, the following request has to be made:
 {
   "id": "simple-generic-json",
   "type": "JSON",
-  "schemaDefinition": "{\n  \"description\": \"This is the most generic JSON schema, since it requires just a JSON object, nothing further specified\",\n  \"type\": \"object\"\n}"
+  "schemaDefinition": "ewogICJkZXNjcmlwdGlvbiI6ICJUaGlzIGlzIGEgdGhlIG1vc3QgZ2VuZXJpYyBKU09OIHNjaGVtYSwgc2luY2UgaXQgcmVxdWlyZXMganVzdCBhIEpTT04sIG5vdGhpbmcgZnVydGhlciBzcGVjaWZpZWQiLAogICJ0eXBlIjogIm9iamVjdCIKfQ=="
 }
 ```
 which embeds the schema definition, the type of schema (JSON) and the unique identifier `simple-generic-json`, that can be used for reference in the policy.
 
 To upload the `schema-request.json` to the broker, run the following command: 
 ```bash
-curl -X POST --data @schema-request.json -H "Content-Type: application/json" http://localhost:8888/api/v1/schemas
+curl -X POST --data @schema-request.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/schemas
 ```
 suppose your HiveMQ REST API runs at `http://localhost:8888`.
 
@@ -42,34 +48,49 @@ The following policy specifies the validation step under the `topicFilter`: `#`.
 `policy.json`:
 ```json
 {
-  "name": "simple-basic-json-policy-for-every-topic",
+  "id": "simple-basic-json-policy-for-every-topic",
   "matching": {
     "topicFilter": "#"
   },
   "validation": {
-    "schemaId": "simple-generic-json"
-  },
-  "onSuccess": {
-    "continue": true
+    "validators": [
+      {
+        "type": "schema",
+        "arguments": {
+          "strategy": "ALL_OF",
+          "schemas": [
+            {
+              "schemaId": "simple-generic-json"
+            }
+          ]
+        }
+      }
+    ]
   },
   "onFailure": {
-    "continue": false,
-    "log": {
-      "level": "WARN",
-      "message": "The client with id $clientId does not send JSON payloads. The message will be dropped."
-    }
+    "pipeline": [
+      {
+        "id": "logFailiure",
+        "functionId": "log",
+        "arguments": {
+          "level": "WARN",
+          "message": "The client $clientId does not send JSON payloads. The message will be dropped."
+        }
+      }
+    ]
   }
 }
+
 ```
 
 To upload the `policy.json` to the broker, run the following command:
 ```bash
-curl -X POST --data @policy.json -H "Content-Type: application/json" http://localhost:8888/api/v1/policies
+curl -X POST --data @policy.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/policies
 ```
 
 The policy is now applied and all incoming MQTT messages are subject to validation.
 
 To delete the policy, run the following command:
 ```bash
-curl -X DELETE -H "Content-Type: application/json" http://localhost:8888/api/v1/policies/simple-basic-json-policy-for-every-topic
+curl -X DELETE -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/policies/simple-basic-json-policy-for-every-topic
 ```

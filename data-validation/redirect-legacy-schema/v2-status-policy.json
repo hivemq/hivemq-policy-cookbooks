@@ -1,0 +1,41 @@
+{
+  "id": "v2-device-statuses",
+  "matching": {
+    "topicFilter": "devices/v2/+/status"
+  },
+  "validation": {
+    "validators": [
+      {
+        "type": "schema",
+        "arguments": {
+          "strategy": "ALL_OF",
+          "schemas": [
+            {
+              "schemaId": "v2-status-schema"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "onFailure": {
+    "pipeline": [
+      {
+        "id": "logRedirect",
+        "functionId": "log",
+        "arguments": {
+          "level": "WARN",
+          "message": "The client $clientId sent status data with a legacy format to topic $topic, the message will be redirected to devices/v1/$clientId/status"
+        }
+      },
+      {
+        "id": "redirect",
+        "functionId": "to",
+        "arguments": {
+          "topic": "devices/v1/$clientId/status",
+          "applyPolicies": true
+        }
+      }
+    ]
+  }
+}
