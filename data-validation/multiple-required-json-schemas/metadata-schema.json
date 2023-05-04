@@ -1,0 +1,16 @@
+{
+  "description": "A schema that specifies fields for payload metadata",
+  "required": [
+    "publisherId",
+    "timestamp"
+  ],
+  "type": "object",
+  "properties": {
+    "publisherId": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "number"
+    }
+  }
+}

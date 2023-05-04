@@ -11,7 +11,7 @@ For this use-case, an existing policy and schema must be deleted and new version
 List existing policies in the broker with the following command:
 
 ```bash
-curl -X GET http://localhost:8888/api/v1/policies
+curl -X GET http://localhost:8888/api/v1/data-validation/policies
 ```
 
 suppose your HiveMQ REST API runs at `http://localhost:8888`.
@@ -23,30 +23,47 @@ This returns a JSON response containing details of all existing policies in the 
 {
   "items": [
     {
-      "name": "simple-policy",
-      "createdAt": "2023-04-20T15:00:00.001Z",
+      "id": "simple-policy",
+      "createdAt": "2023-05-01T12:00:00.000Z",
       "matching": {
         "topicFilter": "#"
       },
       "validation": {
-        "schemaId": "simple-schema"
+        "validators": [
+          {
+            "type": "schema",
+            "arguments": {
+              "strategy": "ALL_OF",
+              "schemas": [
+                {
+                  "schemaId": "simple-schema"
+                }
+              ]
+            }
+          }
+        ]
       },
       "onSuccess": {
-        "continue": true
+        "pipeline": []
       },
       "onFailure": {
-        "continue": false,
-        "log": {
-          "level": "WARN",
-          "message": "The client with ID $clientId sent invalid data"
-        }
+        "pipeline": [
+          {
+            "id": "logFailiure",
+            "functionId": "log",
+            "arguments": {
+              "level": "WARN",
+              "message": "The client with ID $clientId sent invalid data"
+            }
+          }
+        ]
       }
     }
   ]
 }
 ```
 
-From this, take the `name` of the policy you wish to update and the `schemaId` of the schema it uses.
+From this, take the `id` of the policy you wish to update and the `schemaId` of the schema it uses.
 
 ### Delete the old policy and schema
 
@@ -55,13 +72,13 @@ Because the existing policy references the existing schema, the policy first mus
 Delete the policy by running the following command:
 
 ```bash
-curl -X DELETE -H "Content-Type: application/json" http://localhost:8888/api/v1/policies/simple-policy
+curl -X DELETE -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/policies/simple-policy
 ```
 
 Then delete the schema by running the following command:
 
 ```bash
-curl -X DELETE -H "Content-Type: application/json" http://localhost:8888/api/v1/schemas/simple-schema
+curl -X DELETE -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/schemas/simple-schema
 ```
 
 ### New schema
@@ -84,7 +101,7 @@ Now a new schema can be uploaded using the same ID `simple-schema` as the previo
 To upload the `new-schema-request.json` to the broker, run the following command:
 
 ```bash
-curl -X POST --data @new-schema-request.json -H "Content-Type: application/json" http://localhost:8888/api/v1/schemas
+curl -X POST --data @new-schema-request.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/schemas
 ```
 
 ### New policy
@@ -94,28 +111,43 @@ Next, re-upload the previously deleted policy to the broker as-is. The `id` of t
 `policy.json`:
 ```json
 {
-  "name": "simple-policy",
+  "id": "simple-policy",
   "matching": {
     "topicFilter": "#"
   },
   "validation": {
-    "schemaId": "simple-schema"
-  },
-  "onSuccess": {
-    "continue": true
+    "validators": [
+      {
+        "type": "schema",
+        "arguments": {
+          "strategy": "ALL_OF",
+          "schemas": [
+            {
+              "schemaId": "simple-schema"
+            }
+          ]
+        }
+      }
+    ]
   },
   "onFailure": {
-    "continue": false,
-    "log": {
-      "level": "WARN",
-      "message": "The client with ID $clientId sent invalid data"
-    }
+    "pipeline": [
+      {
+        "id": "logFailiure",
+        "functionId": "log",
+        "arguments": {
+          "level": "WARN",
+          "message": "The client with ID $clientId sent invalid data"
+        }
+      }
+    ]
   }
 }
+
 ```
 
 To upload the `policy.json` to the broker, run the following command:
 
 ```bash
-curl -X POST --data @policy.json -H "Content-Type: application/json` http://localhost:8888/api/v1/policies
+curl -X POST --data @policy.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/policies
 ```

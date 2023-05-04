@@ -21,7 +21,6 @@ message Temperature {
   float component_a_temperature = 1;
   float component_b_temperature = 2;
 }
-
 ```
 
 To use this schema, it must first be compiled with the Protobuf compiler, and then the result encoded as Base64:
@@ -52,7 +51,7 @@ The `arguments` field specifies that the `Temperature` message type from the Pro
 To upload the `temperature-schema-request.json` to the broker, run the following command:
 
 ```bash
-curl -X POST --data @temperature-schema-request.json -H "Content-Type: application/json" http://localhost:8888/api/v1/schemas
+curl -X POST --data @temperature-schema-request.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/schemas
 ```
 suppose your HiveMQ REST API runs at `http://localhost:8888`.
 
@@ -66,22 +65,36 @@ The following policy applies to all messages that match the topic filter `temper
 `temperature-policy.json`:
 ```json
 {
-  "name": "temperature-policy",
+  "id": "temperature-policy",
   "matching": {
     "topicFilter": "temperature/#"
   },
   "validation": {
-    "schemaId": "temperature-schema"
-  },
-  "onSuccess": {
-    "continue": true
+    "validators": [
+      {
+        "type": "schema",
+        "arguments": {
+          "strategy": "ALL_OF",
+          "schemas": [
+            {
+              "schemaId": "temperature-schema"
+            }
+          ]
+        }
+      }
+    ]
   },
   "onFailure": {
-    "continue": false,
-    "log": {
-      "level": "DEBUG",
-      "message": "The client with ID $clientId sent invalid temperature data: $validationResult"
-    }
+    "pipeline": [
+      {
+        "id": "logFailiure",
+        "functionId": "log",
+        "arguments": {
+          "level": "ERROR",
+          "message": "The client with ID $clientId sent invalid temperature data: $validationResult"
+        }
+      }
+    ]
   }
 }
 ```
@@ -90,9 +103,9 @@ This ensures that all messages published to a topic under `temperature/` must co
 
 The `$validationResult` substitution in the log message means that the exact cause of the failure will be logged. 
 
-To upload the `temperature-policy.json` to the broker, run the following command:
+To upload `temperature-policy.json` to the broker, run the following command:
 ```bash
-curl -X POST --data @temperature-policy.json -H "Content-Type: application/json" http://localhost:8888/api/v1/policies
+curl -X POST --data @temperature-policy.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/policies
 ```
 
 
@@ -136,7 +149,7 @@ Place the resulting Base64 string into the `schemaDefinition` field:
 To upload the schema, run the following command:
 
 ```bash
-curl -X POST --data @air-schema-request.json -H "Content-Type: application/json" http://localhost:8888/api/v1/schemas
+curl -X POST --data @air-schema-request.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/schemas
 ```
 
 
@@ -147,30 +160,45 @@ A similar policy to the temperature policy can now be created and uploaded for t
 `air-policy.json`:
 ```json
 {
-  "name": "air-policy",
+  "id": "air-policy",
   "matching": {
     "topicFilter": "air/#"
   },
   "validation": {
-    "schemaId": "air-schema"
-  },
-  "onSuccess": {
-    "continue": true
+    "validators": [
+      {
+        "type": "schema",
+        "arguments": {
+          "strategy": "ALL_OF",
+          "schemas": [
+            {
+              "schemaId": "air-schema"
+            }
+          ]
+        }
+      }
+    ]
   },
   "onFailure": {
-    "continue": false,
-    "log": {
-      "level": "DEBUG",
-      "message": "The client with ID $clientId sent invalid air data: $validationResult"
-    }
+    "pipeline": [
+      {
+        "id": "logFailiure",
+        "functionId": "log",
+        "arguments": {
+          "level": "ERROR",
+          "message": "The client with ID $clientId sent invalid air data: $validationResult"
+        }
+      }
+    ]
   }
 }
+
 ```
 
 To upload the air policy, run the following command:
 
 ```bash
-curl -X POST --data @air-policy.json -H "Content-Type: application/json" http://localhost:8888/api/v1/policies
+curl -X POST --data @air-policy.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/policies
 ```
 
 ### Listing policies
@@ -178,5 +206,5 @@ curl -X POST --data @air-policy.json -H "Content-Type: application/json" http://
 To see a list of the two policies that have been uploaded, run the following command:
 
 ```bash
-curl -X GET http://localhost:8888/api/v1/policies
+curl -X GET http://localhost:8888/api/v1/data-validation/policies
 ```

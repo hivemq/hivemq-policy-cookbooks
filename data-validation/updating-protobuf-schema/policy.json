@@ -1,19 +1,33 @@
 {
-  "name": "simple-policy",
+  "id": "simple-policy",
   "matching": {
     "topicFilter": "#"
   },
   "validation": {
-    "schemaId": "simple-schema"
-  },
-  "onSuccess": {
-    "continue": true
+    "validators": [
+      {
+        "type": "schema",
+        "arguments": {
+          "strategy": "ALL_OF",
+          "schemas": [
+            {
+              "schemaId": "simple-schema"
+            }
+          ]
+        }
+      }
+    ]
   },
   "onFailure": {
-    "continue": false,
-    "log": {
-      "level": "WARN",
-      "message": "The client with ID $clientId sent invalid data"
-    }
+    "pipeline": [
+      {
+        "id": "logFailure",
+        "functionId": "log",
+        "arguments": {
+          "level": "WARN",
+          "message": "The client with ID $clientId sent invalid data"
+        }
+      }
+    ]
   }
 }
