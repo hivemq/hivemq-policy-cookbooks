@@ -46,7 +46,7 @@ Place the resulting Base64 string into the `schemaDefinition` field of the reque
 }
 ```
 
-The `arguments` field specifies that the `Temperature` message type from the Protobuf definition should be used, and that additional unknown fields in incoming data are not allowed.
+The `messageType` field within `arguments` field specifies that the `Temperature` message type from the Protobuf definition should be used, and that additional unknown fields in incoming data are not allowed according to [Protobuf Unknown Fields](https://protobuf.dev/programming-guides/proto3/#unknowns])
 
 To upload the `temperature-schema-request.json` to the broker, run the following command:
 

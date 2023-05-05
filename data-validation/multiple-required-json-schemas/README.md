@@ -108,7 +108,7 @@ A separate request has to be made for each schema to upload it to the broker:
 }
 ```
 
-where `id` corresponds to the name of the schema, and `schemaDefinition` holds the generated Base64 string.
+where `id` corresponds to the `schemaId`, and `schemaDefinition` holds the generated Base64 string.
 
 For each of these schema requests, use the following command to upload them to the broker, replacing `filename.json` with the corresponding request filenames: `metadata-schema-request.json`, `data-schema-request.json`, and `verification-schema-request.json`:
 
@@ -165,9 +165,9 @@ The following policy uses a `topicFilter` of `#` which will match all messages o
 }
 ```
 
-The `validators` section in the policy definition uses the `ALL_OF` validation strategy to specify that MQTT messages much successfully match all three referenced schemas to be published.
+The `validators` section in the policy definition uses the `ALL_OF` validation strategy to specify that MQTT messages must successfully match all three referenced schemas to be published.
 
-If a message fails to validate for any of the three schemas, a message is logged using the `log` function with the client ID and the reason for validation failure.
+If a MQTT message fails to validate for any of the three schemas, a message is logged using the `log` function with the client ID and the reason for validation failure.
 
 To upload the `policy.json` to the broker, run the following command:
 ```bash
