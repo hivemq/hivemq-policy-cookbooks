@@ -143,7 +143,7 @@ The following policy uses a `topicFilter` of `#` which will match all messages o
               "schemaId": "data-schema"
             },
             {
-              "schemaId": "validation-schema"
+              "schemaId": "verification-schema"
             }
           ]
         }

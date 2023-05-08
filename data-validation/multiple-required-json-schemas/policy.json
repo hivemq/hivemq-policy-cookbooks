@@ -17,7 +17,7 @@
               "schemaId": "data-schema"
             },
             {
-              "schemaId": "validation-schema"
+              "schemaId": "verification-schema"
             }
           ]
         }
