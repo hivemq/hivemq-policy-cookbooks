@@ -61,7 +61,7 @@ The identifier of this schema is `usa-coordinates`.
 To upload `usa-schema-request.json` to the broker, run the following command:
 
 ```bash
-curl -X POST --data @usa-schema-request.json -H "Content-Type: application/json` http://localhost:8888/api/v1/data-validation/schemas
+curl -X POST --data @usa-schema-request.json -H `Content-Type: application/json` http://localhost:8888/api/v1/data-validation/schemas
 ```
 
 ### Europe Location Schema

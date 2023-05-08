@@ -87,7 +87,7 @@ The following policy applies to all messages that match the topic filter `temper
   "onFailure": {
     "pipeline": [
       {
-        "id": "logFailiure",
+        "id": "logFailure",
         "functionId": "log",
         "arguments": {
           "level": "ERROR",
@@ -182,7 +182,7 @@ A similar policy to the temperature policy can now be created and uploaded for t
   "onFailure": {
     "pipeline": [
       {
-        "id": "logFailiure",
+        "id": "logFailure",
         "functionId": "log",
         "arguments": {
           "level": "ERROR",
