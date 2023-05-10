@@ -1,3 +1,5 @@
+# HiveMQ Data Governance Hub Cookbooks
+
 The HiveMQ Data Governance Hub provides mechanisms to define how MQTT data is handled in the HiveMQ broker. The first feature of our new Data Governance Hub is Data Validation.
 
 > The HiveMQ Data Governance Hub data validation feature is currently available for testing in a closed beta version only. For more information or to request access to the closed beta, contact datagovernancehub@hivemq.com
