@@ -1,6 +1,6 @@
-# hivemq-policy-cookbooks
+# HiveMQ Data Governance Hub Cookbook
 
-Collection of user-stories and polices for data governance.
+Useful and easy-to-apply policies and schemas for HiveMQ Data Governance Hub.
 
 | Description                                                                       	                         | Data Format 	         | Link 	                                                                       |
 |-------------------------------------------------------------------------------------------------------------|-----------------------|------------------------------------------------------------------------------|
