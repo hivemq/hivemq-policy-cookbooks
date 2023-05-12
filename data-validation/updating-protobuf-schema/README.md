@@ -2,7 +2,7 @@
 This cookbook covers how to update a policy to use a different schema.
 
 
-### Use-Case 
+### Use-case 
 > As a developer, I want to be able to modify the schema in an existing policy to use a more recent version.
 
 For this use-case, an existing policy and schema must be deleted and new versions uploaded to the broker.
