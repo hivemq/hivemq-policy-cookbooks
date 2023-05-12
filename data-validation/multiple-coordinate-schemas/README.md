@@ -1,12 +1,14 @@
 # Location Data Schema
 This cookbook covers how to accept any one of multiple possible schemas on a single topic.
 
-## Use-Case
+
+### Use-Case
 > As a developer, I want to be able to accept all JSON messages that come from one of a number of different geographic regions, and reject everything outside of these.
 
-The use-case here is that multiple MQTT clients publish messages that may contain coordinate information either from Europe or the USA on the `location` topic. It is useful to reject all instances of messages that are not from one of these regions, and log this.
+The use-case here is that multiple MQTT clients publish messages that may contain coordinate information either from Europe or the USA on the `location` topic. It is useful to reject all instances of messages that are not from one of these regions, and log this rejection.
 
-Two schemas, one for USA coordinates and one for Europe coordinates, and one policy accepting either of these two schemas are needed. 
+For this use-case, two schemas and one policy are needed.
+
 
 ### USA Location Schema
 
@@ -45,7 +47,7 @@ Encode the schema as a Base64 string:
 base64 -i usa-schema.json
 ```
 
-The following request adds this schema to the broker, using the encoded string for the `schemaDefinition` field:
+The following request adds this schema to the broker, using the encoded Base64 string for the `schemaDefinition` field:
 
 `usa-schema-request.json`:
 ```json
@@ -63,6 +65,9 @@ To upload `usa-schema-request.json` to the broker, run the following command:
 ```bash
 curl -X POST --data @usa-schema-request.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/schemas
 ```
+
+suppose your HiveMQ REST API runs at `http://localhost:8888`.
+
 
 ### Europe Location Schema
 
@@ -114,11 +119,12 @@ base64 -i europe-schema.json
 curl -X POST --data @europe-schema-request.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/schemas
 ```
 
+
 ### Policy
 
 The next step is to create a policy using these two schemas for incoming MQTT messages matching the topic `location`.
 
-The following policy tests if incoming messages match either the USA schema or the Europe schema. When validation succeeds it will be logged at the `INFO`. When a validation fails it will be logged at the `WARN` level and include the client ID and reason for failure using the `$clientID` and `$validationResult` string substitutions:
+The following policy tests if incoming messages match either the USA schema or the Europe schema:
 
 `policy.json`:
 ```json
@@ -172,9 +178,12 @@ The following policy tests if incoming messages match either the USA schema or t
 }
 ```
 
+When validation succeeds it will be logged at the `INFO` level and include the client ID using the `$clientID` string substitution. When validation fails it will be logged at the `WARN` level and also include the reason for failure using the `$validationResult` string substitution.
+
 The `ANY_OF` validation strategy ensures that only one of the schemas needs to be matched, not both.
 
 To upload `policy.json` to the broker, run the following command:
+
 ```bash
 curl -X POST --data @policy.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/policies
 ```
