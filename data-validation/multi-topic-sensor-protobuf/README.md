@@ -1,12 +1,14 @@
 # Multi-topic Protobuf schemas
-This cookbook covers the use-case of validating multiple topics with different Protobuf schemas.
+This cookbook covers the use-case of validating multiple topics each with a different Protobuf schema.
 
-## Use-Case 
+
+### Use-Case 
 > As a developer, I want to enforce that incoming sensor data over MQTT has the correct Protobuf data format for the topic it was published on.
 
 Consider if there are two MQTT topics to which clients publish sensor data, `/temperature/{clientId}`, and `/air/{clientId}`. Clients send different types of payloads to each topic, all serialized with Protobuf.
 
 For this use-case, two schemas and two policies are needed.
+
 
 ### Temperature schema
 
@@ -46,13 +48,14 @@ Place the resulting Base64 string into the `schemaDefinition` field of the reque
 }
 ```
 
-The `messageType` field within `arguments` field specifies that the `Temperature` message type from the Protobuf definition should be used, and that additional unknown fields in incoming data are not allowed according to [Protobuf Unknown Fields](https://protobuf.dev/programming-guides/proto3/#unknowns])
+The `messageType` field within `arguments` specifies that the `Temperature` message type from the Protobuf definition should be used, and the `allowUnknownFields` field specifies that additional unknown fields in incoming data are not allowed according to [Protobuf Unknown Fields](https://protobuf.dev/programming-guides/proto3/#unknowns]).
 
-To upload the `temperature-schema-request.json` to the broker, run the following command:
+To upload `temperature-schema-request.json` to the broker, run the following command:
 
 ```bash
 curl -X POST --data @temperature-schema-request.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/schemas
 ```
+
 suppose your HiveMQ REST API runs at `http://localhost:8888`.
 
 
@@ -99,9 +102,9 @@ The following policy applies to all messages that match the topic filter `temper
 }
 ```
 
-This ensures that all messages published to a topic under `temperature/` must conform to the Protobuf specification.
+This ensures that all messages published to a topic under `temperature/` must conform to the provided Protobuf specification for temperature data.
 
-The `$validationResult` substitution in the log message means that the exact cause of the failure will be logged. 
+The `$validationResult` string substitution in the log message means that the exact cause of the failure will be logged. 
 
 To upload `temperature-policy.json` to the broker, run the following command:
 ```bash
@@ -125,7 +128,7 @@ message Air {
 }
 ```
 
-To compile it and upload it to the broker like with the temperature schema, run the following:
+To compile it and upload it to the broker like with the temperature schema, run the following command:
 
 ```bash
 protoc air.proto -o /dev/stdout | base64
@@ -200,6 +203,7 @@ To upload the air policy, run the following command:
 ```bash
 curl -X POST --data @air-policy.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/policies
 ```
+
 
 ### Listing policies
 

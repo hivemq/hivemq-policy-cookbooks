@@ -1,12 +1,16 @@
 # Simple JSON schema
 This cookbook is about a very simple and generic use-case. 
 
-## Use-Case 
+
+### Use-Case 
 > As a developer, I want to enforce that all MQTT payloads are published in a JSON format, to unify data payloads. I do not care about the actual JSON schema.
 
-For this use-case, a `policy` and a `schema` is required. To begin with, consider the following plain JSON schema (according to [JSON Schema](https://json-schema.org/))
+For this use-case, a policy and a schema are required.
+
 
 ### Schema
+
+To begin with, consider the following plain JSON schema (according to [JSON Schema](https://json-schema.org/)):
 
 `schema.json`:
 ```json
@@ -15,6 +19,7 @@ For this use-case, a `policy` and a `schema` is required. To begin with, conside
   "type": "object"
 }
 ```
+
 which simply specifies that the payload should be in a JSON format without specifying the actual fields.
 
 Convert `schema.json` to a Base64 string with the following command:
@@ -33,18 +38,23 @@ To get this schema into the broker, the following request has to be made:
   "schemaDefinition": "ewogICJkZXNjcmlwdGlvbiI6ICJUaGlzIGlzIGEgdGhlIG1vc3QgZ2VuZXJpYyBKU09OIHNjaGVtYSwgc2luY2UgaXQgcmVxdWlyZXMganVzdCBhIEpTT04sIG5vdGhpbmcgZnVydGhlciBzcGVjaWZpZWQiLAogICJ0eXBlIjogIm9iamVjdCIKfQ=="
 }
 ```
-which embeds the schema definition, the type of schema (JSON) and the unique identifier `simple-generic-json`, that can be used for reference in the policy.
 
-To upload the `schema-request.json` to the broker, run the following command: 
+which embeds the schema definition, the type of schema (JSON) and the unique identifier, `simple-generic-json`, that can be used for reference in the policy.
+
+To upload `schema-request.json` to the broker, run the following command: 
+
 ```bash
 curl -X POST --data @schema-request.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/schemas
 ```
+
 suppose your HiveMQ REST API runs at `http://localhost:8888`.
+
 
 ### Policy
 The next step is to apply the schema for all incoming MQTT messages by referencing the already defined schema `simple-generic-schema`.
 
-The following policy specifies the validation step under the `topicFilter`: `#`.  In case a MQTT message does not contain a valid JSON payload, a log message with level 'WARN' is printed with the `clientId`. 
+The following policy specifies the validation step under the `topicFilter`: `#`.  In case an MQTT message does not contain a valid JSON payload, a log message with level `WARN` is printed with the `clientId`.
+
 `policy.json`:
 ```json
 {
@@ -83,7 +93,7 @@ The following policy specifies the validation step under the `topicFilter`: `#`.
 
 ```
 
-To upload the `policy.json` to the broker, run the following command:
+To upload `policy.json` to the broker, run the following command:
 ```bash
 curl -X POST --data @policy.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/policies
 ```
@@ -91,6 +101,7 @@ curl -X POST --data @policy.json -H "Content-Type: application/json" http://loca
 The policy is now applied and all incoming MQTT messages are subject to validation.
 
 To delete the policy, run the following command:
+
 ```bash
 curl -X DELETE -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/policies/simple-basic-json-policy-for-every-topic
 ```

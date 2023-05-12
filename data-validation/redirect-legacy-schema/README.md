@@ -2,7 +2,7 @@
 This cookbook covers how to accept multiple versions of a schema and redirect messages that follow the older schema version to the correct topic.
 
 
-## Use-Case
+### Use-Case
 > As a developer, I want to be able to update my schema to a newer version. Messages from devices using the previous version should still be accepted but should be rerouted to a separate topic.
 
 The use-case here involves accepting device status Protobuf messages on the `devices/v2/{clientId}/status` topic.
@@ -35,7 +35,7 @@ protoc v1-status-schema.proto -o /dev/stdout | base64
 
 See [here](https://grpc.io/docs/protoc-installation/) for information on installing the `protoc` command.
 
-Place the resulting Base64 string into the `schemaDefinition` field of the request and use the id `v1-status-schema`:
+Place the resulting Base64 string into the `schemaDefinition` field of the request and use the identifier `v1-status-schema`:
 
 `v1-schema-request.json`:
 ```json
@@ -59,6 +59,8 @@ To upload `v1-schema-request.json` to the broker, run the following command:
 curl -X POST --data @v1-schema-request.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/schemas
 ```
 
+suppose your HiveMQ REST API runs at `http://localhost:8888`.
+
 Suppose version 2 of the schema includes an additional `speed` field:
 
 `v2-status-schema.proto`:
@@ -73,7 +75,7 @@ message DeviceStatus {
 }
 ```
 
-As with version 1, upload this version 2 schema to the broker with the id `v2-status-schema`:
+As with version 1, upload this version 2 schema to the broker with the identifier `v2-status-schema`:
 
 ```bash
 protoc v2-status-schema.proto -o /dev/stdout | base64
@@ -99,9 +101,9 @@ curl -X POST --data @v2-schema-request.json -H "Content-Type: application/json" 
 
 ### All Versions Policy
 
-Next a policy must be created to ensure that all published messages follow one of these schemas.
+Next, a policy must be created to ensure that all published messages follow one of these schemas.
 
-Because messages may be published to either `devices/v1/{clientId}/status` or `devices/v2/{clientId}/status`, the topicFilter `devices/+/+/status` is used to cover both possibilities:
+Because messages may be published to either `devices/v1/{clientId}/status` or `devices/v2/{clientId}/status`, the topic filter `devices/+/+/status` is used to cover both possibilities:
 
 `all-versions-policy.json`:
 ```json
@@ -155,7 +157,7 @@ curl -X POST --data @all-versions-policy.json -H "Content-Type: application/json
 
 ### Redirecting Policy
 
-Next a policy for `v2` topics specifically is needed. It should only accept messages that conform to the version 2 schema and redirect others to the `v1` topic.
+Next, a policy for `v2` topics specifically is needed. It should only accept messages that conform to the version 2 schema and redirect others to the `v1` topic.
 
 Use the topic filter `devices/v2/+/status`:
 

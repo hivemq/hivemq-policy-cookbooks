@@ -1,10 +1,12 @@
 # Multiple Required JSON Schemas
 This cookbook is about requiring multiple JSON schemas in a single policy.
 
-## Use-Case
+
+### Use-Case
 > As a developer, I want to enforce that all MQTT payloads conform to multiple specified JSON Schemas, to ensure that all data structure requirements are met.
 
 For this use-case, a policy and three schemas are required.
+
 
 ### Schemas
 
@@ -116,11 +118,13 @@ For each of these schema requests, use the following command to upload them to t
 curl -X POST --data @filename.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/schemas
 ```
 
+suppose your HiveMQ REST API runs at `http://localhost:8888`.
+
 
 ### Policy
 The next step is to create a policy to validate all incoming MQTT messages against all three schemas, required that the fields from every schema are present in the message JSON payload.
 
-The following policy uses a `topicFilter` of `#` which will match all messages on every topic.
+The following policy uses a `topicFilter` of `#` which will match all messages on every topic:
 
 `policy.json`:
 ```json
@@ -169,7 +173,7 @@ The `validators` section in the policy definition uses the `ALL_OF` validation s
 
 If a MQTT message fails to validate for any of the three schemas, a message is logged using the `log` function with the client ID and the reason for validation failure.
 
-To upload the `policy.json` to the broker, run the following command:
+To upload `policy.json` to the broker, run the following command:
 ```bash
 curl -X POST --data @policy.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/policies
 ```
