@@ -1,18 +1,26 @@
 # HiveMQ Data Governance Hub Cookbooks
 
-The HiveMQ Data Governance Hub provides mechanisms to define how MQTT data is handled in the HiveMQ broker. The first feature of our new Data Governance Hub is Data Validation.
+The HiveMQ Data Governance Hub provides mechanisms to define how MQTT data is handled in the HiveMQ broker.
+The first feature of our new Data Governance Hub is <<data-validation-components,Data Validation>>.
 
-> The HiveMQ Data Governance Hub data validation feature is currently available for testing in a closed beta version only. For more information or to request access to the closed beta, contact datagovernancehub@hivemq.com
+NOTE: The HiveMQ Data Governance Hub data validation feature is currently available for testing in a closed beta version only. +
+For more information or to request access to the closed beta, contact datagovernancehub@hivemq.com
 
+In the HiveMQ Data Governance Hub, data validation implements a declarative policy that checks whether your data sources are sending data in the data format you expect. +
+This process ensures that the value of the data is assessed at an early stage in the data supply chain.
+To eliminate the need for subscribing clients to perform resource-intensive validation, checks occur before your data reaches downstream devices or upstream services.
 
-In the HiveMQ Data Governance Hub, data validation implements a declarative policy that checks whether your data sources are sending data in the data format you expect.
-This process ensures that the value of the data is assessed as early as possible in the data supply chain. Checks occur before your data reaches downstream devices or upstream services where costly validation must be handled by each subscribing client.
+== Features
 
-## Features
-* Validate MQTT messages for JSON Schema or Protobuf
-* Enforce policies along the entire MQTT topic tree structure
-* Reroute valid and invalid MQTT messages to different topics based on the result of the data validation
-* Increase the observability of bad clients with additional metrics and log statements
+* Validate MQTT messages with <<schemas,JSON Schema or Protobuf>>.
+* Enforce policies across the entire <<topic-trees,MQTT topic tree>> structure.
+* Reroute valid and invalid MQTT messages to different topics based on the data validation results.
+* Increase the observability of client performance through additional metrics and log statements.
+
+Our data validation functionality lets your development teams use the HiveMQ broker to automatically enforce a data validation strategy of their own design (including fine-tuned control over how the broker handles incoming valid and invalid MQTT messages).
+
+== Quick Start
+For a quick start please conduct our HiveMQ Data Governance Hub documentation at FIXME (change once documentation is deployed)
 
 ## Example Use-Cases
 | Description                                                                       	                         | Data Format 	         | Link 	                                                                       |
