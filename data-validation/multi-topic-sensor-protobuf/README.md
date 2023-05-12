@@ -2,7 +2,7 @@
 This cookbook covers the use-case of validating multiple topics each with a different Protobuf schema.
 
 
-### Use-Case 
+### Use-case 
 > As a developer, I want to enforce that incoming sensor data over MQTT has the correct Protobuf data format for the topic it was published on.
 
 Consider if there are two MQTT topics to which clients publish sensor data, `/temperature/{clientId}`, and `/air/{clientId}`. Clients send different types of payloads to each topic, all serialized with Protobuf.

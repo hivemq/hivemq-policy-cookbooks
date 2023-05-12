@@ -2,7 +2,7 @@
 This cookbook covers how to accept any one of multiple possible schemas on a single topic.
 
 
-### Use-Case
+### Use-case
 > As a developer, I want to be able to accept all JSON messages that come from one of a number of different geographic regions, and reject everything outside of these.
 
 The use-case here is that multiple MQTT clients publish messages that may contain coordinate information either from Europe or the USA on the `location` topic. It is useful to reject all instances of messages that are not from one of these regions, and log this rejection.

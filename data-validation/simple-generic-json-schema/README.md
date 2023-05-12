@@ -2,7 +2,7 @@
 This cookbook is about a very simple and generic use-case. 
 
 
-### Use-Case 
+### Use-case 
 > As a developer, I want to enforce that all MQTT payloads are published in a JSON format, to unify data payloads. I do not care about the actual JSON schema.
 
 For this use-case, a policy and a schema are required.

@@ -2,7 +2,7 @@
 This cookbook covers how to accept multiple versions of a schema and redirect messages that follow the older schema version to the correct topic.
 
 
-### Use-Case
+### Use-case
 > As a developer, I want to be able to update my schema to a newer version. Messages from devices using the previous version should still be accepted but should be rerouted to a separate topic.
 
 The use-case here involves accepting device status Protobuf messages on the `devices/v2/{clientId}/status` topic.

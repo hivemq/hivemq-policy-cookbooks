@@ -2,7 +2,7 @@
 This cookbook is about requiring multiple JSON schemas in a single policy.
 
 
-### Use-Case
+### Use-case
 > As a developer, I want to enforce that all MQTT payloads conform to multiple specified JSON Schemas, to ensure that all data structure requirements are met.
 
 For this use-case, a policy and three schemas are required.
