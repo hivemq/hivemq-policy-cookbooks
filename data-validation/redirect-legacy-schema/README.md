@@ -85,7 +85,7 @@ protoc v2-status-schema.proto -o /dev/stdout | base64
 {
   "id": "v2-status-schema",
   "type": "PROTOBUF",
-  "schemaDefinition": "CrEBCjJyZXBvL3JlZGlyZWN0LWxlZ2FjeS1zY2hlbWEvdjItc3RhdHVzLXNjaGVtYS5wcm90bxIRaW8uaGl2ZW1xLmV4YW1wbGUiYAoMRGV2aWNlU3RhdHVzEhgKB3Bvd2VyZWQYASABKAhSB3Bvd2VyZWQSIAoLdGVtcGVyYXR1cmUYAiABKAJSC3RlbXBlcmF0dXJlEhQKBXNwZWVkGAMgASgCUgVzcGVlZGIGcHJvdG8z",
+  "schemaDefinition": "CpUBChZ2Mi1zdGF0dXMtc2NoZW1hLnByb3RvEhFpby5oaXZlbXEuZXhhbXBsZSJgCgxEZXZpY2VTdGF0dXMSGAoHcG93ZXJlZBgBIAEoCFIHcG93ZXJlZBIgCgt0ZW1wZXJhdHVyZRgCIAEoAlILdGVtcGVyYXR1cmUSFAoFc3BlZWQYAyABKAJSBXNwZWVkYgZwcm90bzM=",
   "arguments": {
     "messageType": "DeviceStatus",
     "allowUnknownFields": "false"

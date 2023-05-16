@@ -40,7 +40,7 @@ Place the resulting Base64 string into the `schemaDefinition` field of the reque
 {
   "id": "temperature-schema",
   "type": "PROTOBUF",
-  "schemaDefinition": "CqcBChF0ZW1wZXJhdHVyZS5wcm90bxILY29tLmV4YW1wbGUifQoLVGVtcGVyYXR1cmUSNgoXY29tcG9uZW50X2FfdGVtcGVyYXR1cmUYASABKAJSFWNvbXBvbmVudEFUZW1wZXJhdHVyZRI2Chdjb21wb25lbnRfYl90ZW1wZXJhdHVyZRgCIAEoAlIVY29tcG9uZW50QlRlbXBlcmF0dXJlYgZwcm90bzM",
+  "schemaDefinition": "Cq0BChF0ZW1wZXJhdHVyZS5wcm90bxIRaW8uaGl2ZW1xLmV4YW1wbGUifQoLVGVtcGVyYXR1cmUSNgoXY29tcG9uZW50X2FfdGVtcGVyYXR1cmUYASABKAJSFWNvbXBvbmVudEFUZW1wZXJhdHVyZRI2Chdjb21wb25lbnRfYl90ZW1wZXJhdHVyZRgCIAEoAlIVY29tcG9uZW50QlRlbXBlcmF0dXJlYgZwcm90bzM=",
   "arguments": {
     "messageType": "Temperature",
     "allowUnknownFields": "false"
@@ -141,7 +141,7 @@ Place the resulting Base64 string into the `schemaDefinition` field:
 {
   "id": "air-schema",
   "type": "PROTOBUF",
-  "schemaDefinition": "CnMKCWFpci5wcm90bxILY29tLmV4YW1wbGUiUQoDQWlyEhoKCHByZXNzdXJlGAEgASgCUghwcmVzc3VyZRIaCghodW1pZGl0eRgCIAEoAlIIaHVtaWRpdHkSEgoEd2luZBgDIAEoAlIEd2luZGIGcHJvdG8z",
+  "schemaDefinition": "CnkKCWFpci5wcm90bxIRaW8uaGl2ZW1xLmV4YW1wbGUiUQoDQWlyEhoKCHByZXNzdXJlGAEgASgCUghwcmVzc3VyZRIaCghodW1pZGl0eRgCIAEoAlIIaHVtaWRpdHkSEgoEd2luZBgDIAEoAlIEd2luZGIGcHJvdG8z",
   "arguments": {
     "messageType": "Air",
     "allowUnknownFields": "false"

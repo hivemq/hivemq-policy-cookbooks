@@ -94,7 +94,7 @@ Now a new schema can be uploaded using the same `id`, `simple-schema`, as the pr
 {
   "id": "simple-schema",
   "type": "PROTOBUF",
-  "schemaDefinition": "CosBChNzaW1wbGUtc2NoZW1hLnByb3RvEgtjb20uZXhhbXBsZSJfCg1TaW1wbGVNZXNzYWdlEiEKDHN0b3JhZ2VfdXNlZBgBIAEoA1ILc3RvcmFnZVVzZWQSKwoRc3RvcmFnZV9hdmFpbGFibGUYAiABKANSEHN0b3JhZ2VBdmFpbGFibGViBnByb3RvMw==",
+  "schemaDefinition": "Co4BChBuZXctc2NoZW1hLnByb3RvEhFpby5oaXZlbXEuZXhhbXBsZSJfCg1TaW1wbGVNZXNzYWdlEiEKDHN0b3JhZ2VfdXNlZBgBIAEoA1ILc3RvcmFnZVVzZWQSKwoRc3RvcmFnZV9hdmFpbGFibGUYAiABKANSEHN0b3JhZ2VBdmFpbGFibGViBnByb3RvMw==",
   "arguments": {
     "messageType": "SimpleMessage",
     "allowUnknownFields": "false"

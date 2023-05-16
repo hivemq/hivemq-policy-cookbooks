@@ -1,7 +1,7 @@
 {
   "id": "air-schema",
   "type": "PROTOBUF",
-  "schemaDefinition": "CnMKCWFpci5wcm90bxILY29tLmV4YW1wbGUiUQoDQWlyEhoKCHByZXNzdXJlGAEgASgCUghwcmVzc3VyZRIaCghodW1pZGl0eRgCIAEoAlIIaHVtaWRpdHkSEgoEd2luZBgDIAEoAlIEd2luZGIGcHJvdG8z",
+  "schemaDefinition": "CnkKCWFpci5wcm90bxIRaW8uaGl2ZW1xLmV4YW1wbGUiUQoDQWlyEhoKCHByZXNzdXJlGAEgASgCUghwcmVzc3VyZRIaCghodW1pZGl0eRgCIAEoAlIIaHVtaWRpdHkSEgoEd2luZBgDIAEoAlIEd2luZGIGcHJvdG8z",
   "arguments": {
     "messageType": "Air",
     "allowUnknownFields": "false"
