@@ -42,13 +42,12 @@ Place the resulting Base64 string into the `schemaDefinition` field of the reque
 {
   "id": "v1-status-schema",
   "type": "PROTOBUF",
-  "schemaDefinition": "CnMKCWFpci5wcm90bxILY29tLmV4YW1wbGUiUQoDQWlyEhoKCHByZXNzdXJlGAEgASgCUghwcmVzc3VyZRIaCghodW1pZGl0eRgCIAEoAlIIaHVtaWRpdHkSEgoEd2luZBgDIAEoAlIEd2luZGIGcHJvdG8z",
+  "schemaDefinition": "Cn8KFnYxLXN0YXR1cy1zY2hlbWEucHJvdG8SEWlvLmhpdmVtcS5leGFtcGxlIkoKDERldmljZVN0YXR1cxIYCgdwb3dlcmVkGAEgASgIUgdwb3dlcmVkEiAKC3RlbXBlcmF0dXJlGAIgASgCUgt0ZW1wZXJhdHVyZWIGcHJvdG8z",
   "arguments": {
     "messageType": "DeviceStatus",
     "allowUnknownFields": "false"
   }
 }
-
 ```
 
 The `arguments` field specifies that the `DeviceStatus` message type from the Protobuf definition should be used, and that additional unknown fields in incoming data are not allowed.

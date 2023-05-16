@@ -11,10 +11,10 @@
           "strategy": "ANY_OF",
           "schemas": [
             {
-              "schemaId": "europe-location"
+              "schemaId": "europe-coordinates"
             },
             {
-              "schemaId": "usa-location"
+              "schemaId": "usa-coordinates"
             }
           ]
         }
