@@ -55,7 +55,7 @@ This returns a JSON response containing details of all existing policies in the 
             "functionId": "log",
             "arguments": {
               "level": "WARN",
-              "message": "The client with ID $clientId sent invalid data"
+              "message": "The client with ID {{clientId}} sent invalid data"
             }
           }
         ]
@@ -142,7 +142,7 @@ Next, re-upload the previously deleted policy to the broker as-is. The `schemaId
         "functionId": "log",
         "arguments": {
           "level": "WARN",
-          "message": "The client with ID $clientId sent invalid data"
+          "message": "The client with ID {{clientId}} sent invalid data"
         }
       }
     ]

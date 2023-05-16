@@ -25,7 +25,7 @@
         "functionId": "log",
         "arguments": {
           "level": "ERROR",
-          "message": "The client with ID $clientId sent invalid air data: $validationResult"
+          "message": "The client with ID {{clientId}} sent invalid air data: {{validationResult}}"
         }
       }
     ]

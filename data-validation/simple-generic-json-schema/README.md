@@ -84,7 +84,7 @@ The following policy specifies the validation step under the `topicFilter`: `#`.
         "functionId": "log",
         "arguments": {
           "level": "WARN",
-          "message": "The client $clientId does not send JSON payloads. The message will be dropped."
+          "message": "The client {{clientId}} does not send JSON payloads. The message will be dropped."
         }
       }
     ]

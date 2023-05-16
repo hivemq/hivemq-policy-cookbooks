@@ -158,7 +158,7 @@ The following policy tests if incoming messages match either the USA schema or t
         "functionId": "log",
         "arguments": {
           "level": "INFO",
-          "message": "The client $clientId published coordinate data"
+          "message": "The client {{clientId}} published coordinate data"
         }
       }
     ]
@@ -170,7 +170,7 @@ The following policy tests if incoming messages match either the USA schema or t
         "functionId": "log",
         "arguments": {
           "level": "WARN",
-          "message": "The client $clientId attempted to publish invalid coordinate data: $validationResult"
+          "message": "The client {{clientId}} attempted to publish invalid coordinate data: {{validationResult}}"
         }
       }
     ]
@@ -178,7 +178,7 @@ The following policy tests if incoming messages match either the USA schema or t
 }
 ```
 
-When validation succeeds it will be logged at the `INFO` level and include the client ID using the `$clientID` string substitution. When validation fails it will be logged at the `WARN` level and also include the reason for failure using the `$validationResult` string substitution.
+When validation succeeds it will be logged at the `INFO` level and include the client ID using the `{{clientId}}` string substitution. When validation fails it will be logged at the `WARN` level and also include the reason for failure using the `{{validationResult}}` string substitution.
 
 The `ANY_OF` validation strategy ensures that only one of the schemas needs to be matched, not both.
 

@@ -25,14 +25,14 @@
         "functionId": "log",
         "arguments": {
           "level": "WARN",
-          "message": "The client $clientId sent status data with a legacy format to topic $topic, the message will be redirected to devices/v1/$clientId/status"
+          "message": "The client {{clientId}} sent status data with a legacy format to topic {{topic}}, the message will be redirected to devices/v1/{{clientId}}/status"
         }
       },
       {
         "id": "redirect",
         "functionId": "to",
         "arguments": {
-          "topic": "devices/v1/$clientId/status",
+          "topic": "devices/v1/{{clientId}}/status",
           "applyPolicies": true
         }
       }
