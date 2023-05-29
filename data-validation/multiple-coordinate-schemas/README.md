@@ -155,7 +155,7 @@ The following policy tests if incoming messages match either the USA schema or t
     "pipeline": [
       {
         "id": "logSuccess",
-        "functionId": "log",
+        "functionId": "System.log",
         "arguments": {
           "level": "INFO",
           "message": "The client {{clientId}} published coordinate data"
@@ -167,7 +167,7 @@ The following policy tests if incoming messages match either the USA schema or t
     "pipeline": [
       {
         "id": "logFailure",
-        "functionId": "log",
+        "functionId": "System.log",
         "arguments": {
           "level": "WARN",
           "message": "The client {{clientId}} attempted to publish invalid coordinate data: {{validationResult}}"

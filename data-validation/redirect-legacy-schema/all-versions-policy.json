@@ -25,7 +25,7 @@
     "pipeline": [
       {
         "id": "logFailure",
-        "functionId": "log",
+        "functionId": "System.log",
         "arguments": {
           "level": "WARN",
           "message": "The client {{clientId}} sent invalid status data to {{topic}}"

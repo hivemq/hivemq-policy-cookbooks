@@ -91,7 +91,7 @@ The following policy applies to all messages that match the topic filter `temper
     "pipeline": [
       {
         "id": "logFailure",
-        "functionId": "log",
+        "functionId": "System.log",
         "arguments": {
           "level": "ERROR",
           "message": "The client with ID {{clientId}} sent invalid temperature data: {{validationResult}}"
@@ -186,7 +186,7 @@ A similar policy to the temperature policy can now be created and uploaded for t
     "pipeline": [
       {
         "id": "logFailure",
-        "functionId": "log",
+        "functionId": "System.log",
         "arguments": {
           "level": "ERROR",
           "message": "The client with ID {{clientId}} sent invalid air data: {{validationResult}}"

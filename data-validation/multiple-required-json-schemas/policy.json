@@ -28,7 +28,7 @@
     "pipeline": [
       {
         "id": "logFailure",
-        "functionId": "log",
+        "functionId": "System.log",
         "arguments": {
           "level": "WARN",
           "message": "The client {{clientId}} does not send valid JSON payloads. The message will be dropped. Reason: {{validationResult}}"

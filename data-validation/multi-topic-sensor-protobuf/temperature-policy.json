@@ -22,7 +22,7 @@
     "pipeline": [
       {
         "id": "logFailure",
-        "functionId": "log",
+        "functionId": "System.log",
         "arguments": {
           "level": "ERROR",
           "message": "The client with ID {{clientId}} sent invalid temperature data: {{validationResult}}"
