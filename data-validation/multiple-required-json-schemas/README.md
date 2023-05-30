@@ -161,7 +161,7 @@ The following policy uses a `topicFilter` of `#` which will match all messages o
         "functionId": "log",
         "arguments": {
           "level": "WARN",
-          "message": "The client {{clientId}} does not send valid JSON payloads. The message will be dropped. Reason: {{validationResult}}"
+          "message": "The client ${clientId} does not send valid JSON payloads. The message will be dropped. Reason: ${validationResult}"
         }
       }
     ]

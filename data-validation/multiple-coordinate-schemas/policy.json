@@ -28,7 +28,7 @@
         "functionId": "log",
         "arguments": {
           "level": "INFO",
-          "message": "The client {{clientId}} published coordinate data"
+          "message": "The client ${clientId} published coordinate data"
         }
       }
     ]
@@ -40,7 +40,7 @@
         "functionId": "log",
         "arguments": {
           "level": "WARN",
-          "message": "The client {{clientId}} attempted to publish invalid coordinate data: {{validationResult}}"
+          "message": "The client ${clientId} attempted to publish invalid coordinate data: ${validationResult}"
         }
       }
     ]
