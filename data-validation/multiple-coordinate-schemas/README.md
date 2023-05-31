@@ -160,6 +160,14 @@ The following policy tests if incoming messages match either the USA schema or t
           "level": "INFO",
           "message": "The client ${clientId} published coordinate data"
         }
+      },
+      {
+        "id": "incrementGoodCoordinatesMetric",
+        "functionId": "Metrics.Counter.increment",
+        "arguments": {
+          "metricName": "valid-coordinates",
+          "incrementBy": 1
+        }
       }
     ]
   },
@@ -172,13 +180,21 @@ The following policy tests if incoming messages match either the USA schema or t
           "level": "WARN",
           "message": "The client ${clientId} attempted to publish invalid coordinate data: ${validationResult}"
         }
+      },
+      {
+        "id": "incrementBadCoordinatesMetric",
+        "functionId": "Metrics.Counter.increment",
+        "arguments": {
+          "metricName": "invalid-coordinates",
+          "incrementBy": 1
+        }
       }
     ]
   }
 }
 ```
 
-When validation succeeds it will be logged at the `INFO` level and include the client ID using the `${clientId}` string substitution. When validation fails it will be logged at the `WARN` level and also include the reason for failure using the `${validationResult}` string substitution.
+When validation succeeds it will be logged at the `INFO` level and include the client ID using the `${clientId}` string substitution. When validation fails it will be logged at the `WARN` level and also include the reason for failure using the `${validationResult}` string substitution. Moreover, for both cases custom metrics are created: `valid-coordinates` and `invalid-coordinates`.
 
 The `ANY_OF` validation strategy ensures that only one of the schemas needs to be matched, not both.
 
