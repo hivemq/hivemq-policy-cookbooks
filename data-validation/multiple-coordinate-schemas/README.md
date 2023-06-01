@@ -208,7 +208,7 @@ curl -X POST --data @policy.json -H "Content-Type: application/json" http://loca
 Check out the script `generate-random-data.sh` that continuously generates random GPS coordinates according to the `usa-coordinates` schema.
 However, some of them are invalid. Since we added a metric function to count invalid and valid messages a quality metric can be easily defined.
 
-Suppose you have a Prometheus server running andPrometheus Extension installed available at [HiveMQ's website](https://www.hivemq.com/extension/prometheus-extension/) you can run a PromQL statement to derive a quality metric:
+Suppose you have a Prometheus server running and the Prometheus Extension installed (available at [HiveMQ's website](https://www.hivemq.com/extension/prometheus-extension/)). You can run a PromQL statement to derive a quality metric:
 
 ```
 com_hivemq_data_governance_hub_data_validation_custom_counters_valid_coordinates / (com_hivemq_data_governance_hub_data_validation_custom_counters_invalid_coordinates + com_hivemq_data_governance_hub_data_validation_custom_counters_valid_coordinates)
