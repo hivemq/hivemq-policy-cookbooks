@@ -25,7 +25,7 @@
         "functionId": "System.log",
         "arguments": {
           "level": "WARN",
-          "message": "The client with ID {{clientId}} sent invalid data"
+          "message": "The client with ID ${clientId} sent invalid data"
         }
       }
     ]

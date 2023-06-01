@@ -94,7 +94,7 @@ The following policy applies to all messages that match the topic filter `temper
         "functionId": "System.log",
         "arguments": {
           "level": "ERROR",
-          "message": "The client with ID {{clientId}} sent invalid temperature data: {{validationResult}}"
+          "message": "The client with ID ${clientId} sent invalid temperature data: ${validationResult}"
         }
       }
     ]
@@ -104,7 +104,7 @@ The following policy applies to all messages that match the topic filter `temper
 
 This ensures that all messages published to a topic under `temperature/` must conform to the provided Protobuf specification for temperature data.
 
-The `{{validationResult}}` string substitution in the log message means that the exact cause of the failure will be logged. 
+The `${validationResult}` string substitution in the log message means that the exact cause of the failure will be logged. 
 
 To upload `temperature-policy.json` to the broker, run the following command:
 ```bash
@@ -189,7 +189,7 @@ A similar policy to the temperature policy can now be created and uploaded for t
         "functionId": "System.log",
         "arguments": {
           "level": "ERROR",
-          "message": "The client with ID {{clientId}} sent invalid air data: {{validationResult}}"
+          "message": "The client with ID ${clientId} sent invalid air data: ${validationResult}"
         }
       }
     ]

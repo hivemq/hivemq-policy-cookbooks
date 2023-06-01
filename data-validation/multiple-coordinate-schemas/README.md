@@ -141,10 +141,10 @@ The following policy tests if incoming messages match either the USA schema or t
           "strategy": "ANY_OF",
           "schemas": [
             {
-              "schemaId": "europe-location"
+              "schemaId": "europe-coordinates"
             },
             {
-              "schemaId": "usa-location"
+              "schemaId": "usa-coordinates"
             }
           ]
         }
@@ -158,7 +158,15 @@ The following policy tests if incoming messages match either the USA schema or t
         "functionId": "System.log",
         "arguments": {
           "level": "INFO",
-          "message": "The client {{clientId}} published coordinate data"
+          "message": "The client ${clientId} published coordinate data"
+        }
+      },
+      {
+        "id": "incrementGoodCoordinatesMetric",
+        "functionId": "Metrics.Counter.increment",
+        "arguments": {
+          "metricName": "valid-coordinates",
+          "incrementBy": 1
         }
       }
     ]
@@ -170,7 +178,15 @@ The following policy tests if incoming messages match either the USA schema or t
         "functionId": "System.log",
         "arguments": {
           "level": "WARN",
-          "message": "The client {{clientId}} attempted to publish invalid coordinate data: {{validationResult}}"
+          "message": "The client ${clientId} attempted to publish invalid coordinate data: ${validationResult}"
+        }
+      },
+      {
+        "id": "incrementBadCoordinatesMetric",
+        "functionId": "Metrics.Counter.increment",
+        "arguments": {
+          "metricName": "invalid-coordinates",
+          "incrementBy": 1
         }
       }
     ]
@@ -178,7 +194,7 @@ The following policy tests if incoming messages match either the USA schema or t
 }
 ```
 
-When validation succeeds it will be logged at the `INFO` level and include the client ID using the `{{clientId}}` string substitution. When validation fails it will be logged at the `WARN` level and also include the reason for failure using the `{{validationResult}}` string substitution.
+When validation succeeds it will be logged at the `INFO` level and include the client ID using the `${clientId}` string substitution. When validation fails it will be logged at the `WARN` level and also include the reason for failure using the `${validationResult}` string substitution. Moreover, for both cases custom metrics are created: `com.hivemq.data-governance-hub.data-validation.custom.counters.valid-coordinates` and `com.hivemq.data-governance-hub.data-validation.custom.counters.invalid-coordinates`.
 
 The `ANY_OF` validation strategy ensures that only one of the schemas needs to be matched, not both.
 
@@ -187,3 +203,14 @@ To upload `policy.json` to the broker, run the following command:
 ```bash
 curl -X POST --data @policy.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/policies
 ```
+
+### Quality Metric
+Check out the script `generate-random-data.sh` that continuously generates random GPS coordinates according to the `usa-coordinates` schema.
+However, some of them are invalid. Since we added a metric function to count invalid and valid messages, a quality metric can be easily defined.
+
+Suppose you have a Prometheus server running and the Prometheus Extension installed (available at [HiveMQ's website](https://www.hivemq.com/extension/prometheus-extension/)). You can run a PromQL statement to derive a quality metric:
+
+```
+com_hivemq_data_governance_hub_data_validation_custom_counters_valid_coordinates / (com_hivemq_data_governance_hub_data_validation_custom_counters_invalid_coordinates + com_hivemq_data_governance_hub_data_validation_custom_counters_valid_coordinates)
+```
+With this, the metric function makes it possible to define alerts to notify when a certain threshold reached. 

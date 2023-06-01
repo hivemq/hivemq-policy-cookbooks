@@ -42,13 +42,12 @@ Place the resulting Base64 string into the `schemaDefinition` field of the reque
 {
   "id": "v1-status-schema",
   "type": "PROTOBUF",
-  "schemaDefinition": "CnMKCWFpci5wcm90bxILY29tLmV4YW1wbGUiUQoDQWlyEhoKCHByZXNzdXJlGAEgASgCUghwcmVzc3VyZRIaCghodW1pZGl0eRgCIAEoAlIIaHVtaWRpdHkSEgoEd2luZBgDIAEoAlIEd2luZGIGcHJvdG8z",
+  "schemaDefinition": "Cn8KFnYxLXN0YXR1cy1zY2hlbWEucHJvdG8SEWlvLmhpdmVtcS5leGFtcGxlIkoKDERldmljZVN0YXR1cxIYCgdwb3dlcmVkGAEgASgIUgdwb3dlcmVkEiAKC3RlbXBlcmF0dXJlGAIgASgCUgt0ZW1wZXJhdHVyZWIGcHJvdG8z",
   "arguments": {
     "messageType": "DeviceStatus",
     "allowUnknownFields": "false"
   }
 }
-
 ```
 
 The `arguments` field specifies that the `DeviceStatus` message type from the Protobuf definition should be used, and that additional unknown fields in incoming data are not allowed.
@@ -137,7 +136,7 @@ Because messages may be published to either `devices/v1/{clientId}/status` or `d
         "functionId": "System.log",
         "arguments": {
           "level": "WARN",
-          "message": "The client {{clientId}} sent invalid status data to {{topic}}"
+          "message": "The client ${clientId} sent invalid status data to ${topic}"
         }
       }
     ]
@@ -190,14 +189,14 @@ Use the topic filter `devices/v2/+/status`:
         "functionId": "System.log",
         "arguments": {
           "level": "WARN",
-          "message": "The client {{clientId}} sent status data with a legacy format to topic {{topic}}, the message will be redirected to devices/v1/{{clientId}}/status"
+          "message": "The client ${clientId} sent status data with a legacy format to topic ${topic}, the message will be redirected to devices/v1/${clientId}/status"
         }
       },
       {
         "id": "redirect",
         "functionId": "Delivery.redirectTo",
         "arguments": {
-          "topic": "devices/v1/{{clientId}}/status",
+          "topic": "devices/v1/${clientId}/status",
           "applyPolicies": true
         }
       }
@@ -208,11 +207,11 @@ Use the topic filter `devices/v2/+/status`:
 
 The `onFailure` pipeline specifies the sequence of actions that is taken if a message does not conform to the `v2-status-schema` schema.
 
-First, a warning is logged using the `System.log` function. This contains the client ID and topic using the `{{clientId}}` and `{{topic}}` string substitutions.
+First, a warning is logged using the `System.log` function. This contains the client ID and topic using the `${clientId}` and `${topic}` string substitutions.
 
 Then, the message is redirected using the `Delivery.redirectTo` function to the topic `devices/v1/{{clientId}}/status`. The `applyPolicies` field specifies whether policies matching this new topic should be applied to the message after redirection.
 
-When multiple policies match a given topic, they are executed in the order of least specific to most specific. The topic filter `devices/+/+/status` is less specific than `devices/v2/+/status`, so the `all-device-statuses` policy will always execute before this `v2-device-statuses` policy. `all-device-statuses` only allows `v1-status-schema` and `v2-status-schema` schemas and filters out any other invalid messages before they can reach the next policy, so messages received for validation by `v2-device-statuses` will always be one of these two schemas. Because of this, if `v2-device-statuses` fails its validation, it must mean that the message conforms to `v1-status-schema` and so it can safely be redirected to `devices/v1/{{clientId}}/status`.
+When multiple policies match a given topic, they are executed in the order of least specific to most specific. The topic filter `devices/+/+/status` is less specific than `devices/v2/+/status`, so the `all-device-statuses` policy will always execute before this `v2-device-statuses` policy. `all-device-statuses` only allows `v1-status-schema` and `v2-status-schema` schemas and filters out any other invalid messages before they can reach the next policy, so messages received for validation by `v2-device-statuses` will always be one of these two schemas. Because of this, if `v2-device-statuses` fails its validation, it must mean that the message conforms to `v1-status-schema` and so it can safely be redirected to `devices/v1/${clientId}/status`.
 
 To upload the policy, run the following command:
 

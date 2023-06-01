@@ -11,10 +11,10 @@
           "strategy": "ANY_OF",
           "schemas": [
             {
-              "schemaId": "europe-location"
+              "schemaId": "europe-coordinates"
             },
             {
-              "schemaId": "usa-location"
+              "schemaId": "usa-coordinates"
             }
           ]
         }
@@ -28,7 +28,15 @@
         "functionId": "System.log",
         "arguments": {
           "level": "INFO",
-          "message": "The client {{clientId}} published coordinate data"
+          "message": "The client ${clientId} published coordinate data"
+        }
+      },
+      {
+        "id": "incrementGoodCoordinatesMetric",
+        "functionId": "Metrics.Counter.increment",
+        "arguments": {
+          "metricName": "valid-coordinates",
+          "incrementBy": 1
         }
       }
     ]
@@ -40,7 +48,15 @@
         "functionId": "System.log",
         "arguments": {
           "level": "WARN",
-          "message": "The client {{clientId}} attempted to publish invalid coordinate data: {{validationResult}}"
+          "message": "The client ${clientId} attempted to publish invalid coordinate data: ${validationResult}"
+        }
+      },
+      {
+        "id": "incrementBadCoordinatesMetric",
+        "functionId": "Metrics.Counter.increment",
+        "arguments": {
+          "metricName": "invalid-coordinates",
+          "incrementBy": 1
         }
       }
     ]

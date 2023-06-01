@@ -37,3 +37,6 @@ For a quick start please conduct our HiveMQ Data Governance Hub documentation.
 | Ensure messages follow at least one version of a schema and redirect legacy versions to a different topic   | Protobuf            	 | [redirect-legacy-schema](/data-validation/redirect-legacy-schema)	           |
 | Updating an existing policy to use a different schema                                                       | Protobuf              | [updating-protobuf-schema](/data-validation/updating-protobuf-schema)	       |
 | A policy that enforces that incoming packets match multiple JSON schemas simultaneously                     | JSON                  | [multiple-required-json-schemas](/data-validation/multiple-required-json-schemas)	 |
+
+## Versions
+* since version 4.16: The release of HiveMQ Data Governance Hub 4.16 we will introduce some new features and breaking changes for string interpolation syntax. Moreover, we introduced namespacing for functions. For reference of the cookbooks for the 4.15 version please refer to the branch [4.15](https://github.com/hivemq/hivemq-policy-cookbooks/tree/4.15)
