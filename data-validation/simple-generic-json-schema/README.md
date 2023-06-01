@@ -22,13 +22,7 @@ To begin with, consider the following plain JSON schema (according to [JSON Sche
 
 which simply specifies that the payload should be in a JSON format without specifying the actual fields.
 
-Convert `schema.json` to a Base64 string with the following command:
-
-```bash
-base64 -i schema.json
-```
-
-To get this schema into the broker, run the following command:
+To upload this schema to the broker, run the following command:
 
 ```bash
 mqtt hivemq schemas create --id simple-generic-json --type json --file schema.json
@@ -38,6 +32,7 @@ This specifies the schema type (JSON) and assigns the unique identifier `simple-
 
 
 ### Policy
+
 The next step is to apply the schema for all incoming MQTT messages by referencing the already defined schema `simple-generic-schema`.
 
 The following policy specifies the validation step under the `topicFilter`: `#`.  In case an MQTT message does not contain a valid JSON payload, a log message with level `WARN` is printed with the `clientId`.
