@@ -213,4 +213,4 @@ Suppose you have a Prometheus server running and the Prometheus Extension instal
 ```
 com_hivemq_data_governance_hub_data_validation_custom_counters_valid_coordinates / (com_hivemq_data_governance_hub_data_validation_custom_counters_invalid_coordinates + com_hivemq_data_governance_hub_data_validation_custom_counters_valid_coordinates)
 ```
-Consequently, alerts can be defined to be notified for certain threshold violation.
+With this, the metric function makes it possible to define alerts to notify when a certain threshold reached. 
