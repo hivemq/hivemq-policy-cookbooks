@@ -204,7 +204,7 @@ To upload `policy.json` to the broker, run the following command:
 curl -X POST --data @policy.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/policies
 ```
 
-## Quality Metric
+### Quality Metric
 Check out the script `generate-random-data.sh` that continuously generates random GPS coordinates according to the `usa-coordinates` schema.
 However, some of them are invalid. Since we added a metric function to count invalid and valid messages a quality metric can be easily defined.
 
