@@ -133,7 +133,7 @@ Because messages may be published to either `devices/v1/{clientId}/status` or `d
     "pipeline": [
       {
         "id": "logFailure",
-        "functionId": "log",
+        "functionId": "System.log",
         "arguments": {
           "level": "WARN",
           "message": "The client ${clientId} sent invalid status data to ${topic}"
@@ -186,7 +186,7 @@ Use the topic filter `devices/v2/+/status`:
     "pipeline": [
       {
         "id": "logRedirect",
-        "functionId": "log",
+        "functionId": "System.log",
         "arguments": {
           "level": "WARN",
           "message": "The client ${clientId} sent status data with a legacy format to topic ${topic}, the message will be redirected to devices/v1/${clientId}/status"
@@ -194,7 +194,7 @@ Use the topic filter `devices/v2/+/status`:
       },
       {
         "id": "redirect",
-        "functionId": "to",
+        "functionId": "Delivery.redirectTo",
         "arguments": {
           "topic": "devices/v1/${clientId}/status",
           "applyPolicies": true
@@ -207,9 +207,9 @@ Use the topic filter `devices/v2/+/status`:
 
 The `onFailure` pipeline specifies the sequence of actions that is taken if a message does not conform to the `v2-status-schema` schema.
 
-First, a warning is logged using the `log` function. This contains the client ID and topic using the `${clientId}` and `${topic}` string substitutions.
+First, a warning is logged using the `System.log` function. This contains the client ID and topic using the `${clientId}` and `${topic}` string substitutions.
 
-Then, the message is redirected using the `to` function to the topic `devices/v1/${clientId}/status`. The `applyPolicies` field specifies whether policies matching this new topic should be applied to the message after redirection.
+Then, the message is redirected using the `Delivery.redirectTo` function to the topic `devices/v1/{{clientId}}/status`. The `applyPolicies` field specifies whether policies matching this new topic should be applied to the message after redirection.
 
 When multiple policies match a given topic, they are executed in the order of least specific to most specific. The topic filter `devices/+/+/status` is less specific than `devices/v2/+/status`, so the `all-device-statuses` policy will always execute before this `v2-device-statuses` policy. `all-device-statuses` only allows `v1-status-schema` and `v2-status-schema` schemas and filters out any other invalid messages before they can reach the next policy, so messages received for validation by `v2-device-statuses` will always be one of these two schemas. Because of this, if `v2-device-statuses` fails its validation, it must mean that the message conforms to `v1-status-schema` and so it can safely be redirected to `devices/v1/${clientId}/status`.
 

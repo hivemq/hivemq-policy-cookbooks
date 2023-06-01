@@ -81,7 +81,7 @@ The following policy specifies the validation step under the `topicFilter`: `#`.
     "pipeline": [
       {
         "id": "logFailiure",
-        "functionId": "log",
+        "functionId": "System.log",
         "arguments": {
           "level": "WARN",
           "message": "The client ${clientId} does not send JSON payloads. The message will be dropped."

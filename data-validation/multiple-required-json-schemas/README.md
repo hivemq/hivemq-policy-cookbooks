@@ -158,7 +158,7 @@ The following policy uses a `topicFilter` of `#` which will match all messages o
     "pipeline": [
       {
         "id": "logFailure",
-        "functionId": "log",
+        "functionId": "System.log",
         "arguments": {
           "level": "WARN",
           "message": "The client ${clientId} does not send valid JSON payloads. The message will be dropped. Reason: ${validationResult}"
@@ -171,7 +171,7 @@ The following policy uses a `topicFilter` of `#` which will match all messages o
 
 The `validators` section in the policy definition uses the `ALL_OF` validation strategy to specify that MQTT messages must successfully match all three referenced schemas to be published.
 
-If a MQTT message fails to validate for any of the three schemas, a message is logged using the `log` function with the client ID and the reason for validation failure.
+If a MQTT message fails to validate for any of the three schemas, a message is logged using the `System.log` function with the client ID and the reason for validation failure.
 
 To upload `policy.json` to the broker, run the following command:
 ```bash
