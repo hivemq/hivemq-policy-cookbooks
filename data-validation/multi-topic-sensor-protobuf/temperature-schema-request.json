@@ -1,9 +1,0 @@
-{
-  "id": "temperature-schema",
-  "type": "PROTOBUF",
-  "schemaDefinition": "Cq0BChF0ZW1wZXJhdHVyZS5wcm90bxIRaW8uaGl2ZW1xLmV4YW1wbGUifQoLVGVtcGVyYXR1cmUSNgoXY29tcG9uZW50X2FfdGVtcGVyYXR1cmUYASABKAJSFWNvbXBvbmVudEFUZW1wZXJhdHVyZRI2Chdjb21wb25lbnRfYl90ZW1wZXJhdHVyZRgCIAEoAlIVY29tcG9uZW50QlRlbXBlcmF0dXJlYgZwcm90bzM=",
-  "arguments": {
-    "messageType": "Temperature",
-    "allowUnknownFields": "false"
-  }
-}
