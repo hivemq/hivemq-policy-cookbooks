@@ -14,7 +14,8 @@
               "strategy": "ALL_OF",
               "schemas": [
                 {
-                  "schemaId": "simple-schema"
+                  "schemaId": "simple-schema",
+                  "version" : "latest"
                 }
               ]
             }

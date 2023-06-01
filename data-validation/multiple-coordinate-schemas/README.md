@@ -141,10 +141,12 @@ The following policy tests if incoming messages match either the USA schema or t
           "strategy": "ANY_OF",
           "schemas": [
             {
-              "schemaId": "europe-coordinates"
+              "schemaId": "europe-coordinates",
+              "version" : "latest"
             },
             {
-              "schemaId": "usa-coordinates"
+              "schemaId": "usa-coordinates",
+              "version" : "latest"
             }
           ]
         }

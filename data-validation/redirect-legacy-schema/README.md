@@ -119,10 +119,12 @@ Because messages may be published to either `devices/v1/{clientId}/status` or `d
           "strategy": "ANY_OF",
           "schemas": [
             {
-              "schemaId": "v1-status-schema"
+              "schemaId": "v1-status-schema",
+              "version" : "latest"
             },
             {
-              "schemaId": "v2-status-schema"
+              "schemaId": "v2-status-schema",
+              "version" : "latest"
             }
           ]
         }
@@ -175,7 +177,8 @@ Use the topic filter `devices/v2/+/status`:
           "strategy": "ALL_OF",
           "schemas": [
             {
-              "schemaId": "v2-status-schema"
+              "schemaId": "v2-status-schema",
+              "version" : "latest"
             }
           ]
         }

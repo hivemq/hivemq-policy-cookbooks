@@ -11,7 +11,8 @@
           "strategy": "ALL_OF",
           "schemas": [
             {
-              "schemaId": "air-schema"
+              "schemaId": "air-schema",
+              "version": "latest"
             }
           ]
         }

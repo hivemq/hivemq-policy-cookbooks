@@ -141,13 +141,16 @@ The following policy uses a `topicFilter` of `#` which will match all messages o
           "strategy": "ALL_OF",
           "schemas": [
             {
-              "schemaId": "metadata-schema"
+              "schemaId": "metadata-schema",
+              "version" : "latest"
             },
             {
-              "schemaId": "data-schema"
+              "schemaId": "data-schema",
+              "version" : "latest"
             },
             {
-              "schemaId": "verification-schema"
+              "schemaId": "verification-schema",
+              "version" : "latest"
             }
           ]
         }

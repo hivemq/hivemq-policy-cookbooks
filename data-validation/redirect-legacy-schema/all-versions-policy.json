@@ -11,10 +11,12 @@
           "strategy": "ANY_OF",
           "schemas": [
             {
-              "schemaId": "v1-status-schema"
+              "schemaId": "v1-status-schema",
+              "version" : "latest"
             },
             {
-              "schemaId": "v2-status-schema"
+              "schemaId": "v2-status-schema",
+              "version" : "latest"
             }
           ]
         }
