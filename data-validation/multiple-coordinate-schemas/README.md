@@ -206,7 +206,7 @@ curl -X POST --data @policy.json -H "Content-Type: application/json" http://loca
 
 ### Quality Metric
 Check out the script `generate-random-data.sh` that continuously generates random GPS coordinates according to the `usa-coordinates` schema.
-However, some of them are invalid. Since we added a metric function to count invalid and valid messages a quality metric can be easily defined.
+However, some of them are invalid. Since we added a metric function to count invalid and valid messages, a quality metric can be easily defined.
 
 Suppose you have a Prometheus server running and the Prometheus Extension installed (available at [HiveMQ's website](https://www.hivemq.com/extension/prometheus-extension/)). You can run a PromQL statement to derive a quality metric:
 
