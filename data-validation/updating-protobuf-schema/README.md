@@ -13,10 +13,8 @@ For this use-case, an existing policy and schema must be deleted and new version
 List existing policies in the broker with the following command:
 
 ```bash
-curl -X GET http://localhost:8888/api/v1/data-validation/policies
+mqtt hivemq policies list
 ```
-
-suppose your HiveMQ REST API runs at `http://localhost:8888`.
 
 This returns a JSON response containing details of all existing policies in the broker:
 
@@ -52,7 +50,7 @@ This returns a JSON response containing details of all existing policies in the 
       "onFailure": {
         "pipeline": [
           {
-            "id": "logFailiure",
+            "id": "logFailure",
             "functionId": "System.log",
             "arguments": {
               "level": "WARN",
@@ -66,7 +64,7 @@ This returns a JSON response containing details of all existing policies in the 
 }
 ```
 
-From this, take the `id` of the policy you wish to update and the `schemaId` of the schema it uses.
+From this, take the `id` of the policy you wish to update and the `schemaId` of the schema it uses.  Here the policy id is `simple-policy` and the schema id is `simple-schema`.
 
 
 ### Delete the old policy and schema
@@ -76,39 +74,23 @@ Because the existing policy references the existing schema, the policy first mus
 Delete the policy by running the following command:
 
 ```bash
-curl -X DELETE -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/policies/simple-policy
+mqtt hivemq policies delete --id simple-policy
 ```
 
 Then delete the schema by running the following command:
 
 ```bash
-curl -X DELETE -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/schemas/simple-schema
+mqtt hivemq schemas delete --id simple-schema
 ```
 
 
 ### New schema
 
-Now a new schema can be uploaded using the same `id`, `simple-schema`, as the previous one:
-
-`new-schema-request.json`:
-```json
-{
-  "id": "simple-schema",
-  "type": "PROTOBUF",
-  "schemaDefinition": "Co4BChBuZXctc2NoZW1hLnByb3RvEhFpby5oaXZlbXEuZXhhbXBsZSJfCg1TaW1wbGVNZXNzYWdlEiEKDHN0b3JhZ2VfdXNlZBgBIAEoA1ILc3RvcmFnZVVzZWQSKwoRc3RvcmFnZV9hdmFpbGFibGUYAiABKANSEHN0b3JhZ2VBdmFpbGFibGViBnByb3RvMw==",
-  "arguments": {
-    "messageType": "SimpleMessage",
-    "allowUnknownFields": "false"
-  }
-}
-```
-
-To upload `new-schema-request.json` to the broker, run the following command:
+Now a new schema can be created using the same `id`, `simple-schema`, as the previous one:
 
 ```bash
-curl -X POST --data @new-schema-request.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/schemas
+mqtt hivemq schemas create --id simple-schema --type protobuf --message-type SimpleMessage --file new-schema.desc
 ```
-
 
 ### New policy
 
@@ -156,5 +138,5 @@ Next, re-upload the previously deleted policy to the broker as-is. The `schemaId
 To upload `policy.json` to the broker, run the following command:
 
 ```bash
-curl -X POST --data @policy.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/policies
+mqtt hivemq policies create --file policy.json
 ```

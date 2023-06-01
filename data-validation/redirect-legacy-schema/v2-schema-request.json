@@ -1,9 +1,0 @@
-{
-  "id": "v2-status-schema",
-  "type": "PROTOBUF",
-  "schemaDefinition": "CpUBChZ2Mi1zdGF0dXMtc2NoZW1hLnByb3RvEhFpby5oaXZlbXEuZXhhbXBsZSJgCgxEZXZpY2VTdGF0dXMSGAoHcG93ZXJlZBgBIAEoCFIHcG93ZXJlZBIgCgt0ZW1wZXJhdHVyZRgCIAEoAlILdGVtcGVyYXR1cmUSFAoFc3BlZWQYAyABKAJSBXNwZWVkYgZwcm90bzM=",
-  "arguments": {
-    "messageType": "DeviceStatus",
-    "allowUnknownFields": "false"
-  }
-}

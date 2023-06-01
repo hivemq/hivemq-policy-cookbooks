@@ -28,26 +28,13 @@ Convert `schema.json` to a Base64 string with the following command:
 base64 -i schema.json
 ```
 
-To get this schema into the broker, the following request has to be made:
-
-`schema-request.json`:
-```json
-{
-  "id": "simple-generic-json",
-  "type": "JSON",
-  "schemaDefinition": "ewogICJkZXNjcmlwdGlvbiI6ICJUaGlzIGlzIGEgdGhlIG1vc3QgZ2VuZXJpYyBKU09OIHNjaGVtYSwgc2luY2UgaXQgcmVxdWlyZXMganVzdCBhIEpTT04sIG5vdGhpbmcgZnVydGhlciBzcGVjaWZpZWQiLAogICJ0eXBlIjogIm9iamVjdCIKfQ=="
-}
-```
-
-which embeds the schema definition, the type of schema (JSON) and the unique identifier, `simple-generic-json`, that can be used for reference in the policy.
-
-To upload `schema-request.json` to the broker, run the following command: 
+To get this schema into the broker, run the following command:
 
 ```bash
-curl -X POST --data @schema-request.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/schemas
+mqtt hivemq schemas create --id simple-generic-json --type json --file schema.json
 ```
 
-suppose your HiveMQ REST API runs at `http://localhost:8888`.
+This specifies the schema type (JSON) and assigns the unique identifier `simple-generic-json` to the schema.
 
 
 ### Policy
@@ -95,8 +82,9 @@ The following policy specifies the validation step under the `topicFilter`: `#`.
 ```
 
 To upload `policy.json` to the broker, run the following command:
+
 ```bash
-curl -X POST --data @policy.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/policies
+mqtt hivemq policies create --file policy.json
 ```
 
 The policy is now applied and all incoming MQTT messages are subject to validation.
@@ -104,5 +92,5 @@ The policy is now applied and all incoming MQTT messages are subject to validati
 To delete the policy, run the following command:
 
 ```bash
-curl -X DELETE -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/policies/simple-basic-json-policy-for-every-topic
+mqtt hivemq policies delete --id simple-basic-json-policy-for-every-topic
 ```
