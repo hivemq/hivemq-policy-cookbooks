@@ -19,6 +19,18 @@
       }
     ]
   },
+  "onSuccess": {
+    "pipeline": [
+      {
+        "id": "flagSchemaChecked",
+        "functionId": "UserProperties.add",
+        "arguments": {
+          "name": "policy",
+          "value": "success"
+        }
+      }
+    ]
+  },
   "onFailure": {
     "pipeline": [
       {
@@ -27,6 +39,14 @@
         "arguments": {
           "level": "WARN",
           "message": "The client ${clientId} does not send JSON payloads. The message will be dropped."
+        }
+      },
+      {
+        "id": "flagSchemaChecked",
+        "functionId": "UserProperties.add",
+        "arguments": {
+          "name": "policy",
+          "value": "failed"
         }
       }
     ]
