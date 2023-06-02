@@ -11,7 +11,8 @@
           "strategy": "ALL_OF",
           "schemas": [
             {
-              "schemaId": "v2-status-schema"
+              "schemaId": "v2-status-schema",
+              "version" : "latest"
             }
           ]
         }

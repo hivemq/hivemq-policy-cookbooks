@@ -38,7 +38,8 @@ This returns a JSON response containing details of all existing policies in the 
               "strategy": "ALL_OF",
               "schemas": [
                 {
-                  "schemaId": "simple-schema"
+                  "schemaId": "simple-schema",
+                  "version" : "latest"
                 }
               ]
             }
@@ -128,7 +129,8 @@ Next, re-upload the previously deleted policy to the broker as-is. The `schemaId
           "strategy": "ALL_OF",
           "schemas": [
             {
-              "schemaId": "simple-schema"
+              "schemaId": "simple-schema",
+              "version" : "latest"
             }
           ]
         }

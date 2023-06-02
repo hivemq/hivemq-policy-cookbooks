@@ -80,7 +80,8 @@ The following policy applies to all messages that match the topic filter `temper
           "strategy": "ALL_OF",
           "schemas": [
             {
-              "schemaId": "temperature-schema"
+              "schemaId": "temperature-schema",
+              "version" : "latest"
             }
           ]
         }
@@ -175,7 +176,8 @@ A similar policy to the temperature policy can now be created and uploaded for t
           "strategy": "ALL_OF",
           "schemas": [
             {
-              "schemaId": "air-schema"
+              "schemaId": "air-schema",
+              "version" : "latest"
             }
           ]
         }

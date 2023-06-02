@@ -11,7 +11,8 @@
           "strategy": "ALL_OF",
           "schemas": [
             {
-              "schemaId": "temperature-schema"
+              "schemaId": "temperature-schema",
+              "version": "latest"
             }
           ]
         }

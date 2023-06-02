@@ -11,7 +11,8 @@
           "strategy": "ALL_OF",
           "schemas": [
             {
-              "schemaId": "simple-generic-json"
+              "schemaId": "simple-generic-json",
+              "version": "latest"
             }
           ]
         }

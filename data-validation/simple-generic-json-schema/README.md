@@ -70,7 +70,8 @@ The following policy specifies the validation step under the `topicFilter`: `#`.
           "strategy": "ALL_OF",
           "schemas": [
             {
-              "schemaId": "simple-generic-json"
+              "schemaId": "simple-generic-json",
+              "version" : "latest"
             }
           ]
         }
