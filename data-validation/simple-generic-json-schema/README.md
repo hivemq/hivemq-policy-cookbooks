@@ -53,7 +53,10 @@ suppose your HiveMQ REST API runs at `http://localhost:8888`.
 ### Policy
 The next step is to apply the schema for all incoming MQTT messages by referencing the already defined schema `simple-generic-schema`.
 
-The following policy specifies the validation step under the `topicFilter`: `#`.  In case an MQTT message does not contain a valid JSON payload, a log message with level `WARN` is printed with the `clientId`.
+The following policy specifies the validation step under the `topicFilter`: `#`. There are two outcomes of the validation `onSuccess` and `onFailure`:
+
+* `onSuccess`: an MQTT User Property `"policy": "success"` is added the MQTT message
+* `onFailure`: Logs a message with the `clientId` on level `WARN` and adds an MQTT User Property `"policy": "failed"`.
 
 `policy.json`:
 ```json
@@ -78,14 +81,34 @@ The following policy specifies the validation step under the `topicFilter`: `#`.
       }
     ]
   },
+  "onSuccess": {
+    "pipeline": [
+      {
+        "id": "flagSchemaChecked",
+        "functionId": "UserProperties.add",
+        "arguments": {
+          "name": "policy",
+          "value": "success"
+        }
+      }
+    ]
+  },
   "onFailure": {
     "pipeline": [
       {
-        "id": "logFailiure",
+        "id": "logFailure",
         "functionId": "System.log",
         "arguments": {
           "level": "WARN",
           "message": "The client ${clientId} does not send JSON payloads. The message will be dropped."
+        }
+      },
+      {
+        "id": "flagSchemaChecked",
+        "functionId": "UserProperties.add",
+        "arguments": {
+          "name": "policy",
+          "value": "failed"
         }
       }
     ]
