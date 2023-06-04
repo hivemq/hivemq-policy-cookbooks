@@ -43,11 +43,11 @@ See [here](https://grpc.io/docs/protoc-installation/) for information on install
 To create the schema in the broker, run the following command:
 
 ```bash
-mqtt hivemq schemas create --id v1-status-schema --type protobuf --file v1-status-schema.desc --message-type DeviceStatus --allow-unknown false
+mqtt hivemq schemas create --id v1-status-schema --type protobuf --file v1-status-schema.desc --message-type DeviceStatus
 ```
 
 The `--message-type` argument specifies that the `DeviceStatus` message type from the Protobuf definition should be
-used. The `--allow-unknown` argument specifies that additional unknown fields in incoming data are not
+used. The `--allow-unknown` flag is omitted, so that additional unknown fields in incoming data are not
 allowed according to [Protobuf Unknown Fields](https://protobuf.dev/programming-guides/proto3/#unknowns]).
 
 Suppose version 2 of the schema includes an additional `speed` field:
@@ -72,7 +72,7 @@ protoc v2-status-schema.proto -o v2-status-schema.desc
 ```
 
 ```bash
-mqtt hivemq schemas create --id v2-status-schema --type protobuf --file v2-status-schema.desc --message-type DeviceStatus --allow-unknown false
+mqtt hivemq schemas create --id v2-status-schema --type protobuf --file v2-status-schema.desc --message-type DeviceStatus
 ```
 
 ### All Versions Policy

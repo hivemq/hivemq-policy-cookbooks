@@ -39,11 +39,11 @@ See [here](https://grpc.io/docs/protoc-installation/) for information on install
 To create the schema in the broker, run the following command:
 
 ```bash
-mqtt hivemq schemas create --id temperature-schema --type protobuf --file temperature.desc --message-type Temperature --allow-unknown false
+mqtt hivemq schemas create --id temperature-schema --type protobuf --file temperature.desc --message-type Temperature
 ```
 
 The `--message-type` argument specifies that the `Temperature` message type from the Protobuf definition should be
-used. The `--allow-unknown` argument specifies that additional unknown fields in incoming data are not
+used. The `--allow-unknown` flag is omitted, so that additional unknown fields in incoming data are not
 allowed according to [Protobuf Unknown Fields](https://protobuf.dev/programming-guides/proto3/#unknowns]).
 
 
@@ -128,7 +128,7 @@ protoc air.proto -o air.desc
 ```
 
 ```bash
-mqtt hivemq schemas create --id air-schema --type protobuf --file air.desc --message-type Air --allow-unknown false
+mqtt hivemq schemas create --id air-schema --type protobuf --file air.desc --message-type Air
 ```
 
 ### Air policy
