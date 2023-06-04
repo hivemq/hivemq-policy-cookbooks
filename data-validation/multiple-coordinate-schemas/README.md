@@ -86,10 +86,10 @@ Create the following JSON schema:
 
 This is similar to the USA schema but matches European coordinates instead.
 
-Upload the schema to the broker with the id `europe-schema` in the same way as the USA schema:
+Upload the schema to the broker with the id `europe-coordinates` in the same way as the USA schema:
 
 ```bash
-mqtt hivemq schemas create --id europe-schema --type json --file europe-schema.json
+mqtt hivemq schemas create --id europe-coordinates --type json --file europe-schema.json
 ```
 
 ### Policy
