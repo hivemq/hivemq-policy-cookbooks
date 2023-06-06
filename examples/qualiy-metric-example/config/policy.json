@@ -1,7 +1,7 @@
 {
-  "id": "simple-basic-json-policy-for-every-topic",
+  "id": "global-factory-policy-with-metric",
   "matching": {
-    "topicFilter": "#"
+    "topicFilter": "factory/#"
   },
   "validation": {
     "validators": [
@@ -11,9 +11,22 @@
           "strategy": "ALL_OF",
           "schemas": [
             {
-              "schemaId": "simple-generic-json"
+              "schemaId": "machine-schema",
+              "version": "latest"
             }
           ]
+        }
+      }
+    ]
+  },
+  "onSuccess": {
+    "pipeline": [
+      {
+        "id": "goodFactoryMessagesMetric",
+        "functionId": "Metrics.Counter.increment",
+        "arguments": {
+          "metricName": "good-machine-messages",
+          "incrementBy": 1
         }
       }
     ]
@@ -21,11 +34,11 @@
   "onFailure": {
     "pipeline": [
       {
-        "id": "logFailure",
-        "functionId": "log",
+        "id": "badFactoryMessagesMetric",
+        "functionId": "Metrics.Counter.increment",
         "arguments": {
-          "level": "WARN",
-          "message": "The client $clientId does not send JSON payloads. The message will be dropped. $validationResult."
+          "metricName": "bad-machine-messages",
+          "incrementBy": 1
         }
       }
     ]

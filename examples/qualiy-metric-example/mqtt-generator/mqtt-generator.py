@@ -16,6 +16,7 @@ for i in range(100):
     cutting_machine_ids.add("clean-" + ''.join(random.choice(string.ascii_letters) for _ in range(10)))
     cleaning_machine_ids.add("cut-" + ''.join(random.choice(string.ascii_letters) for _ in range(10)))
 
+
 def random_cutting_machine_message():
     message = {
         "id": random.choice(list(cutting_machine_ids)),
@@ -28,6 +29,7 @@ def random_cutting_machine_message():
         }
     }
     return json.dumps(message)
+
 
 def random_cleaning_machine_message():
     message = {
@@ -42,9 +44,11 @@ def random_cleaning_machine_message():
     }
     return json.dumps(message)
 
+
 def generate_message():
     generator = random.choice([random_cutting_machine_message, random_cleaning_machine_message])
     return generator()
+
 
 # Publish MQTT messages
 def publish_mqtt_message(client, factories):
@@ -55,6 +59,7 @@ def publish_mqtt_message(client, factories):
                 client.publish(f"{topic}/{factory}", message)
                 print(f"Published: {message}")
             time.sleep(0.5)
+
 
 # Connect callback
 def on_connect(client, userdata, flags, reasonCode, properties):
@@ -76,9 +81,9 @@ if __name__ == '__main__':
     # Connect to MQTT broker
     client.connect(broker_address, broker_port)
     client.loop_start()
-    while connected != True:
+    while not connected:
         time.sleep(0.1)
 
     client.subscribe("#")
-    factories = [ "factoryA", "factoryB" ]
+    factories = ["factoryA", "factoryB"]
     publish_mqtt_message(client, factories)
