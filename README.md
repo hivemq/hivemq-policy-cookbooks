@@ -53,7 +53,7 @@ the `--url` command line option with any of the policy and schema commands.
 
 ## Versions
 
-* since version 4.16: The release of HiveMQ Data Governance Hub 4.16 we will introduce some new features and breaking
+* since version 4.16: The release of HiveMQ Data Governance Hub 4.16 will introduce some new features and breaking
   changes for string interpolation syntax. Moreover, we introduced namespacing for functions. For reference of the
   cookbooks for the 4.15 version please refer to the
   branch [4.15](https://github.com/hivemq/hivemq-policy-cookbooks/tree/4.15)
