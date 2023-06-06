@@ -7,7 +7,7 @@ import paho.mqtt.client as mqtt
 # MQTT broker settings
 broker_address = "127.0.0.1"
 broker_port = 1883
-topic = "mqtt/demo"
+topic = "factory"
 connected = False
 
 cutting_machine_ids = set()
@@ -47,12 +47,13 @@ def generate_message():
     return generator()
 
 # Publish MQTT messages
-def publish_mqtt_message(client):
+def publish_mqtt_message(client, factories):
     while True:
-        if (connected):
-            message = generate_message()
-            client.publish(topic, message)
-            print(f"Published: {message}")
+        if connected:
+            for factory in factories:
+                message = generate_message()
+                client.publish(f"{topic}/{factory}", message)
+                print(f"Published: {message}")
             time.sleep(0.5)
 
 # Connect callback
@@ -65,17 +66,19 @@ def on_connect(client, userdata, flags, reasonCode, properties):
         print("Failed to connect to MQTT broker")
 
 
-# MQTT client setup
-client = mqtt.Client(protocol=mqtt.MQTTv5)
+if __name__ == '__main__':
+    # MQTT client setup
+    client = mqtt.Client(protocol=mqtt.MQTTv5)
 
-# Set up callbacks
-client.on_connect = on_connect
+    # Set up callbacks
+    client.on_connect = on_connect
 
-# Connect to MQTT broker
-client.connect(broker_address, broker_port)
-client.loop_start()
-while connected != True:
-    time.sleep(0.1)
+    # Connect to MQTT broker
+    client.connect(broker_address, broker_port)
+    client.loop_start()
+    while connected != True:
+        time.sleep(0.1)
 
-client.subscribe("#")
-publish_mqtt_message(client)
+    client.subscribe("#")
+    factories = [ "factoryA", "factoryB" ]
+    publish_mqtt_message(client, factories)
