@@ -13,5 +13,6 @@
     "value": {
       "type": "object"
     }
-  }
+  },
+  "required": [ "id", "type", "timestamp", "value" ]
 }
