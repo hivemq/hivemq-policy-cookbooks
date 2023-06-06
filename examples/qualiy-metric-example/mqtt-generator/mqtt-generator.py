@@ -20,7 +20,7 @@ for i in range(100):
 # this function intentionally may generate invalid version numbers to break the
 # schema of MQTT messages
 def generate_faulty_version_number():
-    return random.choice(["1", "2", "3", "4", 4.5, "5"]),
+    return random.choice(["1", "2", "3", "4", 4.5, "5"])
 
 
 def random_cutting_machine_message():
