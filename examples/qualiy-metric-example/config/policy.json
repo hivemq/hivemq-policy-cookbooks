@@ -1,0 +1,33 @@
+{
+  "id": "simple-basic-json-policy-for-every-topic",
+  "matching": {
+    "topicFilter": "#"
+  },
+  "validation": {
+    "validators": [
+      {
+        "type": "schema",
+        "arguments": {
+          "strategy": "ALL_OF",
+          "schemas": [
+            {
+              "schemaId": "simple-generic-json"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "onFailure": {
+    "pipeline": [
+      {
+        "id": "logFailure",
+        "functionId": "log",
+        "arguments": {
+          "level": "WARN",
+          "message": "The client $clientId does not send JSON payloads. The message will be dropped."
+        }
+      }
+    ]
+  }
+}
