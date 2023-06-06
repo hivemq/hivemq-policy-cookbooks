@@ -10,3 +10,5 @@ echo "Created schema $SCHEMA_ID."
 
 POLICY_ID=$(curl -X POST --silent --data @./config/policy.json -H "Content-Type: application/json" http://localhost:8888/api/v1/data-validation/policies | jq ".id")
 echo "Created policy $POLICY_ID."
+
+python mqtt-generator/mqtt-generator.py

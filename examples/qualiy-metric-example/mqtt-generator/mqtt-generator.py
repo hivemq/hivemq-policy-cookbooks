@@ -8,6 +8,7 @@ import paho.mqtt.client as mqtt
 broker_address = "127.0.0.1"
 broker_port = 1883
 topic = "mqtt/demo"
+connected = False
 
 cutting_machine_ids = set()
 cleaning_machine_ids = set()
@@ -48,29 +49,33 @@ def generate_message():
 # Publish MQTT messages
 def publish_mqtt_message(client):
     while True:
-        message = generate_message()
-        client.publish(topic, message)
-        print(f"Published: {message}")
-        time.sleep(0.5)
+        if (connected):
+            message = generate_message()
+            client.publish(topic, message)
+            print(f"Published: {message}")
+            time.sleep(0.5)
 
 # Connect callback
-def on_connect(client, userdata, flags, reasonCode):
+def on_connect(client, userdata, flags, reasonCode, properties):
     if reasonCode == 0:
         print("Connected to MQTT broker")
-        client.subscribe(topic)
+        global connected
+        connected = True
     else:
         print("Failed to connect to MQTT broker")
 
+
 # MQTT client setup
-client = mqtt.Client()
+client = mqtt.Client(protocol=mqtt.MQTTv5)
 
 # Set up callbacks
 client.on_connect = on_connect
 
 # Connect to MQTT broker
 client.connect(broker_address, broker_port)
-
 client.loop_start()
+while connected != True:
+    time.sleep(0.1)
 
 client.subscribe("#")
 publish_mqtt_message(client)
