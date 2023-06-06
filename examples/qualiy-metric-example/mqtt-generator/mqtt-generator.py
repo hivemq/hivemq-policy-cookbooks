@@ -17,11 +17,17 @@ for i in range(100):
     cleaning_machine_ids.add("cut-" + ''.join(random.choice(string.ascii_letters) for _ in range(10)))
 
 
+# this function intentionally may generate invalid version numbers to break the
+# schema of MQTT messages
+def generate_faulty_version_number():
+    return random.choice(["1", "2", "3", "4", 4.5, "5"]),
+
+
 def random_cutting_machine_message():
     message = {
         "id": random.choice(list(cutting_machine_ids)),
         "type": "cutting-machine",
-        "version": random.choice(["1", "2", "3", "4", 4.5, "5"]),
+        "version": generate_faulty_version_number(),
         "timestamp": time.time(),
         "value": {
             "pressure": str(random.randint(0, 4000)) + "psi",
@@ -35,7 +41,8 @@ def random_cleaning_machine_message():
     message = {
         "id": random.choice(list(cleaning_machine_ids)),
         "type": "cleaning-machine",
-        "version": random.choice(["1", "2", "3", 4]),
+        # breaking the version number is intended since we want to have invalid MQTT messages
+        "version": generate_faulty_version_number(),
         "timestamp": time.time(),
         "value": {
             "consumption": "1501m",
