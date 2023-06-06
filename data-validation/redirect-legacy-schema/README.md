@@ -196,7 +196,7 @@ the `v2-status-schema` schema.
 First, a warning is logged using the `System.log` function. This contains the client ID and topic using the `${clientId}`
 and `${topic}` string substitutions.
 
-Then, the message is redirected using the `Delivery.redirectTo` function to the topic `devices/v1/{{clientId}}/status`.
+Then, the message is redirected using the `Delivery.redirectTo` function to the topic `devices/v1/${clientId}/status`.
 The `applyPolicies`
 field specifies whether policies matching this new topic should be applied to the message after redirection.
 
