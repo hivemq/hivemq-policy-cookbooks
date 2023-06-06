@@ -1,0 +1,22 @@
+{
+  "id": "global-factory-policy",
+  "matching": {
+    "topicFilter": "factory/#"
+  },
+  "validations": {
+    "validators": [
+      {
+        "type": "schema",
+        "arguments": {
+          "strategy": "ALL_OF",
+          "schemas": [
+            {
+              "schemaId": "machine-schema",
+              "version": "latest"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
