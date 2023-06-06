@@ -11,7 +11,8 @@
           "strategy": "ALL_OF",
           "schemas": [
             {
-              "schemaId": "air-schema"
+              "schemaId": "air-schema",
+              "version": "latest"
             }
           ]
         }
@@ -22,10 +23,10 @@
     "pipeline": [
       {
         "id": "logFailure",
-        "functionId": "log",
+        "functionId": "System.log",
         "arguments": {
           "level": "ERROR",
-          "message": "The client with ID $clientId sent invalid air data: $validationResult"
+          "message": "The client with ID ${clientId} sent invalid air data: ${validationResult}"
         }
       }
     ]

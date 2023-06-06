@@ -11,10 +11,12 @@
           "strategy": "ANY_OF",
           "schemas": [
             {
-              "schemaId": "v1-status-schema"
+              "schemaId": "v1-status-schema",
+              "version" : "latest"
             },
             {
-              "schemaId": "v2-status-schema"
+              "schemaId": "v2-status-schema",
+              "version" : "latest"
             }
           ]
         }
@@ -25,10 +27,10 @@
     "pipeline": [
       {
         "id": "logFailure",
-        "functionId": "log",
+        "functionId": "System.log",
         "arguments": {
           "level": "WARN",
-          "message": "The client $clientId sent invalid status data to $topic"
+          "message": "The client ${clientId} sent invalid status data to ${topic}"
         }
       }
     ]

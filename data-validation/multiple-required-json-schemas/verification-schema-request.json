@@ -1,5 +1,0 @@
-{
-  "id": "verification-schema",
-  "type": "JSON",
-  "schemaDefinition": "ewogICJkZXNjcmlwdGlvbiI6ICJBIHNjaGVtYSB0aGF0IHNwZWNpZmllcyBmaWVsZHMgcmVxdWlyZWQgZm9yIGRhdGEgaW50ZWdyaXR5IGNoZWNrcyIsCiAgInJlcXVpcmVkIjogWwogICAgImNoZWNrc3VtIiwKICAgICJzaWduYXR1cmUiCiAgXSwKICAidHlwZSI6ICJvYmplY3QiLAogICJwcm9wZXJ0aWVzIjogewogICAgImNoZWNrc3VtIjogewogICAgICAidHlwZSI6ICJudW1iZXIiCiAgICB9LAogICAgInNpZ25hdHVyZSI6IHsKICAgICAgInR5cGUiOiAic3RyaW5nIgogICAgfQogIH0KfQo="
-}
