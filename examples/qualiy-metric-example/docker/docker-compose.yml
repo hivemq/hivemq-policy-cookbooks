@@ -16,6 +16,9 @@ services:
       interval: 5s
       retries: 10
   prometheus:
+    depends_on:
+      hivemq:
+        condition: service_healthy
     image: prom/prometheus
     container_name: prometheus
     command:
