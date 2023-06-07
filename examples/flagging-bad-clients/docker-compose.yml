@@ -1,0 +1,34 @@
+services:
+  hivemq:
+    container_name: hivemq
+    build:
+      context: hivemq
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:1883:1883"
+      - "127.0.0.1:8080:8080"
+      - "127.0.0.1:8888:8888"
+      - "127.0.0.1:8889:8889"
+    volumes:
+      - ./hivemq/hivemq-config.xml:/opt/hivemq/conf/config.xml
+      - ./hivemq/hivemq.lic:/opt/hivemq/license/hivemq.lic
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8889/api/v1/health/readiness" ]
+      interval: 5s
+      retries: 10
+  policy-creator:
+    depends_on:
+      hivemq:
+        condition: service_healthy
+    container_name: policy-creator
+    build:
+      context: policy-creator
+      dockerfile: Dockerfile
+  mqtt-generator:
+    depends_on:
+      hivemq:
+        condition: service_healthy
+    container_name: mqtt-generator
+    build:
+      context: mqtt-generator
+      dockerfile: Dockerfile
