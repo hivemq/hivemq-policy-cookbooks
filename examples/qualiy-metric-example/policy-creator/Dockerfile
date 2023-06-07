@@ -1,4 +1,4 @@
-FROM curlimages/curl:latest
+FROM curlimages/curl:8.1.1
 
 COPY schemas /policy-creator/schemas
 COPY policies /policy-creator/policies
