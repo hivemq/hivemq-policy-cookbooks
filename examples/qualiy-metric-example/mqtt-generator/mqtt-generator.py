@@ -69,8 +69,8 @@ def publish_mqtt_message(client, factories):
 
 
 # Connect callback
-def on_connect(client, userdata, flags, reasonCode, properties):
-    if reasonCode == 0:
+def on_connect(client, userdata, flags, reason_code, properties):
+    if reason_code == 0:
         print("Connected to MQTT broker")
         global connected
         connected = True
