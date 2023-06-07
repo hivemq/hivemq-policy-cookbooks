@@ -41,7 +41,6 @@ def random_cleaning_machine_message():
     message = {
         "id": random.choice(list(cleaning_machine_ids)),
         "type": "cleaning-machine",
-        # breaking the version number is intended since we want to have invalid MQTT messages
         "version": generate_faulty_version_number(),
         "timestamp": time.time(),
         "value": {
