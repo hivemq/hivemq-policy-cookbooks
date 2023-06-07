@@ -1,4 +1,5 @@
 # Quality Metric Example
+![](grafana.gif)
 
 This repository showcases an illustrative implementation of a quality metric for data pipelines. 
 The code exemplifies a scenario where clients publish data in a prescribed JSON format, but certain messages fail validation. 
