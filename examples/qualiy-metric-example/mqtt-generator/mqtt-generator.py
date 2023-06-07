@@ -5,7 +5,7 @@ import json
 import paho.mqtt.client as mqtt
 
 # MQTT broker settings
-broker_address = "127.0.0.1"
+broker_address = "hivemq"
 broker_port = 1883
 topic = "factory"
 connected = False
