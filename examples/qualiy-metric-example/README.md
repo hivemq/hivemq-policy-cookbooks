@@ -14,5 +14,5 @@ These metrics are then utilized to derive a metric of overall data quality, whic
 ## Quickstart
 
 1. Move your HiveMQ license with Data Governance Hub enabled to `hivemq/hivemq.lic`
-2. Execute `docker compose up`
+2. In this directory, execute `docker compose up`
 3. Go to http://localhost:3000 and open the pre-defined Grafana Dashboard (credentials: admin, grafana)
