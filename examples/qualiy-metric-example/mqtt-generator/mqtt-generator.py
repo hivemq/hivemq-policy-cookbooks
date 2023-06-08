@@ -91,5 +91,5 @@ if __name__ == '__main__':
         time.sleep(0.1)
 
     client.subscribe("#")
-    factories = ["factoryA", "factoryB"]
+    factories = ["factoryBerlin", "factoryNewYork"]
     publish_mqtt_message(client, factories)
