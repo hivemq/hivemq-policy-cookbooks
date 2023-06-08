@@ -9,7 +9,7 @@ These metrics are then utilized to derive a metric of overall data quality, whic
 ## Requirements
 - [Docker](https://www.docker.com/) 
 - [Docker compose](https://docs.docker.com/compose/) 
-- A HiveMQ license with enabled Data Governance Hub (contact [datagovernancehub@hivemq.com](mailto:datagovernancehub@hivemq.com))
+- A HiveMQ license with Data Governance Hub enabled (contact [datagovernancehub@hivemq.com](mailto:datagovernancehub@hivemq.com))
 
 ## Quickstart
 
