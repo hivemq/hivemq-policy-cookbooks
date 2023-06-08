@@ -1,0 +1,46 @@
+{
+  "id": "global-factory-policy-with-metric",
+  "matching": {
+    "topicFilter": "factory/#"
+  },
+  "validation": {
+    "validators": [
+      {
+        "type": "schema",
+        "arguments": {
+          "strategy": "ALL_OF",
+          "schemas": [
+            {
+              "schemaId": "machine-schema",
+              "version": "latest"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "onSuccess": {
+    "pipeline": [
+      {
+        "id": "goodFactoryMessagesMetric",
+        "functionId": "Metrics.Counter.increment",
+        "arguments": {
+          "metricName": "good-machine-messages",
+          "incrementBy": 1
+        }
+      }
+    ]
+  },
+  "onFailure": {
+    "pipeline": [
+      {
+        "id": "badFactoryMessagesMetric",
+        "functionId": "Metrics.Counter.increment",
+        "arguments": {
+          "metricName": "bad-machine-messages",
+          "incrementBy": 1
+        }
+      }
+    ]
+  }
+}

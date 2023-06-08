@@ -51,6 +51,13 @@ the `--url` command line option with any of the policy and schema commands.
 | Updating an existing policy to use a different schema                                                     | Protobuf              | [updating-protobuf-schema](/data-validation/updating-protobuf-schema)	             |
 | A policy that enforces that incoming packets match multiple JSON schemas simultaneously                   | JSON                  | [multiple-required-json-schemas](/data-validation/multiple-required-json-schemas)	 |
 
+## Complete Demo Setups
+| Description                                                                       	                      | Link 	                                                          |
+|----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| The demo showcases how to derive a quality metric from schema validations and visualize it in Grafana | [quality-metric-example](/examples/quality-metric-example)     	 |
+
+
+
 ## Versions
 
 * since version 4.16: The release of HiveMQ Data Governance Hub 4.16 will introduce some new features and breaking
