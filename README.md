@@ -54,7 +54,7 @@ the `--url` command line option with any of the policy and schema commands.
 ## Complete Demo Setups
 | Description                                                                       	                      | Link 	                                                          |
 |----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| The demo showcases how to derive a quality metric from schema validations and to visualize it in Grafana | [qualiy-metric-example](/examples/quality-metric-example)     	 |
+| The demo showcases how to derive a quality metric from schema validations and visualize it in Grafana | [quality-metric-example](/examples/quality-metric-example)     	 |
 
 
 
