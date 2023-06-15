@@ -1,0 +1,75 @@
+services:
+  hivemq:
+    container_name: hivemq
+    build:
+      context: hivemq
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:1883:1883"
+      - "127.0.0.1:8080:8080"
+      - "127.0.0.1:8888:8888"
+      - "127.0.0.1:8889:8889"
+    volumes:
+      - ./hivemq/hivemq-config.xml:/opt/hivemq/conf/config.xml
+      - ./hivemq/hivemq.lic:/opt/hivemq/license/hivemq.lic
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8889/api/v1/health/readiness" ]
+      interval: 5s
+      retries: 10
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - 9090:9090
+    restart: unless-stopped
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prom_data:/prometheus
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=grafana
+    volumes:
+      - ./grafana/grafana-datasource.yml:/etc/grafana/provisioning/datasources/all.yaml
+      - ./grafana/grafana-dashboard.json:/var/lib/grafana/dashboards/dashboard.json
+      - ./grafana/grafana-dashboard.yml:/etc/grafana/provisioning/dashboards/dashboard.yaml
+  policy-creator:
+    depends_on:
+      hivemq:
+        condition: service_healthy
+    container_name: policy-creator
+    build:
+      context: policy-creator
+      dockerfile: Dockerfile
+  mqtt-generator:
+    depends_on:
+      hivemq:
+        condition: service_healthy
+    container_name: mqtt-generator
+    build:
+      context: mqtt-generator
+      dockerfile: Dockerfile
+  postgres:
+    build:
+      context: postgres
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    container_name: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: hivemq
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  prom_data:
+  postgres_data:
