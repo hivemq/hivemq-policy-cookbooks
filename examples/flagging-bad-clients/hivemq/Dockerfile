@@ -1,6 +1,6 @@
 FROM hivemq/hivemq4:4.16.0
 
-# postgre
+# postgres extension
 ADD extension/hivemq-postgresql-extension-0.1.0-RC-1-proguarded.zip /opt/hivemq/extensions
 
 RUN    unzip /opt/hivemq/extensions/hivemq-postgresql-extension-0.1.0-RC-1-proguarded.zip -d /opt/hivemq/extensions \
