@@ -11,7 +11,7 @@ To each redirected message we add user properties to identify bad clients and to
 - [Docker](https://www.docker.com/) 
 - [Docker compose](https://docs.docker.com/compose/) 
 - A HiveMQ license with enabled Data Governance Hub (contact [datagovernancehub@hivemq.com](mailto:datagovernancehub@hivemq.com))
-- A [HiveMQ Enterprise Extension for PostgreSQL](https://www.hivemq.com/extension/postgresql-extension/) license. If no license is provided, a trial license is valid for 5 hours  
+- A [HiveMQ Enterprise Extension for PostgreSQL](https://www.hivemq.com/extension/postgresql-extension/) license. If no license is provided, a trial license is valid for 5 hours.
 ## Quickstart
 
 1. Place your HiveMQ license with enabled Data Governance Hub under `hivemq/hivemq.lic`
