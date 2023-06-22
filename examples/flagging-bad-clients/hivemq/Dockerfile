@@ -11,6 +11,8 @@ RUN unzip /opt/hivemq/extensions/hivemq-postgresql-extension-${POSTGRES_EXTENSIO
 
 ADD extension/hivemq-postgres-extension/config.xml /opt/hivemq/extensions/hivemq-postgresql-extension/conf
 ADD extension/hivemq-postgres-extension/statement-template.sql /opt/hivemq/extensions/hivemq-postgresql-extension/conf
+# Copy license for HiveMQ Enterprise Extension for Postgres
+# ADD postgres-extenions.elic /opt/hivemq/extensions/hivemq-postgresql-extension/conf
 
 # prometheus
 RUN curl -L https://github.com/hivemq/hivemq-prometheus-extension/releases/download/4.0.8/hivemq-prometheus-extension-4.0.8.zip -o /opt/hivemq/extensions/prometheus.zip \
