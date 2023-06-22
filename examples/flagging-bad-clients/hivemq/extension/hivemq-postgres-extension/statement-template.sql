@@ -8,5 +8,5 @@ INSERT INTO bad_clients(topic, payload_base64, qos, retain, packet_id, payload_f
     ${mqtt-payload-format-indicator},
     ${mqtt-response-topic},
     ${mqtt-correlation-data-base64},
-    ${timestamp}
+    ${timestamp-ms}
 );

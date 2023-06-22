@@ -1,9 +1,11 @@
 FROM hivemq/hivemq4:4.16.0
 
-# postgres extension
-ADD extension/hivemq-postgresql-extension-0.1.0-RC-1-proguarded.zip /opt/hivemq/extensions
+ARG POSTGRES_EXTENSION_VERSION=1.0.0
 
-RUN    unzip /opt/hivemq/extensions/hivemq-postgresql-extension-0.1.0-RC-1-proguarded.zip -d /opt/hivemq/extensions \
+# postgres extension
+RUN curl -o /opt/hivemq/extensions/hivemq-postgresql-extension-${POSTGRES_EXTENSION_VERSION#}.zip https://releases.hivemq.com/extensions/hivemq-postgresql-extension-${POSTGRES_EXTENSION_VERSION#}.zip
+
+RUN unzip /opt/hivemq/extensions/hivemq-postgresql-extension-${POSTGRES_EXTENSION_VERSION}.zip -d /opt/hivemq/extensions \
     && chgrp -R 0 /opt/hivemq/extensions/hivemq-postgresql-extension \
     && chmod -R 770 /opt/hivemq/extensions/hivemq-postgresql-extension
 
