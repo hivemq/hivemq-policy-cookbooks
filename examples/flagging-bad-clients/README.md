@@ -1,4 +1,6 @@
 # Flagging Bad Clients
+![](screenshot.png)
+
 
 This repository showcases to flag clients that publishes bad data. 
 The code exemplifies a scenario where clients publish data in a prescribed JSON format, but certain messages fail validation. 
@@ -18,3 +20,4 @@ Please add your license according the [Dockerfile](hivemq/Dockerfile)
 1. Place your HiveMQ license with enabled Data Governance Hub under `hivemq/hivemq.lic`
 2. Execute `docker compose up`
 3. Execute `mqtt sub -t 'invalid/#' -J` to see redirected MQTT messages from bad clients
+4. Go to http://localhost:3000 and open the pre-defined Grafana Dashboard (credentials: admin, grafana)
