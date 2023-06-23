@@ -1,0 +1,79 @@
+{
+  "id": "global-factory-to-flag-bad-clients",
+  "matching": {
+    "topicFilter": "factory/#"
+  },
+  "validation": {
+    "validators": [
+      {
+        "type": "schema",
+        "arguments": {
+          "strategy": "ANY_OF",
+          "deserialize": true,
+          "schemas": [
+            {
+              "schemaId": "machine-schema",
+              "version": "latest"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "onSuccess": {
+    "pipeline": [
+      {
+        "id": "goodFactoryMessagesMetric",
+        "functionId": "Metrics.Counter.increment",
+        "arguments": {
+          "metricName": "good-machine-messages",
+          "incrementBy": 1
+        }
+      }
+    ]
+  },
+  "onFailure": {
+    "pipeline": [
+      {
+        "id": "badFactoryMessagesMetric",
+        "functionId": "Metrics.Counter.increment",
+        "arguments": {
+          "metricName": "bad-machine-messages",
+          "incrementBy": 1
+        }
+      },
+      {
+        "id": "addValidationResults",
+        "functionId": "UserProperties.add",
+        "arguments": {
+          "name": "error",
+          "value": "${validationResult}"
+        }
+      },
+      {
+        "id": "addClientId",
+        "functionId": "UserProperties.add",
+        "arguments": {
+          "name": "clientId",
+          "value": "${clientId}"
+        }
+      },
+      {
+        "id": "addOriginalTopic",
+        "functionId": "UserProperties.add",
+        "arguments": {
+          "name": "origin",
+          "value": "${topic}"
+        }
+      },
+      {
+        "id": "redirectBadData",
+        "functionId": "Delivery.redirectTo",
+        "arguments": {
+          "topic": "invalid/${clientId}/${policyId}",
+          "applyPolicies": false
+        }
+      }
+    ]
+  }
+}

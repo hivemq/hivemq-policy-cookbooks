@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<hivemq>
+    <listeners>
+        <tcp-listener>
+            <port>1883</port>
+            <bind-address>0.0.0.0</bind-address>
+        </tcp-listener>
+    </listeners>
+
+    <control-center>
+        <enabled>true</enabled>
+        <listeners>
+            <http>
+                <port>8080</port>
+                <bind-address>0.0.0.0</bind-address>
+            </http>
+        </listeners>
+    </control-center>
+
+    <rest-api>
+        <enabled>true</enabled>
+        <listeners>
+            <http>
+                <port>8888</port>
+                <bind-address>0.0.0.0</bind-address>
+            </http>
+        </listeners>
+    </rest-api>
+
+    <health-api>
+        <enabled>true</enabled>
+        <listeners>
+            <http>
+                <port>8889</port>
+                <bind-address>0.0.0.0</bind-address>
+            </http>
+        </listeners>
+    </health-api>
+
+    <data-governance-hub>
+        <data-validation>
+            <enabled>true</enabled>
+        </data-validation>
+    </data-governance-hub>
+</hivemq>

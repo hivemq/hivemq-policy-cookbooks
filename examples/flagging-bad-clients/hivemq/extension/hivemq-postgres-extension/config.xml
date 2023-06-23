@@ -1,0 +1,26 @@
+<hivemq-postgresql-extension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                             xsi:noNamespaceSchemaLocation="config.xsd">
+    <postgresqls>
+        <postgresql>
+            <id>postgresql</id>
+            <host>postgres</host>
+            <port>5432</port>
+            <database>hivemq</database>
+            <username>admin</username>
+            <password>postgres</password>
+        </postgresql>
+    </postgresqls>
+
+    <mqtt-to-postgresql-routes>
+        <mqtt-to-postgresql-route>
+            <id>write-bad-clients</id>
+            <postgresql-id>postgresql</postgresql-id>
+            <mqtt-topic-filters>
+                <mqtt-topic-filter>invalid/#</mqtt-topic-filter>
+            </mqtt-topic-filters>
+            <processor>
+                <statement-template>conf/statement-template.sql</statement-template>
+            </processor>
+        </mqtt-to-postgresql-route>
+    </mqtt-to-postgresql-routes>
+</hivemq-postgresql-extension>
