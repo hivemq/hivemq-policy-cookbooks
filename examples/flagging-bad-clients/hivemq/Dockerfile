@@ -1,4 +1,4 @@
-FROM hivemq/hivemq4:4.16.0
+FROM hivemq/hivemq4:4.17.0
 
 ARG POSTGRES_EXTENSION_VERSION=1.0.0
 

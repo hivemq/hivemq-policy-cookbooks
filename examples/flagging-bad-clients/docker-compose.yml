@@ -11,7 +11,7 @@ services:
       - "127.0.0.1:8889:8889"
     volumes:
       - ./hivemq/hivemq-config.xml:/opt/hivemq/conf/config.xml
-      - ./hivemq/hivemq.lic:/opt/hivemq/license/hivemq.lic
+      # - ./hivemq/hivemq.plic:/opt/hivemq/license/hivemq.plic
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:8889/api/v1/health/readiness" ]
       interval: 5s
