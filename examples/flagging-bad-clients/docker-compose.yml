@@ -16,6 +16,18 @@ services:
       test: [ "CMD", "curl", "-f", "http://localhost:8889/api/v1/health/readiness" ]
       interval: 5s
       retries: 10
+  activate_trial_mode:
+    container_name: activate_trial_mode
+    image: curlimages/curl:8.1.1
+    command:
+      - curl
+      - -X
+      - POST
+      - http://hivemq:8888/api/v1/management/data-governance-hub/start-trial
+    restart: on-failure
+    depends_on:
+      hivemq:
+        condition: service_healthy
   prometheus:
     image: prom/prometheus
     container_name: prometheus

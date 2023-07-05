@@ -9,8 +9,9 @@ These metrics are then utilized to derive a metric of overall data quality, whic
 ## Requirements
 - [Docker](https://www.docker.com/) 
 - [Docker compose](https://docs.docker.com/compose/) 
-- (**License**): If you have a HiveMQ license with Data Governance Hub copy the file into the container `hivemq/hivemq.plic` (see `docker-compose.yml` commented line). 
-- (**Non-License**): In case you don't have a license, the trial mode is activated which stays active for 5 hours.
+- Optional: 
+  - (**License**): If you have a HiveMQ license with Data Governance Hub copy the file into the container. Check the commented line in `docker-compose.yml` 
+  - (**Non-License**): In case you don't have a license, the trial mode is activated which stays active for 5 hours. Check out the [documentation}(https://docs.hivemq.com/hivemq/4.17/data-governance-hub/index.html) how to activate the trial mode.
 
 ## Quickstart
 
