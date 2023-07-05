@@ -1,4 +1,4 @@
-FROM hivemq/hivemq4:latest
+FROM hivemq/hivemq4:4.17.0
 
 RUN curl -L https://github.com/hivemq/hivemq-prometheus-extension/releases/download/4.0.8/hivemq-prometheus-extension-4.0.8.zip -o /opt/hivemq/extensions/prometheus.zip \
     && unzip /opt/hivemq/extensions/prometheus.zip -d /opt/hivemq/extensions \

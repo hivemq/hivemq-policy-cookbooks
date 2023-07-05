@@ -11,11 +11,23 @@ services:
       - "127.0.0.1:8889:8889"
     volumes:
       - ./hivemq/hivemq-config.xml:/opt/hivemq/conf/config.xml
-      - ./hivemq/hivemq.lic:/opt/hivemq/license/hivemq.lic
+      # - ./hivemq/hivemq.plic:/opt/hivemq/license/hivemq.plic
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:8889/api/v1/health/readiness" ]
       interval: 5s
       retries: 10
+  activate_trial_mode:
+    container_name: activate_trial_mode
+    image: curlimages/curl:8.1.1
+    command:
+      - curl
+      - -X
+      - POST
+      - http://hivemq:8888/api/v1/management/data-governance-hub/start-trial
+    restart: on-failure
+    depends_on:
+      hivemq:
+        condition: service_healthy
   prometheus:
     image: prom/prometheus
     container_name: prometheus
@@ -44,6 +56,8 @@ services:
     depends_on:
       hivemq:
         condition: service_healthy
+      activate_trial_mode:
+        condition: service_completed_successfully
     container_name: policy-creator
     build:
       context: policy-creator
