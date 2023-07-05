@@ -56,6 +56,8 @@ services:
     depends_on:
       hivemq:
         condition: service_healthy
+      activate_trial_mode:
+        condition: service_completed_successfully
     container_name: policy-creator
     build:
       context: policy-creator
