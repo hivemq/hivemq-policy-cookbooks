@@ -2,7 +2,7 @@
   "items": [
     {
       "id": "simple-policy",
-      "createdAt": "2023-05-04T13:25:47.119Z",
+      "createdAt": "2023-05-01T12:00:00.000Z",
       "matching": {
         "topicFilter": "#"
       },
@@ -15,7 +15,7 @@
               "schemas": [
                 {
                   "schemaId": "simple-schema",
-                  "version" : "latest"
+                  "version": "1"
                 }
               ]
             }
@@ -28,11 +28,11 @@
       "onFailure": {
         "pipeline": [
           {
-            "id": "logFailiure",
+            "id": "logFailure",
             "functionId": "System.log",
             "arguments": {
               "level": "WARN",
-              "message": "The client with ID ${clientId} sent invalid data"
+              "message": "The client with ID ${clientId} sent invalid data for schema version 1"
             }
           }
         ]
