@@ -48,7 +48,7 @@ the `--url` command line option with any of the policy and schema commands.
 | Multiple Protobuf policies on different topics for incoming sensor data                                   | Protobuf            	 | [multi-topic-sensor-protobuf](/data-validation/multi-topic-sensor-protobuf)	       |
 | Accept multiple possible schemas on a single topic for location data                                      | JSON            	     | [multiple-coordinate-schemas](/data-validation/multiple-coordinate-schemas)	       |
 | Ensure messages follow at least one version of a schema and redirect legacy versions to a different topic | Protobuf            	 | [redirect-legacy-schema](/data-validation/redirect-legacy-schema)	                 |
-| Updating an existing policy to use a different schema version and different log messages                  | Protobuf              | [updating-protobuf-policy](/data-validation/updating-protobuf-policy)	             |
+| Updating an existing policy to use a new schema version                                                   | Protobuf              | [updating-protobuf-policy](/data-validation/updating-protobuf-policy)	             |
 | A policy that enforces that incoming packets match multiple JSON schemas simultaneously                   | JSON                  | [multiple-required-json-schemas](/data-validation/multiple-required-json-schemas)	 |
 
 ## Complete Demo Setups

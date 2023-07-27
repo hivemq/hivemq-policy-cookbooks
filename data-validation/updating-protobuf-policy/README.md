@@ -7,7 +7,7 @@ This cookbook covers how to update a policy to use a newer version of a schema a
 > As a developer, I want to be able to update my Protobuf schema to a newer version and apply it to an existing policy
 > in-place.
 
-For this use-case, a newer version of a schema and a newer version of a policy using this schema are needed.
+For this use-case, a policy and a schema which has been modified from its original form are needed.
 
 ### Find policy and schema identifiers
 
