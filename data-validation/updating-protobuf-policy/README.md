@@ -1,12 +1,13 @@
 # Updating a schema
-This cookbook covers how to update a policy to use a different schema.
 
+This cookbook covers how to update a policy to use a newer version of a schema and different log messages.
 
-### Use-case 
-> As a developer, I want to be able to modify the schema in an existing policy to use a more recent version.
+### Use-case
 
-For this use-case, an existing policy and schema must be deleted and new versions uploaded to the broker.
+> As a developer, I want to be able to update my Protobuf schema to a newer version and apply it to an existing policy
+> in-place.
 
+For this use-case, a policy and a schema which has been modified from its original form are needed.
 
 ### Find policy and schema identifiers
 
@@ -19,6 +20,7 @@ mqtt hivemq policies list
 This returns a JSON response containing details of all existing policies in the broker:
 
 `list-policies-response.json`:
+
 ```json
 {
   "items": [
@@ -37,7 +39,7 @@ This returns a JSON response containing details of all existing policies in the 
               "schemas": [
                 {
                   "schemaId": "simple-schema",
-                  "version" : "latest"
+                  "version": "1"
                 }
               ]
             }
@@ -54,7 +56,7 @@ This returns a JSON response containing details of all existing policies in the 
             "functionId": "System.log",
             "arguments": {
               "level": "WARN",
-              "message": "The client with ID ${clientId} sent invalid data"
+              "message": "The client with ID ${clientId} sent invalid data for schema version 1"
             }
           }
         ]
@@ -64,39 +66,33 @@ This returns a JSON response containing details of all existing policies in the 
 }
 ```
 
-From this, take the `id` of the policy you wish to update and the `schemaId` of the schema it uses.  Here the policy id is `simple-policy` and the schema id is `simple-schema`.
-
-
-### Delete the old policy and schema
-
-Because the existing policy references the existing schema, the policy first must be deleted before the schema can be deleted.
-
-Delete the policy by running the following command:
-
-```bash
-mqtt hivemq policies delete --id simple-policy
-```
-
-Then delete the schema by running the following command:
-
-```bash
-mqtt hivemq schemas delete --id simple-schema
-```
-
+From this, note the `id` of the policy you wish to update and the `schemaId` of the schema it uses. Here the policy id
+is `simple-policy` and the schema id is `simple-schema`.
 
 ### New schema
 
-Now a new schema can be created using the same `id`, `simple-schema`, as the previous one:
+Create a new version of the schema by using the same `id`, `simple-schema`, as the current one. Use
+the `--print-version` flag to see the version assigned to this new schema definition after creation:
 
 ```bash
-mqtt hivemq schemas create --id simple-schema --type protobuf --message-type SimpleMessage --file new-schema.desc
+mqtt hivemq schemas create --id simple-schema --type protobuf --message-type SimpleMessage --file new-schema.proto --print-version
+```
+
+This returns a JSON response containing the version assigned to the newly uploaded schema, `2`:
+
+```json
+{
+  "version": 2
+}
 ```
 
 ### New policy
 
-Next, re-upload the previously deleted policy to the broker as-is. The `schemaId` field for the schema it uses can remain the same because the new schema re-uses the old ID.
+Next, update the policy, referencing the new version of the schema by setting the `version` field to `2`. Ensure that
+the `message` field of the log operation also reflects the new schema version.
 
 `policy.json`:
+
 ```json
 {
   "id": "simple-policy",
@@ -112,7 +108,7 @@ Next, re-upload the previously deleted policy to the broker as-is. The `schemaId
           "schemas": [
             {
               "schemaId": "simple-schema",
-              "version" : "latest"
+              "version": "2"
             }
           ]
         }
@@ -122,11 +118,11 @@ Next, re-upload the previously deleted policy to the broker as-is. The `schemaId
   "onFailure": {
     "pipeline": [
       {
-        "id": "logFailiure",
+        "id": "logFailure",
         "functionId": "System.log",
         "arguments": {
           "level": "WARN",
-          "message": "The client with ID ${clientId} sent invalid data"
+          "message": "The client with ID ${clientId} sent invalid data for schema version 2"
         }
       }
     ]
@@ -135,8 +131,8 @@ Next, re-upload the previously deleted policy to the broker as-is. The `schemaId
 
 ```
 
-To upload `policy.json` to the broker, run the following command:
+To upload the new `policy.json` to the broker, run the following command:
 
 ```bash
-mqtt hivemq policies create --file policy.json
+mqtt hivemq policies update --id simple-policy --file policy.json
 ```

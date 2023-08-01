@@ -5,7 +5,7 @@ The first feature of our new Data Governance Hub is *Data Validation*.
 
 > NOTE: The HiveMQ Data Governance Hub data validation feature is currently available as Early Access Preview (EAP)
 > version only.
-  For more information on the terms and conditions of the EAP offering, 
+> For more information on the terms and conditions of the EAP offering,
 > contact [sales@hivemq.com](mailto:sales@hivemq.com).
 
 ## Data Validation
@@ -48,16 +48,15 @@ the `--url` command line option with any of the policy and schema commands.
 | Multiple Protobuf policies on different topics for incoming sensor data                                   | Protobuf            	 | [multi-topic-sensor-protobuf](/data-validation/multi-topic-sensor-protobuf)	       |
 | Accept multiple possible schemas on a single topic for location data                                      | JSON            	     | [multiple-coordinate-schemas](/data-validation/multiple-coordinate-schemas)	       |
 | Ensure messages follow at least one version of a schema and redirect legacy versions to a different topic | Protobuf            	 | [redirect-legacy-schema](/data-validation/redirect-legacy-schema)	                 |
-| Updating an existing policy to use a different schema                                                     | Protobuf              | [updating-protobuf-schema](/data-validation/updating-protobuf-schema)	             |
+| Updating an existing policy to use a new schema version                                                   | Protobuf              | [updating-protobuf-policy](/data-validation/updating-protobuf-policy)	             |
 | A policy that enforces that incoming packets match multiple JSON schemas simultaneously                   | JSON                  | [multiple-required-json-schemas](/data-validation/multiple-required-json-schemas)	 |
 
 ## Complete Demo Setups
-| Description                                                                       	                                                                                                                                                                                                                                                               | Link 	                                                                           |
-|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
-| The demo showcases how to derive a quality metric from schema validations and visualize it in Grafana. The [Prometheus Monitoring Extension](https://www.hivemq.com/extension/prometheus-extension/) is used to gather metrics from the HiveMQ Broker                                                                                             | [quality-metric-example](/examples/quality-metric-example)     	                 |
-| The demo shows how to flag clients that sending invalid messages wrt. a schema (bad clients). Moreover, it also stores invalid messages using the [HiveMQ Enterprise Extension for PostgreSQL](https://www.hivemq.com/extension/postgresql-extension/) for further inspection. As a result a Grafana dashboard shows the top most 10 bad clients. | [flagging-bad-clients](/examples/flagging-bad-clients)     	 |
 
-
+| Description                                                                       	                                                                                                                                                                                                                                                               | Link 	                                                           |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
+| The demo showcases how to derive a quality metric from schema validations and visualize it in Grafana. The [Prometheus Monitoring Extension](https://www.hivemq.com/extension/prometheus-extension/) is used to gather metrics from the HiveMQ Broker                                                                                             | [quality-metric-example](/examples/quality-metric-example)     	 |
+| The demo shows how to flag clients that sending invalid messages wrt. a schema (bad clients). Moreover, it also stores invalid messages using the [HiveMQ Enterprise Extension for PostgreSQL](https://www.hivemq.com/extension/postgresql-extension/) for further inspection. As a result a Grafana dashboard shows the top most 10 bad clients. | [flagging-bad-clients](/examples/flagging-bad-clients)     	     |
 
 ## Versions
 
