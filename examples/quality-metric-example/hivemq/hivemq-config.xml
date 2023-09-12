@@ -37,9 +37,9 @@
         </listeners>
     </health-api>
 
-    <data-governance-hub>
+    <data-hub>
         <data-validation>
             <enabled>true</enabled>
         </data-validation>
-    </data-governance-hub>
+    </data-hub>
 </hivemq>

@@ -172,8 +172,8 @@ The following policy tests if incoming messages match either the USA schema or t
 When validation succeeds it will be logged at the `INFO` level and include the client ID using the `${clientId}` string
 substitution. When validation fails it will be logged at the `WARN` level and also include the reason for failure using
 the `${validationResult}` string substitution. Moreover, for both cases custom metrics are
-created: `com.hivemq.data-governance-hub.data-validation.custom.counters.valid-coordinates`
-and `com.hivemq.data-governance-hub.data-validation.custom.counters.invalid-coordinates`.
+created: `com.hivemq.data-hub.data-validation.custom.counters.valid-coordinates`
+and `com.hivemq.data-hub.data-validation.custom.counters.invalid-coordinates`.
 
 The `ANY_OF` validation strategy ensures that only one of the schemas needs to be matched, not both.
 
@@ -194,7 +194,7 @@ at [HiveMQ's website](https://www.hivemq.com/extension/prometheus-extension/)). 
 a quality metric:
 
 ```
-com_hivemq_data_governance_hub_data_validation_custom_counters_valid_coordinates / (com_hivemq_data_governance_hub_data_validation_custom_counters_invalid_coordinates + com_hivemq_data_governance_hub_data_validation_custom_counters_valid_coordinates)
+com_hivemq_data_hub_data_validation_custom_counters_valid_coordinates / (com_hivemq_data_hub_data_validation_custom_counters_invalid_coordinates + com_hivemq_data_hub_data_validation_custom_counters_valid_coordinates)
 ```
 
 With this, the metric function makes it possible to define alerts to notify when a certain threshold is reached. 
