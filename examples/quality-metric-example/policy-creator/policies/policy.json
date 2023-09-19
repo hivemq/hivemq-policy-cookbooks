@@ -40,6 +40,11 @@
           "metricName": "bad-machine-messages",
           "incrementBy": 1
         }
+      },
+      {
+        "id": "dropMessage",
+        "functionId": "Mqtt.drop",
+        "arguments": {}
       }
     ]
   }

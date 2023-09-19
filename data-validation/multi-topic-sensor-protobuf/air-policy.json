@@ -28,6 +28,11 @@
           "level": "ERROR",
           "message": "The client with ID ${clientId} sent invalid air data: ${validationResult}"
         }
+      },
+      {
+        "id": "dropMessage",
+        "functionId": "Mqtt.drop",
+        "arguments": {}
       }
     ]
   }

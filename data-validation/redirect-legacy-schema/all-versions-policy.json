@@ -12,11 +12,11 @@
           "schemas": [
             {
               "schemaId": "v1-status-schema",
-              "version" : "latest"
+              "version": "latest"
             },
             {
               "schemaId": "v2-status-schema",
-              "version" : "latest"
+              "version": "latest"
             }
           ]
         }
@@ -32,6 +32,11 @@
           "level": "WARN",
           "message": "The client ${clientId} sent invalid status data to ${topic}"
         }
+      },
+      {
+        "id": "dropMessage",
+        "functionId": "Mqtt.drop",
+        "arguments": {}
       }
     ]
   }
