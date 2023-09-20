@@ -1,0 +1,39 @@
+{
+  "id": "disconnect-clients-for-bad-data",
+  "matching": {
+    "topicFilter": "#"
+  },
+  "validation": {
+    "validators": [
+      {
+        "type": "schema",
+        "arguments": {
+          "strategy": "ALL_OF",
+          "schemas": [
+            {
+              "schemaId": "simple-generic-json",
+              "version": "latest"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "onFailure": {
+    "pipeline": [
+      {
+        "id": "logFailure",
+        "functionId": "System.log",
+        "arguments": {
+          "level": "WARN",
+          "message": "The client ${clientId} does not send JSON payloads to ${topic}. The client will be disconnected."
+        }
+      },
+      {
+        "id": "disconnectClient",
+        "functionId": "Mqtt.disconnect",
+        "arguments": {}
+      }
+    ]
+  }
+}
