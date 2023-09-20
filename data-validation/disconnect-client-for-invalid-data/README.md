@@ -3,7 +3,7 @@ This cookbook is about to disconnect a client when the message is published
 is not JSON data at all.
 
 <span style="filter: drop-shadow(2px 4px 6px black)">
-![](demo.gif)
+    <img alt="demo shell with MQTT CLI" src="demo.gif">
 </span>
 
 ### Use-case 
