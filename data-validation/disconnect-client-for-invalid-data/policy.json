@@ -30,6 +30,14 @@
         }
       },
       {
+        "id": "metricForDisconnectedClients",
+        "functionId": "Metrics.Counter.increment",
+        "arguments": {
+          "metricName": "disconnect-clients-for-bad-data",
+          "incrementBy": 1
+        }
+      },
+      {
         "id": "disconnectClient",
         "functionId": "Mqtt.disconnect",
         "arguments": {}
