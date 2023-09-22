@@ -3,7 +3,6 @@
 The HiveMQ Data Hub provides mechanisms to define how MQTT data is handled in the HiveMQ broker.
 The first feature of our new Data Hub is *Data Validation*.
 
-> NOTE: The HiveMQ Data Hub data validation feature is currently available as Early Access Preview (EAP)
 > version only.
 > For more information on the terms and conditions of the EAP offering,
 > contact [sales@hivemq.com](mailto:sales@hivemq.com).
