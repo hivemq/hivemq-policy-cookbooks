@@ -92,7 +92,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "com_hivemq_data_hub_data_validation_custom_counters_good_machine_messages / (com_hivemq_data_hub_data_validation_custom_counters_good_machine_messages + com_hivemq_data_hub_data_validation_custom_counters_bad_machine_messages)",
+          "expr": "com_hivemq_data_hub_custom_counters_good_machine_messages / (com_hivemq_data_hub_custom_counters_good_machine_messages + com_hivemq_data_hub_custom_counters_bad_machine_messages)",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -265,7 +265,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "increase(com_hivemq_data_hub_data_validation_custom_counters_good_machine_messages[1m])",
+          "expr": "increase(com_hivemq_data_hub_custom_counters_good_machine_messages[1m])",
           "legendFormat": "Good Data",
           "range": true,
           "refId": "A"
@@ -276,7 +276,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "increase(com_hivemq_data_hub_data_validation_custom_counters_bad_machine_messages[1m])",
+          "expr": "increase(com_hivemq_data_hub_custom_counters_bad_machine_messages[1m])",
           "hide": false,
           "legendFormat": "Bad Data",
           "range": true,
@@ -343,7 +343,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "com_hivemq_policy_persistence_size_total",
+          "expr": "com_hivemq_data_hub_data_policy_persistence_size_total",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -434,7 +434,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "com_hivemq_policy_persistence_size_bytes",
+          "expr": "com_hivemq_data_hub_data_policy_persistence_size_bytes",
           "legendFormat": "Policy memory footprint",
           "range": true,
           "refId": "A"
@@ -500,7 +500,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "com_hivemq_schema_persistence_size_total",
+          "expr": "com_hivemq_data_hub_schema_persistence_size_total",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -591,7 +591,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "com_hivemq_schema_persistence_size_bytes",
+          "expr": "com_hivemq_data_hub_schema_persistence_size_bytes",
           "legendFormat": "Schema memory footprint",
           "range": true,
           "refId": "A"

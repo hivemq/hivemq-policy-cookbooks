@@ -44,7 +44,7 @@
       },
       {
         "id": "addValidationResults",
-        "functionId": "UserProperties.add",
+        "functionId": "Mqtt.UserProperties.add",
         "arguments": {
           "name": "error",
           "value": "${validationResult}"
@@ -52,7 +52,7 @@
       },
       {
         "id": "addClientId",
-        "functionId": "UserProperties.add",
+        "functionId": "Mqtt.UserProperties.add",
         "arguments": {
           "name": "clientId",
           "value": "${clientId}"
@@ -60,7 +60,7 @@
       },
       {
         "id": "addOriginalTopic",
-        "functionId": "UserProperties.add",
+        "functionId": "Mqtt.UserProperties.add",
         "arguments": {
           "name": "origin",
           "value": "${topic}"
