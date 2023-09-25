@@ -39,7 +39,7 @@ See [here](https://grpc.io/docs/protoc-installation/) for information on install
 To create the schema in the broker, run the following command:
 
 ```bash
-mqtt hivemq schemas create --id temperature-schema --type protobuf --file temperature.desc --message-type Temperature
+mqtt hivemq schema create --id temperature-schema --type protobuf --file temperature.desc --message-type Temperature
 ```
 
 The `--message-type` argument specifies that the `Temperature` message type from the Protobuf definition should be
@@ -101,7 +101,7 @@ logged.
 To upload `temperature-policy.json` to the broker, run the following command:
 
 ```bash
-mqtt hivemq policies create --file temperature-policy.json
+mqtt hivemq data-policy create --file temperature-policy.json
 ```
 
 ### Air schema
@@ -128,7 +128,7 @@ protoc air.proto -o air.desc
 ```
 
 ```bash
-mqtt hivemq schemas create --id air-schema --type protobuf --file air.desc --message-type Air
+mqtt hivemq schema create --id air-schema --type protobuf --file air.desc --message-type Air
 ```
 
 ### Air policy
@@ -168,6 +168,11 @@ A similar policy to the temperature policy can now be created and uploaded for t
           "level": "ERROR",
           "message": "The client with ID ${clientId} sent invalid air data: ${validationResult}"
         }
+      },
+      {
+        "id": "dropPublish",
+        "functionId": "Mqtt.drop",
+        "arguments": {}
       }
     ]
   }
@@ -178,7 +183,7 @@ A similar policy to the temperature policy can now be created and uploaded for t
 To upload the air policy, run the following command:
 
 ```bash
-mqtt hivemq policies create --file air-policy.json
+mqtt hivemq data-policy create --file air-policy.json
 ```
 
 ### Listing policies
@@ -186,5 +191,5 @@ mqtt hivemq policies create --file air-policy.json
 To see a list of the two policies that have been uploaded, run the following command:
 
 ```bash
-mqtt hivemq policies list
+mqtt hivemq data-policy list
 ```

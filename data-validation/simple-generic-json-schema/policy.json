@@ -23,7 +23,7 @@
     "pipeline": [
       {
         "id": "flagSchemaChecked",
-        "functionId": "UserProperties.add",
+        "functionId": "Mqtt.UserProperties.add",
         "arguments": {
           "name": "policy",
           "value": "success"
@@ -43,11 +43,16 @@
       },
       {
         "id": "flagSchemaChecked",
-        "functionId": "UserProperties.add",
+        "functionId": "Mqtt.UserProperties.add",
         "arguments": {
           "name": "policy",
           "value": "failed"
         }
+      },
+      {
+        "id": "dropThePublish",
+        "functionId": "Mqtt.drop",
+        "arguments": {}
       }
     ]
   }

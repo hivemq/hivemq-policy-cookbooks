@@ -49,7 +49,7 @@ corresponds to the bounds of the contiguous United States.
 To upload the schema to the broker, run the following command:
 
 ```bash
-mqtt hivemq schemas create --id usa-coordinates --type json --file usa-schema.json
+mqtt hivemq schema create --id usa-coordinates --type json --file usa-schema.json
 ```
 
 This uses the identifier `usa-coordinates` for the schema.
@@ -89,7 +89,7 @@ This is similar to the USA schema but matches European coordinates instead.
 Upload the schema to the broker with the id `europe-coordinates` in the same way as the USA schema:
 
 ```bash
-mqtt hivemq schemas create --id europe-coordinates --type json --file europe-schema.json
+mqtt hivemq schema create --id europe-coordinates --type json --file europe-schema.json
 ```
 
 ### Policy
@@ -163,6 +163,11 @@ The following policy tests if incoming messages match either the USA schema or t
           "metricName": "invalid-coordinates",
           "incrementBy": 1
         }
+      },
+      {
+        "id": "dropPublish",
+        "functionId": "Mqtt.drop",
+        "arguments": {}
       }
     ]
   }
@@ -172,15 +177,15 @@ The following policy tests if incoming messages match either the USA schema or t
 When validation succeeds it will be logged at the `INFO` level and include the client ID using the `${clientId}` string
 substitution. When validation fails it will be logged at the `WARN` level and also include the reason for failure using
 the `${validationResult}` string substitution. Moreover, for both cases custom metrics are
-created: `com.hivemq.data-hub.data-validation.custom.counters.valid-coordinates`
-and `com.hivemq.data-hub.data-validation.custom.counters.invalid-coordinates`.
+created: `com.hivemq.data-hub.custom.counters.valid-coordinates`
+and `com.hivemq.data-hub.custom.counters.invalid-coordinates`.
 
 The `ANY_OF` validation strategy ensures that only one of the schemas needs to be matched, not both.
 
 To upload `policy.json` to the broker, run the following command:
 
 ```bash
-mqtt hivemq policies create --file policy.json
+mqtt hivemq data-policy create --file policy.json
 ```
 
 ### Quality Metric
@@ -194,7 +199,7 @@ at [HiveMQ's website](https://www.hivemq.com/extension/prometheus-extension/)). 
 a quality metric:
 
 ```
-com_hivemq_data_hub_data_validation_custom_counters_valid_coordinates / (com_hivemq_data_hub_data_validation_custom_counters_invalid_coordinates + com_hivemq_data_hub_data_validation_custom_counters_valid_coordinates)
+com_hivemq_data_hub_custom_counters_valid_coordinates / (com_hivemq_data_hub_custom_counters_invalid_coordinates + com_hivemq_data_hub_custom_counters_valid_coordinates)
 ```
 
 With this, the metric function makes it possible to define alerts to notify when a certain threshold is reached. 

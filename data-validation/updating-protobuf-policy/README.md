@@ -14,7 +14,7 @@ For this use-case, a policy and a schema which has been modified from its origin
 List existing policies in the broker with the following command:
 
 ```bash
-mqtt hivemq policies list
+mqtt hivemq data-policy list
 ```
 
 This returns a JSON response containing details of all existing policies in the broker:
@@ -75,7 +75,7 @@ Create a new version of the schema by using the same `id`, `simple-schema`, as t
 the `--print-version` flag to see the version assigned to this new schema definition after creation:
 
 ```bash
-mqtt hivemq schemas create --id simple-schema --type protobuf --message-type SimpleMessage --file new-schema.proto --print-version
+mqtt hivemq schema create --id simple-schema --type protobuf --message-type SimpleMessage --file new-schema.proto --print-version
 ```
 
 This returns a JSON response containing the version assigned to the newly uploaded schema, `2`:
@@ -134,5 +134,5 @@ the `message` field of the log operation also reflects the new schema version.
 To upload the new `policy.json` to the broker, run the following command:
 
 ```bash
-mqtt hivemq policies update --id simple-policy --file policy.json
+mqtt hivemq data-policy update --id simple-policy --file policy.json
 ```

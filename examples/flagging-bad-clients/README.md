@@ -4,7 +4,7 @@
 
 This repository showcases to flag clients that publishes bad data. 
 The code exemplifies a scenario where clients publish data in a prescribed JSON format, but certain messages fail validation. 
-The solution incorporates the [UserProperties.add](https://docs.hivemq.com/hivemq/latest/data-hub/policies.html#user-properties-add-function)
+The solution incorporates the [Mqtt.UserProperties.add](https://docs.hivemq.com/hivemq/latest/data-hub/policies.html#user-properties-add-function)
 and [Delivery.redirectTo](https://docs.hivemq.com/hivemq/latest/data-hub/policies.html#delivery-redirect-to-function)
 functions to add MQTT user properties and redirect invalid messages.
 To each redirected message we add user properties to identify bad clients and to analyze the failure.

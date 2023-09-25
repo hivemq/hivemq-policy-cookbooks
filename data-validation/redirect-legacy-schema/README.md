@@ -43,7 +43,7 @@ See [here](https://grpc.io/docs/protoc-installation/) for information on install
 To create the schema in the broker, run the following command:
 
 ```bash
-mqtt hivemq schemas create --id v1-status-schema --type protobuf --file v1-status-schema.desc --message-type DeviceStatus
+mqtt hivemq schema create --id v1-status-schema --type protobuf --file v1-status-schema.desc --message-type DeviceStatus
 ```
 
 The `--message-type` argument specifies that the `DeviceStatus` message type from the Protobuf definition should be
@@ -72,7 +72,7 @@ protoc v2-status-schema.proto -o v2-status-schema.desc
 ```
 
 ```bash
-mqtt hivemq schemas create --id v2-status-schema --type protobuf --file v2-status-schema.desc --message-type DeviceStatus
+mqtt hivemq schema create --id v2-status-schema --type protobuf --file v2-status-schema.desc --message-type DeviceStatus
 ```
 
 ### All Versions Policy
@@ -133,7 +133,7 @@ not be published.
 To upload `all-versions-policy.json` to the broker, run the following command:
 
 ```bash
-mqtt hivemq policies create --file all-versions-policy.json
+mqtt hivemq data-policy create --file all-versions-policy.json
 ```
 
 ### Redirecting Policy
@@ -211,7 +211,7 @@ safely be redirected to `devices/v1/${clientId}/status`.
 To upload the policy, run the following command:
 
 ```bash
-mqtt hivemq policies create --file v2-status-policy.json
+mqtt hivemq data-policy create --file v2-status-policy.json
 ```
 
 ### Listing policies
@@ -219,5 +219,5 @@ mqtt hivemq policies create --file v2-status-policy.json
 To see a list of the two policies that have been uploaded, run the following command:
 
 ```bash
-mqtt hivemq policies list
+mqtt hivemq data-policy list
 ```

@@ -77,15 +77,15 @@ Each of these schemas alone defines some fields that may be required in an MQTT 
 Upload the three schemas to the broker using the following commands:
 
 ```bash
-mqtt hivemq schemas create --id metadata-schema --type json --file metadata-schema.json
+mqtt hivemq schema create --id metadata-schema --type json --file metadata-schema.json
 ```
 
 ```bash
-mqtt hivemq schemas create --id data-schema --type json --file data-schema.json
+mqtt hivemq schema create --id data-schema --type json --file data-schema.json
 ```
 
 ```bash
-mqtt hivemq schemas create --id verification-schema --type json --file verification-schema.json
+mqtt hivemq schema create --id verification-schema --type json --file verification-schema.json
 ```
 
 ### Policy
@@ -136,6 +136,11 @@ The following policy uses a `topicFilter` of `#` which will match all messages o
           "level": "WARN",
           "message": "The client ${clientId} does not send valid JSON payloads. The message will be dropped. Reason: ${validationResult}"
         }
+      },
+      {
+        "id": "dropPublish",
+        "functionId": "Mqtt.drop",
+        "arguments": {}
       }
     ]
   }
@@ -151,5 +156,5 @@ client ID and the reason for validation failure.
 To upload `policy.json` to the broker, run the following command:
 
 ```bash
-mqtt hivemq policies create --file policy.json
+mqtt hivemq data-policy create --file policy.json
 ```

@@ -25,7 +25,7 @@ which simply specifies that the payload should be in a JSON format without speci
 To upload this schema to the broker, run the following command:
 
 ```bash
-mqtt hivemq schemas create --id simple-generic-json --type json --file schema.json
+mqtt hivemq schema create --id simple-generic-json --type json --file schema.json
 ```
 
 This specifies the schema type (JSON) and assigns the unique identifier `simple-generic-json` to the schema.
@@ -67,7 +67,7 @@ The following policy specifies the validation step under the `topicFilter`: `#`.
     "pipeline": [
       {
         "id": "flagSchemaChecked",
-        "functionId": "UserProperties.add",
+        "functionId": "Mqtt.UserProperties.add",
         "arguments": {
           "name": "policy",
           "value": "success"
@@ -87,11 +87,16 @@ The following policy specifies the validation step under the `topicFilter`: `#`.
       },
       {
         "id": "flagSchemaChecked",
-        "functionId": "UserProperties.add",
+        "functionId": "Mqtt.UserProperties.add",
         "arguments": {
           "name": "policy",
           "value": "failed"
         }
+      },
+      {
+        "id": "dropThePublish",
+        "functionId": "Mqtt.drop",
+        "arguments": {}
       }
     ]
   }
@@ -102,7 +107,7 @@ The following policy specifies the validation step under the `topicFilter`: `#`.
 To upload `policy.json` to the broker, run the following command:
 
 ```bash
-mqtt hivemq policies create --file policy.json
+mqtt hivemq data-policy create --file policy.json
 ```
 
 The policy is now applied and all incoming MQTT messages are subject to validation.
@@ -110,5 +115,5 @@ The policy is now applied and all incoming MQTT messages are subject to validati
 To delete the policy, run the following command:
 
 ```bash
-mqtt hivemq policies delete --id simple-basic-json-policy-for-every-topic
+mqtt hivemq data-policy delete --id simple-basic-json-policy-for-every-topic
 ```
