@@ -59,9 +59,3 @@ the `--url` command line option with any of the policy and schema commands.
 | The demo showcases how to derive a quality metric from schema validations and visualize it in Grafana. The [Prometheus Monitoring Extension](https://www.hivemq.com/extension/prometheus-extension/) is used to gather metrics from the HiveMQ Broker                                                                                             | [quality-metric-example](/examples/quality-metric-example)     	 |
 | The demo shows how to flag clients that sending invalid messages wrt. a schema (bad clients). Moreover, it also stores invalid messages using the [HiveMQ Enterprise Extension for PostgreSQL](https://www.hivemq.com/extension/postgresql-extension/) for further inspection. As a result a Grafana dashboard shows the top most 10 bad clients. | [flagging-bad-clients](/examples/flagging-bad-clients)     	     |
 
-## Versions
-
-* since version 4.16: The release of HiveMQ Data Hub 4.16 will introduce some new features and breaking
-  changes for string interpolation syntax. Moreover, we introduced namespacing for functions. For reference of the
-  cookbooks for the 4.15 version please refer to the
-  branch [4.15](https://github.com/hivemq/hivemq-policy-cookbooks/tree/4.15)
