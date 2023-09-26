@@ -99,5 +99,5 @@ The policy is now applied and all incoming MQTT messages are subject to validati
 To delete the policy, run the following command:
 
 ```bash
-mqtt hivemq policies delete --id disconnect-clients-for-bad-data
+mqtt hivemq data-policy delete --id disconnect-clients-for-bad-data
 ```
