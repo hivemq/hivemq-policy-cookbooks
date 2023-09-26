@@ -1,7 +1,7 @@
 # Debug Bad Clients
 This cookbook is about focusing only on bad data.
 
-![](demo.gif)
+<img alt="demo shell with MQTT CLI" style="filter: drop-shadow(2px 4px 6px black)" src="demo.gif">
 
 ### Use-case 
 > As a developer, I want to see only bad data and clientId information to simplify debugging.
