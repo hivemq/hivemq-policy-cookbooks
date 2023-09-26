@@ -91,7 +91,7 @@ There are two outcomes of the validation `onSuccess` and `onFailure`:
 To upload `policy.json` to the broker, run the following command:
 
 ```bash
-mqtt hivemq policies create --file policy.json
+mqtt hivemq data-policy create --file policy.json
 ```
 
 The policy is now applied and all incoming MQTT messages are subject to validation.
