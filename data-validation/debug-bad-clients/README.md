@@ -25,7 +25,7 @@ which simply specifies that the payload should be in a JSON format without speci
 To upload this schema to the broker, run the following command:
 
 ```bash
-mqtt hivemq schemas create --id simple-generic-json --type json --file schema.json
+mqtt hivemq schema create --id simple-generic-json --type json --file schema.json
 ```
 
 This specifies the schema type (JSON) and assigns the unique identifier `simple-generic-json` to the schema.
