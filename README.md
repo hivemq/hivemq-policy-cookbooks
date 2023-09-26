@@ -49,6 +49,8 @@ the `--url` command line option with any of the policy and schema commands.
 | Ensure messages follow at least one version of a schema and redirect legacy versions to a different topic | Protobuf            	 | [redirect-legacy-schema](/data-validation/redirect-legacy-schema)	                 |
 | Updating an existing policy to use a new schema version                                                   | Protobuf              | [updating-protobuf-policy](/data-validation/updating-protobuf-policy)	             |
 | A policy that enforces that incoming packets match multiple JSON schemas simultaneously                   | JSON                  | [multiple-required-json-schemas](/data-validation/multiple-required-json-schemas)	 |
+| Debug bad clients by dropping valid traffic | JSON |  [debug-bad-clients](data-validation/debug-bad-clients) |
+| Disconnect client that sends bad data | JSON | [disconnect-client-for-invalid-data](data-validation/disconnect-client-for-invalid-data)
 
 ## Complete Demo Setups
 
