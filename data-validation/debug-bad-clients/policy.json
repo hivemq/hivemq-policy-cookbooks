@@ -1,0 +1,67 @@
+{
+  "id": "debug-bad-clients",
+  "matching": {
+    "topicFilter": "#"
+  },
+  "validation": {
+    "validators": [
+      {
+        "type": "schema",
+        "arguments": {
+          "strategy": "ALL_OF",
+          "schemas": [
+            {
+              "schemaId": "simple-generic-json",
+              "version": "latest"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "onSuccess": {
+    "pipeline": [
+      {
+        "id": "log",
+        "functionId": "System.log",
+        "arguments": {
+          "message": "The client ${clientId} sends good data, but message is dropped for debugging purposes.",
+          "level": "DEBUG"
+        }
+      },
+      {
+        "id": "debug-bad-client",
+        "functionId": "Mqtt.drop",
+        "arguments": {}
+      }
+    ]
+  },
+  "onFailure": {
+    "pipeline": [
+      {
+        "id": "logFailure",
+        "functionId": "System.log",
+        "arguments": {
+          "level": "WARN",
+          "message": "The client ${clientId} does not send JSON payloads to topic ${topic}."
+        }
+      },
+      {
+        "id": "metricForBadData",
+        "functionId": "Metrics.Counter.increment",
+        "arguments": {
+          "metricName": "bad-data-counter",
+          "incrementBy": 1
+        }
+      },
+      {
+        "id": "addUserProperty",
+        "functionId": "Mqtt.UserProperties.add",
+        "arguments": {
+          "name": "clientId",
+          "value": "${clientId}"
+        }
+      }
+    ]
+  }
+}
