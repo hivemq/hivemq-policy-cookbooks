@@ -28,6 +28,11 @@
           "level": "ERROR",
           "message": "The client with ID ${clientId} sent invalid temperature data: ${validationResult}"
         }
+      },
+      {
+        "id": "dropPublish",
+        "functionId": "Mqtt.drop",
+        "arguments": {}
       }
     ]
   }

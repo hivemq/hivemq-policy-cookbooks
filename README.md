@@ -1,16 +1,15 @@
-# HiveMQ Data Governance Hub
+# HiveMQ Data Hub
 
-The HiveMQ Data Governance Hub provides mechanisms to define how MQTT data is handled in the HiveMQ broker.
-The first feature of our new Data Governance Hub is *Data Validation*.
+The HiveMQ Data Hub provides mechanisms to define how MQTT data is handled in the HiveMQ broker.
+The first feature of our new Data Hub is *Data Validation*.
 
-> NOTE: The HiveMQ Data Governance Hub data validation feature is currently available as Early Access Preview (EAP)
 > version only.
 > For more information on the terms and conditions of the EAP offering,
 > contact [sales@hivemq.com](mailto:sales@hivemq.com).
 
 ## Data Validation
 
-In the HiveMQ Data Governance Hub, data validation implements a declarative
+In the HiveMQ Data Hub, data validation implements a declarative
 policy that checks whether your data sources are sending data in the data format
 you expect. This process ensures that the value of the data is assessed at an
 early stage in the data supply chain. To eliminate the need for subscribing
@@ -30,7 +29,7 @@ invalid MQTT messages).
 
 ## Quick Start
 
-For a quick start please consult our HiveMQ Data Governance Hub documentation.
+For a quick start please consult our HiveMQ Data Hub documentation.
 
 ## Setup
 
@@ -60,7 +59,7 @@ the `--url` command line option with any of the policy and schema commands.
 
 ## Versions
 
-* since version 4.16: The release of HiveMQ Data Governance Hub 4.16 will introduce some new features and breaking
+* since version 4.16: The release of HiveMQ Data Hub 4.16 will introduce some new features and breaking
   changes for string interpolation syntax. Moreover, we introduced namespacing for functions. For reference of the
   cookbooks for the 4.15 version please refer to the
   branch [4.15](https://github.com/hivemq/hivemq-policy-cookbooks/tree/4.15)

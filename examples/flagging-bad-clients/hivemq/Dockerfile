@@ -1,4 +1,4 @@
-FROM hivemq/hivemq4:4.17.0
+FROM hivemq/hivemq4:4.20.0
 
 # postgres extension
 ADD extension/hivemq-postgres-extension/config.xml /opt/hivemq/extensions/hivemq-postgresql-extension/conf

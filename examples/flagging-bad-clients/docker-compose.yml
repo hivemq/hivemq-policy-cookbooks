@@ -23,7 +23,7 @@ services:
       - curl
       - -X
       - POST
-      - http://hivemq:8888/api/v1/management/data-governance-hub/start-trial
+      - http://hivemq:8888/api/v1/data-hub/management/start-trial
     restart: on-failure
     depends_on:
       hivemq:
