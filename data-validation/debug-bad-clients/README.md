@@ -38,7 +38,7 @@ The next step is to apply the schema for all incoming MQTT messages by referenci
 The following policy specifies the validation step under the `topicFilter`: `#`. 
 There are two outcomes of the validation `onSuccess` and `onFailure`:
 
-* `onSuccess`: an MQTT User Property `"policy": "success"` is added the MQTT message
+* `onSuccess`: An MQTT User Property `"policy": "success"` is added to the MQTT message.
 * `onFailure`: Logs a message with the `clientId` on level `WARN` and adds an MQTT User Property `"policy": "failed"`.
 
 `policy.json`:
