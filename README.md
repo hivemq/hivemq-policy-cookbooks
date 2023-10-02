@@ -29,7 +29,7 @@ invalid MQTT messages).
 
 ## Quick Start
 
-For a quick start please consult our HiveMQ Data Hub documentation.
+For a quick start please consult our [HiveMQ Data Hub documentation](https://docs.hivemq.com/hivemq/latest/data-hub/quick-start).
 
 ## Setup
 
