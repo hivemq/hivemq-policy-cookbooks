@@ -1,0 +1,89 @@
+{
+  "id": "duplicate-policeman",
+  "matching": {
+    "clientIdRegex": ".*"
+  },
+  "behavior": {
+    "id": "Publish.duplicate",
+    "arguments": {}
+  },
+  "onTransitions": [
+    {
+      "fromState": "Initial",
+      "toState": "Connected",
+      "Mqtt.OnInboundConnect": {
+        "pipeline": [
+          {
+            "id": "logFunctionTransitionDebug",
+            "functionId": "System.log",
+            "arguments": {
+              "level": "INFO",
+              "message": "Behavior policy ${policyId}: ${clientId} transitioned from ${fromState} to ${toState} on ${triggerEvent} at ${timestamp}"
+            }
+          },
+          {
+            "id": "logFunctionExplanationMessage",
+            "functionId": "System.log",
+            "arguments": {
+              "level": "INFO",
+              "message": "Ok, we've got a client connected. Waiting for a first PUBLISH message to start detecting duplicates."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fromState": "Connected",
+      "toState": "NotDuplicated",
+      "Mqtt.OnInboundPublish": {
+        "pipeline": [
+          {
+            "id": "logFunctionTransitionDebug",
+            "functionId": "System.log",
+            "arguments": {
+              "level": "INFO",
+              "message": "Behavior policy ${policyId}: ${clientId} transitioned from ${fromState} to ${toState} on ${triggerEvent} at ${timestamp}"
+            }
+          },
+          {
+            "id": "logFunctionExplanationMessage",
+            "functionId": "System.log",
+            "arguments": {
+              "level": "INFO",
+              "message": "And here is the first PUBLISH message. From now on we are detecting duplicates."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fromState": "NotDuplicated",
+      "toState": "Duplicated",
+      "Mqtt.OnInboundPublish": {
+        "pipeline": [
+          {
+            "id": "logFunctionTransitionDebug",
+            "functionId": "System.log",
+            "arguments": {
+              "level": "INFO",
+              "message": "Behavior policy ${policyId}: ${clientId} transitioned from ${fromState} to ${toState} on ${triggerEvent} at ${timestamp}"
+            }
+          },
+          {
+            "id": "logFunctionExplanationMessage",
+            "functionId": "System.log",
+            "arguments": {
+              "level": "WARN",
+              "message": "Duplicate message detected! ${clientId} will be disconnected!"
+            }
+          },
+          {
+            "id": "disconnectFunction",
+            "functionId": "Mqtt.disconnect",
+            "arguments": {}
+          }
+        ]
+      }
+    }
+  ]
+}

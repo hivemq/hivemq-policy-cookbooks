@@ -3,26 +3,6 @@
 The HiveMQ Data Hub provides mechanisms to define how MQTT data is handled in the HiveMQ broker.
 The first feature of our new Data Hub is *Data Validation*.
 
-## Data Validation
-
-In the HiveMQ Data Hub, data validation implements a declarative
-policy that checks whether your data sources are sending data in the data format
-you expect. This process ensures that the value of the data is assessed at an
-early stage in the data supply chain. To eliminate the need for subscribing
-clients to perform resource-intensive validation, checks occur before your data
-reaches downstream devices or upstream services.
-
-## Features
-
-* Validate MQTT messages with JSON Schema or Protobuf.
-* Enforce policies across the entire MQTT topic tree structure.
-* Reroute valid and invalid MQTT messages to different topics based on the data validation results.
-* Increase the observability of client performance through additional metrics and log statements.
-
-Our data validation functionality lets your development teams use the HiveMQ broker to automatically enforce a data
-validation strategy of their own design (including fine-tuned control over how the broker handles incoming valid and
-invalid MQTT messages).
-
 ## Quick Start
 
 For a quick start please consult our [HiveMQ Data Hub documentation](https://docs.hivemq.com/hivemq/latest/data-hub/quick-start).
@@ -35,7 +15,27 @@ See [here](https://hivemq.github.io/mqtt-cli/docs/installation/) for installatio
 By default, this will connect to a HiveMQ broker REST API running at http://localhost:8888. To configure this URL, use
 the `--url` command line option with any of the policy and schema commands.
 
-## Example Use-Cases
+## Data Validation
+
+In the HiveMQ Data Hub, data validation implements a declarative
+policy that checks whether your data sources are sending data in the data format
+you expect. This process ensures that the value of the data is assessed at an
+early stage in the data supply chain. To eliminate the need for subscribing
+clients to perform resource-intensive validation, checks occur before your data
+reaches downstream devices or upstream services.
+
+### Features
+
+* Validate MQTT messages with JSON Schema or Protobuf.
+* Enforce policies across the entire MQTT topic tree structure.
+* Reroute valid and invalid MQTT messages to different topics based on the data validation results.
+* Increase the observability of client performance through additional metrics and log statements.
+
+Our data validation functionality lets your development teams use the HiveMQ broker to automatically enforce a data
+validation strategy of their own design (including fine-tuned control over how the broker handles incoming valid and
+invalid MQTT messages).
+
+### Example Use-Cases
 
 | Description                                                                       	                       | Data Format 	         | Link 	                                                                             |
 |-----------------------------------------------------------------------------------------------------------|-----------------------|------------------------------------------------------------------------------------|
@@ -48,10 +48,20 @@ the `--url` command line option with any of the policy and schema commands.
 | Debug bad clients by dropping valid traffic | JSON |  [debug-bad-clients](data-validation/debug-bad-clients) |
 | Disconnect client that sends bad data | JSON | [disconnect-client-for-invalid-data](data-validation/disconnect-client-for-invalid-data)
 
-## Complete Demo Setups
+### Complete Demo Setups
 
 | Description                                                                       	                                                                                                                                                                                                                                                               | Link 	                                                           |
 |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
 | The demo showcases how to derive a quality metric from schema validations and visualize it in Grafana. The [Prometheus Monitoring Extension](https://www.hivemq.com/extension/prometheus-extension/) is used to gather metrics from the HiveMQ Broker                                                                                             | [quality-metric-example](/examples/quality-metric-example)     	 |
 | The demo shows how to flag clients that sending invalid messages wrt. a schema (bad clients). Moreover, it also stores invalid messages using the [HiveMQ Enterprise Extension for PostgreSQL](https://www.hivemq.com/extension/postgresql-extension/) for further inspection. As a result a Grafana dashboard shows the top most 10 bad clients. | [flagging-bad-clients](/examples/flagging-bad-clients)     	     |
 
+## Behavior Validation
+
+In the HiveMQ Data Hub, behavior validation implements a declarative
+policy that maintains a state between validation invocations. This allows to have counters, sliding windows, histories of past messages - all those validation scenarios that spans across multiple messages.
+
+### Example Use-Cases
+| Description                                                                       	    | Link 	                                                                 |
+|----------------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| A policy that enforces a specified amount of PUSLISH messages within a client session. | [publish-quota](/behavior-validation/publish-quota)     	              |
+| A policy that detects duplicated messages.                                             | [publish-duplicate](/behavior-validation/publish-duplicate)	 |

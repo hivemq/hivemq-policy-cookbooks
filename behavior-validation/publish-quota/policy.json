@@ -1,0 +1,116 @@
+{
+  "id": "max10",
+  "matching": {
+    "clientIdRegex": ".*"
+  },
+  "behavior": {
+    "id": "Publish.quota",
+    "arguments": {
+      "minPublishes": 0,
+      "maxPublishes": 10
+    }
+  },
+  "onTransitions": [
+    {
+      "fromState": "Initial",
+      "toState": "Connected",
+      "Mqtt.OnInboundConnect": {
+        "pipeline": [
+          {
+            "id": "logFunctionTransitionDebug",
+            "functionId": "System.log",
+            "arguments": {
+              "level": "INFO",
+              "message": "Behavior policy ${policyId}: ${clientId} transitioned from ${fromState} to ${toState} on ${triggerEvent} at ${timestamp}"
+            }
+          },
+          {
+            "id": "logFunctionExplanationMessage",
+            "functionId": "System.log",
+            "arguments": {
+              "level": "INFO",
+              "message": "Ok, we've got a client connected. Waiting for a first PUBLISH message to start counting messages."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fromState": "Connected",
+      "toState": "Publishing",
+      "Mqtt.OnInboundPublish": {
+        "pipeline": [
+          {
+            "id": "logFunctionTransitionDebug",
+            "functionId": "System.log",
+            "arguments": {
+              "level": "INFO",
+              "message": "Behavior policy ${policyId}: ${clientId} transitioned from ${fromState} to ${toState} on ${triggerEvent} at ${timestamp}"
+            }
+          },
+          {
+            "id": "logFunctionExplanationMessage",
+            "functionId": "System.log",
+            "arguments": {
+              "level": "INFO",
+              "message": "And here is the first PUBLISH message. It was counted."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fromState": "Publishing",
+      "toState": "Publishing",
+      "Mqtt.OnInboundPublish": {
+        "pipeline": [
+          {
+            "id": "logFunctionTransitionDebug",
+            "functionId": "System.log",
+            "arguments": {
+              "level": "INFO",
+              "message": "Behavior policy ${policyId}: ${clientId} transitioned from ${fromState} to ${toState} on ${triggerEvent} at ${timestamp}"
+            }
+          },
+          {
+            "id": "logFunctionExplanationMessage",
+            "functionId": "System.log",
+            "arguments": {
+              "level": "INFO",
+              "message": "One more message was counted."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fromState": "Any.*",
+      "toState": "Violated",
+      "Mqtt.OnInboundPublish": {
+        "pipeline": [
+          {
+            "id": "logFunction",
+            "functionId": "System.log",
+            "arguments": {
+              "level": "WARN",
+              "message": "Behavior policy ${policyId}: ${clientId} transitioned from ${fromState} to ${toState} on ${triggerEvent} at ${timestamp}"
+            }
+          },
+          {
+            "id": "logFunctionTransitionDebug",
+            "functionId": "System.log",
+            "arguments": {
+              "level": "WARN",
+              "message": "Ok, we had enough messages! ${clientId} will now be disconnected."
+            }
+          },
+          {
+            "id": "disconnectFunction",
+            "functionId": "Mqtt.disconnect",
+            "arguments": {}
+          }
+        ]
+      }
+    }
+  ]
+}
