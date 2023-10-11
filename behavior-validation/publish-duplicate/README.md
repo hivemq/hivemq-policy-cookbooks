@@ -11,7 +11,7 @@ For this use-case, a behavior policy is required.
 
 ### Policy
 
-Consider the following behavior policy that disconnects a client if the received published message is similar to the previous one.
+Consider the following behavior policy that disconnects a client if the received published message has an identical payload and topic to the previous one.
 
 This policy uses `System.log` function to log explanatory messages on each state transition and `Mqtt.disconnect` function to disconnect a client if message count goest above 10.
 
