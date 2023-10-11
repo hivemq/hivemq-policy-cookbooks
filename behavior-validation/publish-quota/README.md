@@ -151,7 +151,7 @@ mqtt hivemq behavior-policy delete --id max10
 
 ### Policy output
 
-Excessive amount of `System.log` calls used in the policy produces an output that facilitates understanding of the policy's behavior.
+The abundant use of `System.log` in the policy produces a log output that facilitates understanding of the policy's behavior.
 
 ```text
 INFO  - Behavior policy max10: hmq_hqIfS_1_8aad39794e58fb849f2608750600ef27 transitioned from Initial to Connected on MQTT - Inbound CONNECT at 1696972060994
