@@ -1,5 +1,6 @@
 # Disconnect a client sending duplicate messages
-This cookbook is about to disconnect a client when it sends a message similar to the previous one.
+
+This cookbook is about disconnecting a client when it sends a PUBLISH message identical to the previous one it sent.
 
 
 ### Use-case
