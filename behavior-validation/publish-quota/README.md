@@ -1,5 +1,5 @@
 # Disconnect a client sending amount of messages outside of the specified range
-This cookbook is about to disconnect a client when the amount of published messages is outside the specified range.
+This cookbook is about disconnecting a client when the number of messages it has published is exceeds a specified limit.
 
 
 ### Use-case
