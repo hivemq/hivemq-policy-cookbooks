@@ -13,7 +13,7 @@ For this use-case, a behavior policy is required.
 
 Consider the following behavior policy that disconnects a client if the received published message has an identical payload and topic to the previous one.
 
-This policy uses `System.log` function to log explanatory messages on each state transition and `Mqtt.disconnect` function to disconnect a client if received message is duplicate.
+This policy uses `System.log` function to log explanatory messages on each state transition and `Mqtt.disconnect` function to disconnect a client if the received message is a duplicate.
 Spot the `clientIdRegex` that makes this policy apply only to the clientIds starting with `hmq` with the regex `^hmq.*`.
 
 `policy.json`:
