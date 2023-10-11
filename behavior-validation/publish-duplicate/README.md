@@ -13,14 +13,15 @@ For this use-case, a behavior policy is required.
 
 Consider the following behavior policy that disconnects a client if the received published message has an identical payload and topic to the previous one.
 
-This policy uses `System.log` function to log explanatory messages on each state transition and `Mqtt.disconnect` function to disconnect a client if message count goest above 10.
+This policy uses `System.log` function to log explanatory messages on each state transition and `Mqtt.disconnect` function to disconnect a client if received message is duplicate.
+Spot the `clientIdRegex` that makes this policy apply only to the clientIds starting with `hmq` with the regex `^hmq.*`.
 
 `policy.json`:
 ```json
 {
   "id": "duplicate-policeman",
   "matching": {
-    "clientIdRegex": ".*"
+    "clientIdRegex": "^hmq.*"
   },
   "behavior": {
     "id": "Publish.duplicate",
@@ -36,7 +37,7 @@ This policy uses `System.log` function to log explanatory messages on each state
             "id": "logFunctionTransitionDebug",
             "functionId": "System.log",
             "arguments": {
-              "level": "INFO",
+              "level": "DEBUG",
               "message": "Behavior policy ${policyId}: ${clientId} transitioned from ${fromState} to ${toState} on ${triggerEvent} at ${timestamp}"
             }
           },
@@ -60,7 +61,7 @@ This policy uses `System.log` function to log explanatory messages on each state
             "id": "logFunctionTransitionDebug",
             "functionId": "System.log",
             "arguments": {
-              "level": "INFO",
+              "level": "DEBUG",
               "message": "Behavior policy ${policyId}: ${clientId} transitioned from ${fromState} to ${toState} on ${triggerEvent} at ${timestamp}"
             }
           },
@@ -84,7 +85,7 @@ This policy uses `System.log` function to log explanatory messages on each state
             "id": "logFunctionTransitionDebug",
             "functionId": "System.log",
             "arguments": {
-              "level": "INFO",
+              "level": "DEBUG",
               "message": "Behavior policy ${policyId}: ${clientId} transitioned from ${fromState} to ${toState} on ${triggerEvent} at ${timestamp}"
             }
           },
@@ -106,6 +107,7 @@ This policy uses `System.log` function to log explanatory messages on each state
     }
   ]
 }
+
 ```
 
 To upload `policy.json` to the broker, run the following command:
@@ -128,10 +130,10 @@ mqtt hivemq behavior-policy delete --id duplicate-policeman
 The abundant use of `System.log` in the policy produces a log output that facilitates understanding of the policy's behavior.
 
 ```text
-INFO  - Behavior policy duplicate-policeman: hmq_hqIfS_2_c1834f9bdabbe47be40935e059a3855a transitioned from Initial to Connected on MQTT - Inbound CONNECT at 1696975327144
+DEBUG  - Behavior policy duplicate-policeman: hmq_hqIfS_2_c1834f9bdabbe47be40935e059a3855a transitioned from Initial to Connected on MQTT - Inbound CONNECT at 1696975327144
 INFO  - Ok, we've got a client connected. Waiting for a first PUBLISH message to start detecting duplicates.
-INFO  - Behavior policy duplicate-policeman: hmq_hqIfS_2_c1834f9bdabbe47be40935e059a3855a transitioned from Connected to NotDuplicated on MQTT - Inbound PUBLISH at 1696975359963
+DEBUG  - Behavior policy duplicate-policeman: hmq_hqIfS_2_c1834f9bdabbe47be40935e059a3855a transitioned from Connected to NotDuplicated on MQTT - Inbound PUBLISH at 1696975359963
 INFO  - And here is the first PUBLISH message. From now on we are detecting duplicates.
-INFO  - Behavior policy duplicate-policeman: hmq_hqIfS_2_c1834f9bdabbe47be40935e059a3855a transitioned from NotDuplicated to Duplicated on MQTT - Inbound PUBLISH at 1696975363526
+DEBUG  - Behavior policy duplicate-policeman: hmq_hqIfS_2_c1834f9bdabbe47be40935e059a3855a transitioned from NotDuplicated to Duplicated on MQTT - Inbound PUBLISH at 1696975363526
 INFO  - Duplicate message detected! hmq_hqIfS_2_c1834f9bdabbe47be40935e059a3855a will be disconnected!
 ```

@@ -1,7 +1,7 @@
 {
   "id": "duplicate-policeman",
   "matching": {
-    "clientIdRegex": ".*"
+    "clientIdRegex": "^hmq.*"
   },
   "behavior": {
     "id": "Publish.duplicate",
@@ -17,7 +17,7 @@
             "id": "logFunctionTransitionDebug",
             "functionId": "System.log",
             "arguments": {
-              "level": "INFO",
+              "level": "DEBUG",
               "message": "Behavior policy ${policyId}: ${clientId} transitioned from ${fromState} to ${toState} on ${triggerEvent} at ${timestamp}"
             }
           },
@@ -41,7 +41,7 @@
             "id": "logFunctionTransitionDebug",
             "functionId": "System.log",
             "arguments": {
-              "level": "INFO",
+              "level": "DEBUG",
               "message": "Behavior policy ${policyId}: ${clientId} transitioned from ${fromState} to ${toState} on ${triggerEvent} at ${timestamp}"
             }
           },
@@ -65,7 +65,7 @@
             "id": "logFunctionTransitionDebug",
             "functionId": "System.log",
             "arguments": {
-              "level": "INFO",
+              "level": "DEBUG",
               "message": "Behavior policy ${policyId}: ${clientId} transitioned from ${fromState} to ${toState} on ${triggerEvent} at ${timestamp}"
             }
           },
