@@ -125,7 +125,7 @@ mqtt hivemq behavior-policy delete --id duplicate-policeman
 
 ### Policy output
 
-Excessive amount of `System.log` calls used in the policy produces an output that facilitates understanding of the policy's behavior.
+The abundant use of `System.log` in the policy produces a log output that facilitates understanding of the policy's behavior.
 
 ```text
 INFO  - Behavior policy duplicate-policeman: hmq_hqIfS_2_c1834f9bdabbe47be40935e059a3855a transitioned from Initial to Connected on MQTT - Inbound CONNECT at 1696975327144
