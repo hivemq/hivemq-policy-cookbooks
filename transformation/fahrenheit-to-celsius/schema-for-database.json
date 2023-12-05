@@ -1,0 +1,14 @@
+{
+  "required":[
+    "celsius",
+    "timestamp"
+  ],
+  "properties":{
+    "celsius":{
+      "type":"number"
+    },
+    "timestamp":{
+      "type":"number"
+    }
+  }
+}
