@@ -90,63 +90,56 @@ original topic.
 `policy.json`:
 ```json
 {
-  "id":"convert-fahrenheit-into-celsius",
-  "matching":{
-    "topicFilter":"device/#"
+  "id" : "convert-fahrenheit-into-celsius",
+
+  "matching" : {
+    "topicFilter" : "factory/#"
   },
-  "validation":{
-    "validators":[
-      {
-        "type":"schema",
-        "arguments":{
-          "strategy":"ALL_OF",
-          "schemas":[
-            {
-              "schemaId":"schema-from-sensor",
-              "version":"latest"
-            }
-          ]
-        }
+  "validation" : {
+    "validators" : [ {
+      "type" : "schema",
+      "arguments" : {
+        "strategy" : "ALL_OF",
+        "schemas" : [ {
+          "schemaId" : "schema-from-sensor",
+          "version" : "latest"
+        } ]
       }
-    ]
+    } ]
   },
-  "onSuccess":{
-    "pipeline":[
+  "onSuccess": {
+    "pipeline": [
       {
-        "id":"operation-2eng0",
-        "functionId":"Serdes.deserialize",
-        "arguments":{
-          "schemaVersion":"latest",
-          "schemaId":"schema-from-sensor"
+        "id": "operation-2eng0",
+        "functionId": "Serdes.deserialize",
+        "arguments": {
+          "schemaVersion": "latest",
+          "schemaId": "schema-from-sensor"
         }
       },
       {
-        "id":"operation-ek2Mx",
-        "functionId":"fn:fahrenheit-to-celsius:latest",
-        "arguments":{
-          
-        }
+        "id": "operation-ek2Mx",
+        "functionId": "fn:fahrenheit-to-celsius:latest",
+        "arguments": {}
       },
       {
-        "id":"operation-4DBF3",
-        "functionId":"Serdes.serialize",
-        "arguments":{
-          "schemaVersion":"latest",
-          "schemaId":"schema-for-fan"
+        "id": "operation-4DBF3",
+        "functionId": "Serdes.serialize",
+        "arguments": {
+          "schemaVersion": "latest",
+          "schemaId": "schema-for-fan"
         }
       }
     ]
   },
-  "onFailure":{
-    "pipeline":[
-      {
-        "id":"operation-aMNNx",
-        "functionId":"Mqtt.drop",
-        "arguments":{
-          "reasonString":"Your client ${clientId} sent invalid data according to the schema: ${validationResult}."
-        }
+  "onFailure" : {
+    "pipeline" : [ {
+      "id" : "operation-aMNNx",
+      "functionId" : "Mqtt.drop",
+      "arguments" : {
+        "reasonString" : "Your client ${clientId} sent invalid data according to the schema: ${validationResult}."
       }
-    ]
+    } ]
   }
 }
 ```

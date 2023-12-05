@@ -16,26 +16,30 @@
       }
     } ]
   },
-  "onSuccess" : {
-    "pipeline" : [ {
-      "id" : "operation-2eng0",
-      "functionId" : "Serdes.deserialize",
-      "arguments" : {
-        "schemaVersion" : "latest",
-        "schemaId" : "schema-from-devices"
+  "onSuccess": {
+    "pipeline": [
+      {
+        "id": "operation-2eng0",
+        "functionId": "Serdes.deserialize",
+        "arguments": {
+          "schemaVersion": "latest",
+          "schemaId": "schema-from-device"
+        }
+      },
+      {
+        "id": "operation-ek2Mx",
+        "functionId": "fn:fahrenheit-to-celsius:latest",
+        "arguments": {}
+      },
+      {
+        "id": "operation-4DBF3",
+        "functionId": "Serdes.serialize",
+        "arguments": {
+          "schemaVersion": "latest",
+          "schemaId": "schema-for-database"
+        }
       }
-    }, {
-      "id" : "operation-ek2Mx",
-      "functionId" : "fn:fahrenheit-to-celsius:latest",
-      "arguments" : { }
-    }, {
-      "id" : "operation-4DBF3",
-      "functionId" : "Serdes.serialize",
-      "arguments" : {
-        "schemaVersion" : "latest",
-        "schemaId" : "schema-for-database"
-      }
-    } ]
+    ]
   },
   "onFailure" : {
     "pipeline" : [ {
