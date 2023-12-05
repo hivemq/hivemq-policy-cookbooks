@@ -6,7 +6,7 @@ This cookbook is about transforming units.
 ### Use-case 
 > As an OT developer, I have devices sending data in Fahrenheit, but the analytics services require temperature in Celsius.
 
-For this use-case, a script, a policy and a schema are required.
+For this use-case, a script, a policy, and a schema are required.
 
 ### Schema
 
