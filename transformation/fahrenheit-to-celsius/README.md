@@ -4,7 +4,7 @@ This cookbook is about transforming units.
 <img alt="Transformation Demo: Fahrenheit to Celsius" style="filter: drop-shadow(2px 4px 6px black)" src="demo.gif">
 
 ### Use-case 
-> As a OT developer, I have devices sending data in Fahrenheit, but the analytics services requires temperature in Celsius.
+> As an OT developer, I have devices sending data in Fahrenheit, but the analytics services require temperature in Celsius.
 
 For this use-case, a script, a policy and a schema are required.
 
