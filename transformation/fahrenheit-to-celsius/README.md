@@ -157,7 +157,7 @@ To upload `policy.json` to the broker, run the following command:
 mqtt hivemq data-policy create --file policy.json
 ```
 
-The policy is now applied and all incoming MQTT messages are subject to validation. In case the
-validation is successful the transformation script to convert the unit is executed such that 
-consumer only read celsius.
+The policy is now applied and all incoming MQTT messages matching the topic filter `factory/#` are subject to validation. When
+validation for an incoming message is successful, the transformation script to convert the unit is executed so that 
+the consumer only reads Celsius.
 
