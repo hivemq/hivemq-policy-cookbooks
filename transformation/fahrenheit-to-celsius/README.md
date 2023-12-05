@@ -47,7 +47,7 @@ After transformation, the field `fahrenheit` isn't available anymore. Rather, th
 }
 ```
 
-To upload the schemas to the broker, run the following command:
+To upload the schemas to the broker, run the following commands:
 
 ```bash
 mqtt hivemq schema create --id schema-from-sensor --type json --file schema-from-sensor.json
