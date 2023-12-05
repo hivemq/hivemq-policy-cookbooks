@@ -22,8 +22,8 @@
         "id": "operation-2eng0",
         "functionId": "Serdes.deserialize",
         "arguments": {
-          "schemaVersion": "latest",
-          "schemaId": "schema-from-device"
+          "schemaId": "schema-from-device",
+          "schemaVersion": "latest"
         }
       },
       {
