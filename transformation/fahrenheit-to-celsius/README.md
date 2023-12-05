@@ -16,15 +16,18 @@ To begin with, consider the following plain JSON schema (according to [JSON Sche
 ```json
 {
   "type": "object",
-  "properties":{
-    "fahrenheit":{
-      "type":"number"
+  "properties": {
+    "fahrenheit": {
+      "type": "number"
     },
-    "timestamp":{
-      "type":"number"
+    "timestamp": {
+      "type": "number"
     }
   },
-  "required": [ "fahrenheit", "timestamp" ]
+  "required": [
+    "fahrenheit",
+    "timestamp"
+  ]
 }
 ```
 which contains two required fields `fahrenheit` and `timestamp` to be of type `number`.
@@ -35,15 +38,18 @@ After transformation, the field `fahrenheit` isn't available anymore. Rather, th
 ```json
 {
   "type": "object",
-  "properties":{
-    "celsius":{
-      "type":"number"
+  "properties": {
+    "celsius": {
+      "type": "number"
     },
-    "timestamp":{
-      "type":"number"
+    "timestamp": {
+      "type": "number"
     }
   },
-  "required": [ "celsius", "timestamp" ]
+  "required": [
+    "celsius",
+    "timestamp"
+  ]
 }
 ```
 

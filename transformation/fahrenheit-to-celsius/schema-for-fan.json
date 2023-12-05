@@ -1,7 +1,7 @@
 {
   "type": "object",
   "properties": {
-    "fahrenheit": {
+    "celsius": {
       "type": "number"
     },
     "timestamp": {
@@ -9,7 +9,7 @@
     }
   },
   "required": [
-    "fahrenheit",
+    "celsius",
     "timestamp"
   ]
 }
