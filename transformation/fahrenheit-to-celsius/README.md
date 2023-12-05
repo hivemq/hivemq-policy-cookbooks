@@ -15,6 +15,7 @@ To begin with, consider the following plain JSON schema (according to [JSON Sche
 `schema-from-device.json`:
 ```json
 {
+  "type": "object",
   "properties":{
     "fahrenheit":{
       "type":"number"
@@ -33,6 +34,7 @@ After transformation, the field `fahrenheit` isn't available anymore. Rather, th
 `schema-for-fan.json`:
 ```json
 {
+  "type": "object",
   "properties":{
     "celsius":{
       "type":"number"
@@ -90,22 +92,25 @@ original topic.
 `policy.json`:
 ```json
 {
-  "id" : "convert-fahrenheit-into-celsius",
-
-  "matching" : {
-    "topicFilter" : "factory/#"
+  "id": "convert-fahrenheit-into-celsius",
+  "matching": {
+    "topicFilter": "factory/#"
   },
-  "validation" : {
-    "validators" : [ {
-      "type" : "schema",
-      "arguments" : {
-        "strategy" : "ALL_OF",
-        "schemas" : [ {
-          "schemaId" : "schema-from-sensor",
-          "version" : "latest"
-        } ]
+  "validation": {
+    "validators": [
+      {
+        "type": "schema",
+        "arguments": {
+          "strategy": "ALL_OF",
+          "schemas": [
+            {
+              "schemaId": "schema-from-sensor",
+              "version": "latest"
+            }
+          ]
+        }
       }
-    } ]
+    ]
   },
   "onSuccess": {
     "pipeline": [
@@ -132,14 +137,16 @@ original topic.
       }
     ]
   },
-  "onFailure" : {
-    "pipeline" : [ {
-      "id" : "operation-aMNNx",
-      "functionId" : "Mqtt.drop",
-      "arguments" : {
-        "reasonString" : "Your client ${clientId} sent invalid data according to the schema: ${validationResult}."
+  "onFailure": {
+    "pipeline": [
+      {
+        "id": "operation-aMNNx",
+        "functionId": "Mqtt.drop",
+        "arguments": {
+          "reasonString": "Your client ${clientId} sent invalid data according to the schema: ${validationResult}."
+        }
       }
-    } ]
+    ]
   }
 }
 ```
