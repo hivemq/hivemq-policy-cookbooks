@@ -28,7 +28,7 @@ To begin with, consider the following plain JSON schema (according to [JSON Sche
 ```
 which contains two required fields `fahrenheit` and `timestamp` to be of type `number`.
 
-After transformation the field `fahrenheit` isn't available anymore rather than the new field `celisus`. The schema for transformed MQTT messages is define as follows:
+After transformation, the field `fahrenheit` isn't available anymore. Rather, there is a new field `celsius`. The schema for transformed MQTT messages is define as follows:
 
 `schema-for-fan.json`:
 ```json
