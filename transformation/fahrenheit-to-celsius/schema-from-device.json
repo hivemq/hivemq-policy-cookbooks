@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "fahrenheit": {
+      "type": "number"
+    },
+    "timestamp": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "fahrenheit",
+    "timestamp"
+  ]
+}

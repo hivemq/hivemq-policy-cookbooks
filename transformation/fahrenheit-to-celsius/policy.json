@@ -1,0 +1,53 @@
+{
+  "id" : "convert-fahrenheit-into-celsius",
+
+  "matching" : {
+    "topicFilter" : "factory/#"
+  },
+  "validation" : {
+    "validators" : [ {
+      "type" : "schema",
+      "arguments" : {
+        "strategy" : "ALL_OF",
+        "schemas" : [ {
+          "schemaId" : "schema-from-device",
+          "version" : "latest"
+        } ]
+      }
+    } ]
+  },
+  "onSuccess": {
+    "pipeline": [
+      {
+        "id": "operation-2eng0",
+        "functionId": "Serdes.deserialize",
+        "arguments": {
+          "schemaId": "schema-from-device",
+          "schemaVersion": "latest"
+        }
+      },
+      {
+        "id": "operation-ek2Mx",
+        "functionId": "fn:fahrenheit-to-celsius:latest",
+        "arguments": {}
+      },
+      {
+        "id": "operation-4DBF3",
+        "functionId": "Serdes.serialize",
+        "arguments": {
+          "schemaId": "schema-for-fan",
+          "schemaVersion": "latest"
+        }
+      }
+    ]
+  },
+  "onFailure" : {
+    "pipeline" : [ {
+      "id" : "operation-aMNNx",
+      "functionId" : "Mqtt.drop",
+      "arguments" : {
+        "reasonString" : "Your client ${clientId} sent invalid data according to the schema: ${validationResult}."
+      }
+    } ]
+  }
+}
