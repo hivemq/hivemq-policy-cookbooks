@@ -10,7 +10,7 @@
       "arguments" : {
         "strategy" : "ALL_OF",
         "schemas" : [ {
-          "schemaId" : "devices-schema-from-factory",
+          "schemaId" : "schema-from-device",
           "version" : "latest"
         } ]
       }
