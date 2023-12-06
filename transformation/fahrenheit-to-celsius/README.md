@@ -125,7 +125,7 @@ original topic.
         "functionId": "Serdes.deserialize",
         "arguments": {
           "schemaVersion": "latest",
-          "schemaId": "schema-from-sensor"
+          "schemaId": "schema-from-device"
         }
       },
       {
