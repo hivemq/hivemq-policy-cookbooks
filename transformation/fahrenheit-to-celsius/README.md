@@ -110,7 +110,7 @@ original topic.
           "strategy": "ALL_OF",
           "schemas": [
             {
-              "schemaId": "schema-from-sensor",
+              "schemaId": "schema-from-device",
               "version": "latest"
             }
           ]
