@@ -35,7 +35,7 @@
         "id": "operation-4DBF3",
         "functionId": "Serdes.serialize",
         "arguments": {
-          "schemaId": "schema-for-database",
+          "schemaId": "schema-for-fan",
           "schemaVersion": "latest"
         }
       }
