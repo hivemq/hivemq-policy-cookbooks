@@ -190,7 +190,7 @@ resulting payload is published to the original topic.
 
 Below is an example of an incoming message and the resulting outgoing anonymized message.
 
-`Original data before anonymization`:
+Original data before anonymization:
 ```json
 {
   "name": "Martin",
