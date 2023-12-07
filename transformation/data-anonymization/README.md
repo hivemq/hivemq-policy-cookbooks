@@ -63,7 +63,7 @@ mqtt hivemq schema create --id schema-person --type json --file schema.json
 In HiveMQ Data Hub from version 4.23 we support JavaScript to transform incoming MQTT 
 messages. 
 
-The following scripts masks the middle of the surname, extracts the year from the date of birth and replaces the street
+The following scripts masks the middle of the surname, extracts the year from the date of birth, and replaces the street
 and zip code with a placeholder:
 
 ```javascript
