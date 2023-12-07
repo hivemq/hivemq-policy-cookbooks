@@ -205,7 +205,7 @@ Original data before anonymization:
 }
 ```
 
-`Anonymized data after transformation`:
+Anonymized data after transformation:
 ```json
 {
   "name": "Martin",
