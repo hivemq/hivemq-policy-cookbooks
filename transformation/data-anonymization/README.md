@@ -63,7 +63,7 @@ mqtt hivemq schema create --id schema-person --type json --file schema.json
 In HiveMQ Data Hub from version 4.23 we support JavaScript to transform incoming MQTT 
 messages. 
 
-The following scripts masks the middle of the surname, extracts the year from the date of birth, and replaces the street
+The following script masks the middle of the surname, extracts the year from the date of birth, and replaces the street
 and zip code with a placeholder:
 
 ```javascript
@@ -108,13 +108,13 @@ publish-object is created with the sensitive fields masked or removed.
 
 The function is uploaded to the broker with the following command:
 
-```basH
-mqtt hivemq script create --id=script-anonymize --file=script.js --type=transformation
+```bash
+mqtt hivemq script create --id script-anonymize --type transformation --file script.js
 ```
 
 ### Policy
 The next step is to create a policy that validates against the `schema-person` schema, 
-anonymizes the data by executing the transformation script and publishes the payload to the original topic.
+anonymizes the data by executing the transformation script, and publishes the payload to the original topic.
 
 `policy.json`:
 ```json
