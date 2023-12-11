@@ -158,8 +158,8 @@ anonymizes the data by executing the transformation script, and publishes the pa
         "id": "operation-4DBF3",
         "functionId": "Serdes.serialize",
         "arguments": {
-          "schemaVersion": "latest",
-          "schemaId": "schema-person"
+          "schemaId": "schema-person",
+          "schemaVersion": "latest"
         }
       }
     ]
