@@ -1,0 +1,58 @@
+{
+  "id": "voltage-level-normalization",
+  "matching": {
+    "topicFilter": "energy/#"
+  },
+  "validation": {
+    "validators": [
+      {
+        "type": "schema",
+        "arguments": {
+          "strategy": "ALL_OF",
+          "schemas": [
+            {
+              "schemaId": "schema-from-sensor",
+              "version": "latest"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "onSuccess": {
+    "pipeline": [
+      {
+        "id": "deserialize",
+        "functionId": "Serdes.deserialize",
+        "arguments": {
+          "schemaVersion": "latest",
+          "schemaId": "schema-from-sensor"
+        }
+      },
+      {
+        "id": "voltage-normalization",
+        "functionId": "fn:voltage-normalization:latest",
+        "arguments": {}
+      },
+      {
+        "id": "serialize",
+        "functionId": "Serdes.serialize",
+        "arguments": {
+          "schemaVersion": "latest",
+          "schemaId": "schema-for-analytics"
+        }
+      }
+    ]
+  },
+  "onFailure": {
+    "pipeline": [
+      {
+        "id": "drop-invalid-message",
+        "functionId": "Mqtt.drop",
+        "arguments": {
+          "reasonString": "Your client ${clientId} sent invalid data according to the schema: ${validationResult}."
+        }
+      }
+    ]
+  }
+}
