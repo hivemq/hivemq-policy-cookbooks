@@ -18,7 +18,7 @@ To begin with, consider the following plain JSON schema (according to [JSON Sche
     "voltage": {
       "type": "number"
     },
-    "sensor_type": {
+    "sensorType": {
       "type": "integer",
       "enum": [1, 2, 3]
     },
