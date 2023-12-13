@@ -104,7 +104,7 @@ mqtt hivemq script create --id=voltage-normalization --file=script.js --type=tra
 ```
 
 ### Policy
-The next step is to create a policy that validates against the `schema-from-sensor` schema, normalized voltage by executing
+The next step is to create a policy that validates against the `schema-from-sensor` schema, normalizes voltage values by executing
 the transformation script, and publishes the payload to the original topic.
 
 `policy.json`:
