@@ -91,7 +91,7 @@ mqtt hivemq script create --id=fahrenheit-to-celsius --file=script.js --type=tra
 ```
 
 ### Policy
-The next step is to create a policy that validates against the `schema-from-sensor` schema, 
+The next step is to create a policy that validates against the `schema-from-device` schema, 
 converts the unit by executing the transformation script and publishes the payload to the 
 original topic.
 
