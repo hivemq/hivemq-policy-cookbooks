@@ -35,7 +35,7 @@ To begin with, consider the following plain JSON schema (according to [JSON Sche
 ```
 which contains two required fields `voltage` and `timestamp` to be of type `number`. The `sensor_type` field of type `integer` can have values 1, 2, or 3, representing different types of sensors reporting in Volts, Millivolts, or Kilovolts, respectively.
 
-After transformation, the field `voltage` is reported in Volts. The schema for transformed MQTT messages is defined as follows:
+After transformation, the field `voltage` is reported in volts. The schema for transformed MQTT messages is defined as follows:
 
 `schema-for-analytics.json`:
 ```json
