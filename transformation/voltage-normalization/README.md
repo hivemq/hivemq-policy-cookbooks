@@ -94,8 +94,8 @@ function transform(publish, context) {
     return publish;
 }
 ```
-The function `transform` has two parameters, a publish-object and a context-publish. A new publish-object is created
-with the field `voltage` normalized from the field `voltage` and the original timestamp of the incoming publish.
+The function `transform` has two parameters: a `publish` object and a `context` object. A new `publish` object is created
+with the field `voltage` normalized from the original `voltage` value, and the timestamp of the incoming publish.
 
 The function is uploaded to the broker with the following command:
 
