@@ -221,4 +221,4 @@ Transformed data after normalization:
   "timestamp": 1702424452
 }
 ```
-In these examples, the original data represents voltage readings from three different sensors with sensor_type values of 1, 2, and 3, respectively. The transformed data shows the normalized voltage values in Volts for consistent analysis in an energy monitoring system.
+In these examples, the original data represents voltage readings from three different sensors with `sensor_type` values of `1`, `2`, and `3`, respectively. The transformed data shows the normalized voltage values in volts for consistent analysis in an energy monitoring system.
