@@ -73,13 +73,13 @@ The following script normalizes voltage readings from volts, millivolts, and kil
 function normalizeVoltage(originalVoltage, sensorType) {
     switch (sensorType) {
         case 1:
-            return originalVoltage; // Volts
+            return originalVoltage; // volts
         case 2:
-            return originalVoltage / 1000; // Millivolts
+            return originalVoltage / 1000; // millivolts
         case 3:
-            return originalVoltage * 1000; // Kilovolts
+            return originalVoltage * 1000; // kilovolts
         default:
-            return originalVoltage; // Default to Volts if unknown sensor type
+            return originalVoltage; // Default to volts if unknown sensor type
     }
 }
 
