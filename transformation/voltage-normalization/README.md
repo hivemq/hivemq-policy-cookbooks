@@ -64,7 +64,7 @@ mqtt hivemq schema create --id schema-for-analytics --type json --file schema-fo
 ```
 
 ### Transformation function
-In HiveMQ Data Hub from version 4.23 we support JavaScript to transform incoming MQTT
+In HiveMQ Data Hub version 4.23 and later, we support JavaScript for the transformation of incoming MQTT
 messages.
 
 The following script normalizes voltage readings from Volts, Millivolts, and Kilovolts to Volts:
