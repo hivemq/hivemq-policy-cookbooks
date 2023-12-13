@@ -100,7 +100,7 @@ with the field `voltage` normalized from the field `voltage` and the original ti
 The function is uploaded to the broker with the following command:
 
 ```basH
-mqtt hivemq script create --id=voltage-normalization --file=script.js --type=transformation
+mqtt hivemq script create --id voltage-normalization --type transformation --file script.js
 ```
 
 ### Policy
