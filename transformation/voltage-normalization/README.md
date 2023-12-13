@@ -28,12 +28,12 @@ To begin with, consider the following plain JSON schema (according to [JSON Sche
   },
   "required": [
     "voltage",
-    "sensor_type",
+    "sensorType",
     "timestamp"
   ]
 }
 ```
-which contains two required fields `voltage` and `timestamp` to be of type `number`. The `sensor_type` field of type `integer` can have values `1`, `2`, or `3`, representing different types of sensors reporting in volts, millivolts, or kilovolts, respectively.
+which contains two required fields `voltage` and `timestamp` to be of type `number`. The `sensorType` field of type `integer` can have values `1`, `2`, or `3`, representing different types of sensors reporting in volts, millivolts, or kilovolts, respectively.
 
 After transformation, the field `voltage` is reported in volts. The schema for transformed MQTT messages is defined as follows:
 
@@ -84,7 +84,7 @@ function normalizeVoltage(originalVoltage, sensorType) {
 }
 
 function transform(publish, context) {
-    const sensorType = publish.payload.sensor_type;
+    const sensorType = publish.payload.sensorType;
 
     publish.payload = {
         "voltage": normalizeVoltage(publish.payload.voltage, sensorType),
@@ -183,21 +183,21 @@ Original data before normalization:
 ```json
 {
   "voltage": 220,
-  "sensor_type": 1,
+  "sensorType": 1,
   "timestamp": 1702424452
 }
 ```
 ```json
 {
   "voltage": 700,
-  "sensor_type": 2,
+  "sensorType": 2,
   "timestamp": 1702424452
 }
 ```
 ```json
 {
   "voltage": 66,
-  "sensor_type": 3,
+  "sensorType": 3,
   "timestamp": 1702424452
 }
 ```

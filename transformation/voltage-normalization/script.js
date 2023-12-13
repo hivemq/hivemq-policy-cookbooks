@@ -12,7 +12,7 @@ function normalizeVoltage(originalVoltage, sensorType) {
 }
 
 function transform(publish, context) {
-    const sensorType = publish.payload.sensor_type;
+    const sensorType = publish.payload.sensorType;
 
     publish.payload = {
         "voltage": normalizeVoltage(publish.payload.voltage, sensorType),
