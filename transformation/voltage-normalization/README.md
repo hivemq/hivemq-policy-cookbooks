@@ -205,7 +205,7 @@ Original data before normalization:
 Transformed data after normalization:
 ```json
 {
-  "normalized_voltage": 220,
+  "voltage": 220,
   "timestamp": 1702424452
 }
 ```
