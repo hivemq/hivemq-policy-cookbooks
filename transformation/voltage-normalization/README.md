@@ -99,7 +99,7 @@ with the field `voltage` normalized from the original `voltage` value, and the t
 
 The function is uploaded to the broker with the following command:
 
-```basH
+```bash
 mqtt hivemq script create --id voltage-normalization --type transformation --file script.js
 ```
 
