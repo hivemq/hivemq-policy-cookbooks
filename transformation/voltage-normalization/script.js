@@ -1,21 +1,21 @@
 function normalizeVoltage(originalVoltage, sensorType) {
     switch (sensorType) {
         case 1:
-            return originalVoltage; // Volts
+            return originalVoltage; // volts
         case 2:
-            return originalVoltage / 1000; // Millivolts
+            return originalVoltage / 1000; // millivolts
         case 3:
-            return originalVoltage * 1000; // Kilovolts
+            return originalVoltage * 1000; // kilovolts
         default:
-            return originalVoltage; // Default to Volts if unknown sensor type
+            return originalVoltage; // Default to volts if unknown sensor type
     }
 }
 
 function transform(publish, context) {
-    const sensorType = publish.payload.sensorType;
+    const type = publish.payload.sensorType;
 
     publish.payload = {
-        "voltage": normalizeVoltage(publish.payload.voltage, sensorType),
+        "voltage": normalizeVoltage(publish.payload.voltage, type),
         "timestamp": publish.payload.timestamp
     }
 
