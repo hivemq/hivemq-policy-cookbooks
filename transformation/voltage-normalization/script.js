@@ -16,8 +16,8 @@ function transform(publish, context) {
 
     publish.payload = {
         "voltage": normalizeVoltage(publish.payload.voltage, type),
-        "timestamp": publish.payload.timestamp
-    }
+        "timestamp": publish.payload.timestamp,
+    };
 
     return publish;
 }
