@@ -65,3 +65,16 @@ policy that maintains a state between validation invocations. This allows to hav
 |----------------------------------------------------------------------------------------|------------------------------------------------------------------------|
 | A policy that enforces a specified amount of PUSLISH messages within a client session. | [publish-quota](/behavior-validation/publish-quota)     	              |
 | A policy that detects duplicated messages.                                             | [publish-duplicate](/behavior-validation/publish-duplicate)	 |
+
+## Data Transformation
+
+In the HiveMQ Data Hub, data transformation provides a way to transform MQTT messages to implement conversions, data
+repairs, and other data transformations.
+
+### Example Use-Cases
+
+| Description                                                                       	 | Link 	                                                               |
+|-------------------------------------------------------------------------------------|----------------------------------------------------------------------|
+| Fahrenheit to Celsius temperature readings conversion.                              | [fahrenheit-to-celsius](/transformation/fahrenheit-to-celsius)     	 |
+| Voltage readings normalization.                                                     | [voltage-normalization](/transformation/voltage-normalization)	      |
+| Sensitive personal data anonymization.                                              | [data-anonymization](/transformation/data-anonymization)	            |
