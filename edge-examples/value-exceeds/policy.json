@@ -1,0 +1,49 @@
+{
+  "id": "temperature-check-policy",
+  "matching": {
+    "topicFilter": "temperature"
+  },
+  "validation": {
+    "validators": [
+      {
+        "type": "schema",
+        "arguments": {
+          "strategy": "ALL_OF",
+          "schemas": [
+            {
+              "schemaId": "temperature-value-schema",
+              "version": "latest"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "onSuccess": {
+    "pipeline": [
+      {
+        "id": "operation-2eng0",
+        "functionId": "Serdes.deserialize",
+        "arguments": {
+          "schemaId": "temperature-value-schema",
+          "schemaVersion": "latest"
+        }
+      },
+      {
+        "id": "operation-ek2Mx",
+        "functionId": "fn:temperature-check:latest",
+        "arguments": {
+          "clientId": "${clientId}"
+        }
+      },
+      {
+        "id": "operation-4DBF3",
+        "functionId": "Serdes.serialize",
+        "arguments": {
+          "schemaId": "temperature-value-with-status-schema",
+          "schemaVersion": "latest"
+        }
+      }
+    ]
+  }
+}
