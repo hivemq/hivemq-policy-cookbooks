@@ -1,7 +1,6 @@
 # HiveMQ Data Hub
 
-The HiveMQ Data Hub provides mechanisms to define how MQTT data is handled in the HiveMQ broker.
-The first feature of our new Data Hub is *Data Validation*.
+The HiveMQ Data Hub provides mechanisms to define how MQTT data is handled in the HiveMQ Enterprise Edition and HiveMQ Edge.
 
 ## Quick Start
 
@@ -47,6 +46,7 @@ invalid MQTT messages).
 | A policy that enforces that incoming packets match multiple JSON schemas simultaneously                   | JSON                  | [multiple-required-json-schemas](/data-validation/multiple-required-json-schemas)	 |
 | Debug bad clients by dropping valid traffic | JSON |  [debug-bad-clients](data-validation/debug-bad-clients) |
 | Disconnect client that sends bad data | JSON | [disconnect-client-for-invalid-data](data-validation/disconnect-client-for-invalid-data)
+| Compute temperature range and adds state | JSON | [edge-temperature-values-via-arguments](edge-examples/value-via-arguments)
 
 ### Complete Demo Setups
 

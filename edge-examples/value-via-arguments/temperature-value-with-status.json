@@ -1,0 +1,20 @@
+{
+  "title": "A schema that contains a single temperature value",
+  "type": "object",
+  "properties": {
+    "value": {
+      "type": "number",
+      "description": "the temperature value",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "too_hot",
+        "good",
+        "too_low"
+      ]
+    }
+  }
+}
