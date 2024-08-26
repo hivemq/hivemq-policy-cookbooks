@@ -1,0 +1,67 @@
+{
+  "id": "protobuf-to-json-and-fanout",
+  "matching": {
+    "topicFilter": "spBv1.0/+/DDATA/+/+"
+  },
+  "validation": {
+    "validators": [
+      {
+        "type": "schema",
+        "arguments": {
+          "strategy": "ALL_OF",
+          "schemas": [
+            {
+              "schemaId": "sparkplug-format",
+              "version": "latest"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "onSuccess": {
+    "pipeline": [
+      {
+        "id": "operation-ErVR0",
+        "functionId": "Serdes.deserialize",
+        "arguments": {
+          "schemaVersion": "latest",
+          "schemaId": "sparkplug-format"
+        }
+      },
+      {
+        "id": "operation-QzwYJ",
+        "functionId": "fn:filter-fanout:latest",
+        "arguments": {
+          "allowList": "machine,performance"
+        },
+        "onBranch": [
+          {
+            "branchId": "metrics",
+            "pipeline": [
+              {
+                "id": "branch-serialize-sOZsS",
+                "functionId": "Serdes.serialize",
+                "arguments": {
+                  "schemaVersion": "latest",
+                  "schemaId": "simple-json"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "operation-4XR5d",
+        "functionId": "Serdes.serialize",
+        "arguments": {
+          "schemaVersion": "latest",
+          "schemaId": "simple-json"
+        }
+      }
+    ]
+  },
+  "onFailure": {
+    "pipeline": []
+  }
+}
