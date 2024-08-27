@@ -1,0 +1,22 @@
+<hivemq-mongodb-extension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                          xsi:noNamespaceSchemaLocation="config.xsd">
+    <mongodbs>
+        <mongodb>
+            <id>my-mongodb-id</id>
+            <connection-string>mongodb+srv://mongodb:<password>@atlascluster.<id>.mongodb.net</connection-string>
+        </mongodb>
+    </mongodbs>
+    <mqtt-to-mongodb-routes>
+        <mqtt-to-mongodb-route>
+            <id>my-mqtt-to-mongodb-route</id>
+            <mongodb-id>my-mongodb-id</mongodb-id>
+            <mqtt-topic-filters>
+                <mqtt-topic-filter>spBv1.0/#</mqtt-topic-filter>
+            </mqtt-topic-filters>
+            <collection>production-lines</collection>
+            <database>iot-data</database>
+            <processor>                <document-template>conf/document-template.json</document-template>
+            </processor>
+        </mqtt-to-mongodb-route>
+    </mqtt-to-mongodb-routes>
+</hivemq-mongodb-extension>
