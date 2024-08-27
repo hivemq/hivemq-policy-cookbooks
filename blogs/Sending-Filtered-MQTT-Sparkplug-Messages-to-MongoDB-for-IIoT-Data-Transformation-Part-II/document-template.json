@@ -1,0 +1,13 @@
+{
+  "topic": "${mqtt-topic}",
+  "payload_utf8": ${mqtt-payload-utf8},
+  "qos": "${mqtt-qos}",
+  "retain": ${mqtt-retain},
+  "packet_id": ${mqtt-packet-id},
+  "payload_format_indicator": "${mqtt-payload-format-indicator}",
+  "response_topic": "${mqtt-response-topic}",
+  "correlation_data_utf8": "${mqtt-correlation-data-utf8}",
+  "user_properties": ${mqtt-user-properties-json},
+  "my_user_property": "${mqtt-user-properties$myUserPropertyName}",
+  "arrival_timestamp": ${timestamp-ms}
+}

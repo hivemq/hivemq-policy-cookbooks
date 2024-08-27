@@ -1,0 +1,46 @@
+{
+  "id" : "protobuf-to-json-and-fanout",
+  "matching" : {
+    "topicFilter" : "spBv1.0/+/DDATA/+/+"
+  },
+  "validation" : {
+    "validators" : [ ]
+  },
+  "onSuccess" : {
+    "pipeline" : [ {
+      "id" : "operation-ErVR0",
+      "functionId" : "Serdes.deserialize",
+      "arguments" : {
+        "schemaVersion" : "latest",
+        "schemaId" : "sparkplug-format"
+      }
+    }, {
+      "id" : "operation-QzwYJ",
+      "functionId" : "fn:fanout:latest",
+      "arguments" : {
+        "allowList" : "machine,performace"
+      },
+      "onBranch" : [ {
+        "branchId" : "metrics",
+        "pipeline" : [ {
+          "id" : "branch-serialize-a4BAC",
+          "functionId" : "Serdes.serialize",
+          "arguments" : {
+            "schemaVersion" : "latest",
+            "schemaId" : "simple-json"
+          }
+        } ]
+      } ]
+    }, {
+      "id" : "operation-4XR5d",
+      "functionId" : "Serdes.serialize",
+      "arguments" : {
+        "schemaVersion" : "latest",
+        "schemaId" : "simple-json"
+      }
+    } ]
+  },
+  "onFailure" : {
+    "pipeline" : [ ]
+  }
+}
