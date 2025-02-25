@@ -68,7 +68,7 @@ The following scripts converts Fahrenheit into Celsius:
 
 ```javascript
 function convert(fahrenheit) {
-    return Mah.floor((fahrenheit - 32) * 5/9);
+    return Math.floor((fahrenheit - 32) * 5/9);
 }
 
 function transform(publish, context) {
